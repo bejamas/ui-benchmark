@@ -1,8 +1,290 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import MarketingPage from "@/components/MarketingPage";
+
+/* ── Interactive islands (client:load) ──────────────────────────── */
+import SiteNav from "@/components/SiteNav";
+import FeatureTooltip from "@/components/FeatureTooltip";
+import PricingTabs from "@/components/PricingTabs";
+import InlineHoverCard from "@/components/InlineHoverCard";
+import FAQAccordion from "@/components/FAQAccordion";
+import ContactSelects from "@/components/ContactSelects";
+
+/* ── Static shadcn components (server-rendered, zero JS) ────────── */
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
+
+const features = [
+  {
+    title: "Zero-JS Components",
+    description: "Ship HTML and CSS only. Interactive elements use lightweight primitives instead of framework runtimes.",
+    tooltip: "Components compile to static HTML with no client-side hydration",
+  },
+  {
+    title: "Instant Page Loads",
+    description: "No JavaScript bundle to parse. Pages render immediately with perfect Lighthouse scores.",
+    tooltip: "Typical score: 98-100 on PageSpeed Insights",
+  },
+  {
+    title: "Accessible by Default",
+    description: "Keyboard navigation, ARIA attributes, and screen reader support built into every component.",
+    tooltip: "WCAG 2.1 AA compliant out of the box",
+  },
+  {
+    title: "Copy & Own",
+    description: "Components live in your codebase. No black-box dependencies, full control over every line.",
+    tooltip: "Similar to shadcn/ui's approach but for Astro",
+  },
+  {
+    title: "Tailwind v4 Native",
+    description: "Built on the latest Tailwind CSS with CSS-first configuration and zero PostCSS plugins.",
+    tooltip: "Uses @theme and CSS custom properties",
+  },
+  {
+    title: "Rich Interactions",
+    description: "Navigation menus, tooltips, hover cards, and more — all without React hydration overhead.",
+    tooltip: "Uses data-slot primitives for behavior",
+  },
+];
 ---
 
 <Layout>
-  <MarketingPage client:load />
+  <div class="min-h-screen font-[Geist,system-ui,sans-serif] antialiased">
+    <!-- ─────────────────── Header / Nav ─────────────────── -->
+    <header
+      class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4"
+      >
+        <span class="text-xl font-bold tracking-tight">Acme</span>
+
+        <SiteNav client:load />
+
+        <Button>Get Started</Button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ─────────────────── Hero ─────────────────── -->
+      <section class="mx-auto max-w-6xl px-4 py-24 text-center">
+        <Badge variant="secondary" className="mb-4">Now in public beta</Badge>
+        <h1
+          class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+        >
+          Build faster websites<br />without the bloat
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          Ship marketing sites that load instantly. Zero unnecessary JavaScript,
+          beautiful components, and the developer experience you love.
+        </p>
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <Button size="lg">Start free trial</Button>
+          <Button size="lg" variant="outline">View demo</Button>
+        </div>
+      </section>
+
+      <!-- ─────────────────── Features with Tooltips ─────────────────── -->
+      <section class="mx-auto max-w-6xl px-4 py-24">
+        <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+          Everything you need
+        </h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  {feature.title}
+                  <FeatureTooltip client:load text={feature.tooltip} />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground">
+                  {feature.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <!-- ─────────────────── Pricing Tabs ─────────────────── -->
+      <section id="pricing" class="mx-auto max-w-6xl px-4 py-24">
+        <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+          Simple, transparent pricing
+        </h2>
+        <PricingTabs client:load />
+      </section>
+
+      <!-- ─────────────────── Long-form text with HoverCards ─────────────────── -->
+      <section class="mx-auto max-w-3xl px-4 py-24">
+        <h2 class="mb-8 text-3xl font-bold tracking-tight">
+          Why performance matters
+        </h2>
+        <div class="space-y-6 text-base leading-relaxed text-muted-foreground">
+          <p>
+            Modern marketing websites have become increasingly JavaScript-heavy.
+            The average web page now ships over 500KB of JavaScript, and
+            component libraries built on{" "}
+            <InlineHoverCard
+              client:load
+              trigger="React"
+              title="React"
+              description="A JavaScript library for building user interfaces. React alone adds ~42KB (gzipped) to your bundle before any components."
+            />{" "}
+            add significant overhead. Every component on the page needs to{" "}
+            <InlineHoverCard
+              client:load
+              trigger="hydrate"
+              title="Hydration"
+              description="The process where the browser downloads JavaScript, parses it, and attaches event listeners to server-rendered HTML. Even static text paragraphs need hydration in React."
+            />{" "}
+            — including static text content that never changes.
+          </p>
+          <p>
+            This is particularly problematic for long-form content. Blog posts,
+            landing pages, and documentation sites are content-first by nature,
+            yet frameworks like Next.js require the full{" "}
+            <InlineHoverCard
+              client:load
+              trigger="Virtual DOM"
+              title="Virtual DOM"
+              description="A programming concept where a virtual representation of the UI is kept in memory and synced with the real DOM. This reconciliation process has a cost proportional to the number of nodes."
+            />{" "}
+            runtime to reconcile every text node, heading, and paragraph. The
+            more content on the page, the higher the cost.
+          </p>
+          <p>
+            Consider a marketing page with a navigation menu, pricing tables,
+            testimonials, and a contact form. In a traditional React setup, the
+            browser must download, parse, and execute JavaScript for{" "}
+            <InlineHoverCard
+              client:load
+              trigger="Radix UI primitives"
+              title="Radix UI"
+              description="A popular headless component library for React. Each primitive (Dialog, Select, NavigationMenu, etc.) adds 5-30KB of JavaScript to handle accessibility and interactions."
+            />, state management, event delegation, and the component
+            tree itself — even for sections that are purely presentational.
+          </p>
+          <p>
+            The alternative is to use a server-first approach where components
+            render to plain HTML by default. Interactive elements like{" "}
+            <InlineHoverCard
+              client:load
+              trigger="navigation menus"
+              title="Navigation Menu"
+              description="A complex component requiring hover detection, keyboard navigation, focus management, and animated transitions. In Astro + data-slot, this costs ~3KB vs ~25KB in React + Radix."
+            />{" "}
+            and tooltips use lightweight{" "}
+            <InlineHoverCard
+              client:load
+              trigger="data-slot primitives"
+              title="data-slot Primitives"
+              description="Vanilla JavaScript behavior modules that attach to HTML elements via data attributes. No framework runtime needed — just the bare minimum JS for interactivity."
+            />{" "}
+            that add only the JavaScript strictly necessary for behavior — no
+            framework, no virtual DOM, no hydration.
+          </p>
+        </div>
+      </section>
+
+      <!-- ─────────────────── FAQ ─────────────────── -->
+      <section class="mx-auto max-w-3xl px-4 py-24">
+        <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+          Frequently asked questions
+        </h2>
+        <FAQAccordion client:load />
+      </section>
+
+      <!-- ─────────────────── Contact Form ─────────────────── -->
+      <section id="contact" class="mx-auto max-w-xl px-4 py-24">
+        <h2 class="mb-8 text-center text-3xl font-bold tracking-tight">
+          Get in touch
+        </h2>
+        <Card>
+          <CardContent className="space-y-6 pt-6">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="space-y-2">
+                <Label htmlFor="first-name">First name</Label>
+                <Input id="first-name" placeholder="Jane" />
+              </div>
+              <div class="space-y-2">
+                <Label htmlFor="last-name">Last name</Label>
+                <Input id="last-name" placeholder="Doe" />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="jane@example.com" />
+            </div>
+
+            <ContactSelects client:load />
+
+            <div class="flex items-center space-x-2">
+              <Checkbox id="newsletter" />
+              <Label htmlFor="newsletter" className="text-sm font-normal">
+                Send me product updates and tips
+              </Label>
+            </div>
+
+            <Button className="w-full" size="lg">Send message</Button>
+          </CardContent>
+        </Card>
+      </section>
+    </main>
+
+    <!-- ─────────────────── Footer ─────────────────── -->
+    <footer class="border-t">
+      <div class="mx-auto max-w-6xl px-4 py-12">
+        <div class="grid gap-8 sm:grid-cols-4">
+          <div>
+            <span class="text-lg font-bold">Acme</span>
+            <p class="mt-2 text-sm text-muted-foreground">
+              Build faster websites without the bloat.
+            </p>
+          </div>
+          <div>
+            <h3 class="mb-3 text-sm font-semibold">Product</h3>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" class="hover:text-foreground">Features</a></li>
+              <li><a href="#" class="hover:text-foreground">Pricing</a></li>
+              <li><a href="#" class="hover:text-foreground">Changelog</a></li>
+              <li><a href="#" class="hover:text-foreground">Documentation</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-3 text-sm font-semibold">Company</h3>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" class="hover:text-foreground">About</a></li>
+              <li><a href="#" class="hover:text-foreground">Blog</a></li>
+              <li><a href="#" class="hover:text-foreground">Careers</a></li>
+              <li><a href="#" class="hover:text-foreground">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-3 text-sm font-semibold">Legal</h3>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" class="hover:text-foreground">Privacy</a></li>
+              <li><a href="#" class="hover:text-foreground">Terms</a></li>
+              <li><a href="#" class="hover:text-foreground">Cookies</a></li>
+            </ul>
+          </div>
+        </div>
+        <Separator className="my-8" />
+        <p class="text-center text-sm text-muted-foreground">
+          &copy; 2026 Acme Corp. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
 </Layout>
