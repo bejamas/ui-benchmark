@@ -63,7 +63,9 @@ All three projects render the **exact same marketing onepager** with these inter
 | Label | ❌ Static | **0 KB** | ⚠️ Partial zero-JS | Bundled in ~219 KB |
 | Checkbox | ❌ Static | **0 KB** | **0 KB** | Bundled in ~219 KB |
 | Separator | ❌ Static | **0 KB** | **0 KB** | Bundled in ~219 KB |
-
+| | | | | |
+| *Shared runtime* | | *Astro (4.70 KB)* | *React + Radix + Astro (86.85 KB)* | *Included above* |
+| **Total** | | **22.80 KB** | **119.88 KB** | **219.22 KB** |
 > In Astro + b/ui, **7 of 13 components ship zero JavaScript**.
 >
 > In Astro + React + shadcn with per-section islands, **3 components are fully zero-JS** (Input, Checkbox, Separator) and **4 more are partially zero-JS** — their instances outside islands (hero buttons, feature cards) render as pure HTML, but the same components also appear inside interactive islands (PricingTabs) where they still ship JS.

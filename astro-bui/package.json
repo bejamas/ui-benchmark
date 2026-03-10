@@ -15,6 +15,7 @@
     "@data-slot/select": "^0.2.111",
     "@data-slot/tabs": "^0.2.111",
     "@data-slot/tooltip": "^0.2.111",
+    "@fontsource-variable/geist": "^5.2.8",
     "@lucide/astro": "^0.556.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
