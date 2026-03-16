@@ -473,7 +473,7 @@ import { Separator } from "@/ui/separator";
           Why performance matters
         </h2>
         <div class="space-y-6 text-base leading-relaxed text-muted-foreground">
-          <p>
+          <div>
             Modern marketing websites have become increasingly JavaScript-heavy.
             The average web page now ships over 500KB of JavaScript, and
             component libraries built on{" "}
@@ -519,8 +519,8 @@ import { Separator } from "@/ui/separator";
               </HoverCardContent>
             </HoverCard>{" "}
             — including static text content that never changes.
-          </p>
-          <p>
+          </div>
+          <div>
             This is particularly problematic for long-form content. Blog posts,
             landing pages, and documentation sites are content-first by nature,
             yet frameworks like Next.js require the full{" "}
@@ -547,8 +547,8 @@ import { Separator } from "@/ui/separator";
             </HoverCard>{" "}
             runtime to reconcile every text node, heading, and paragraph. The
             more content on the page, the higher the cost.
-          </p>
-          <p>
+          </div>
+          <div>
             Consider a marketing page with a navigation menu, pricing tables,
             testimonials, and a contact form. In a traditional React setup, the
             browser must download, parse, and execute JavaScript for{" "}
@@ -573,8 +573,8 @@ import { Separator } from "@/ui/separator";
               </HoverCardContent>
             </HoverCard>, state management, event delegation, and the component
             tree itself — even for sections that are purely presentational.
-          </p>
-          <p>
+          </div>
+          <div>
             The alternative is to use a server-first approach where components
             render to plain HTML by default. Interactive elements like{" "}
             <HoverCard>
@@ -620,7 +620,7 @@ import { Separator } from "@/ui/separator";
             </HoverCard>{" "}
             that add only the JavaScript strictly necessary for behavior — no
             framework, no virtual DOM, no hydration.
-          </p>
+          </div>
         </div>
       </section>
 
