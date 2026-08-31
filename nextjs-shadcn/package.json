@@ -2,6 +2,10 @@
   "name": "nextjs-shadcn",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@11.13.0",
+  "engines": {
+    "node": "24.16.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
