@@ -29,6 +29,26 @@ identical marketing pages built with different component libraries.
 | Rendering | Static HTML | Per-section React islands | Static (SSG) |
 | Package Manager | Bun | npm | npm |
 
+## Cloudflare Deployments
+
+All three projects are deployed as static-asset Workers in the Cloudflare
+`Bejamas OSS` account.
+
+| Project | Production URL | Build output |
+|---|---|---|
+| Astro + b/ui | [astro-bui.bejamas-oss.workers.dev](https://astro-bui.bejamas-oss.workers.dev) | `astro-bui/dist` |
+| Astro + React + shadcn | [astro-react-shadcn.bejamas-oss.workers.dev](https://astro-react-shadcn.bejamas-oss.workers.dev) | `astro-react-shadcn/dist` |
+| Next.js + shadcn | [nextjs-shadcn.bejamas-oss.workers.dev](https://nextjs-shadcn.bejamas-oss.workers.dev) | `nextjs-shadcn/out` |
+
+Each project has an account-pinned `wrangler.jsonc` and a deploy script that
+builds before publishing:
+
+```bash
+cd astro-bui && bun run deploy
+cd astro-react-shadcn && npm run deploy
+cd nextjs-shadcn && npm run deploy
+```
+
 The **Astro + React + shadcn** version uses per-section islands — static shadcn components (Button, Card, etc.) are server-rendered to HTML with zero JS, while interactive components (NavigationMenu, Tabs, Accordion, etc.) each hydrate as separate `client:load` islands. This isolates the cost of React + Radix without Next.js overhead.
 
 ---

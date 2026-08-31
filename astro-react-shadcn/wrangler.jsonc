@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "astro-react-shadcn",
+  "account_id": "705e6a1ce1620c4ac2ce279a064dec41",
+  "compatibility_date": "2026-08-31",
+  "assets": {
+    "directory": "./dist"
+  }
+}
