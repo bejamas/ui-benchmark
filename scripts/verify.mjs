@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 
 import axe from "axe-core";
@@ -13,6 +13,18 @@ import { startStaticServer } from "./static-server.mjs";
 const INTERACTION_RUNS = Number.parseInt(process.env.INTERACTION_RUNS ?? "5", 10);
 const CPU_THROTTLING_RATE = 4;
 const FIRST_FAQ = "How is this different from shadcn/ui?";
+const assetReport = JSON.parse(readFileSync(join(resultsDir, "assets.json"), "utf8"));
+const expectedScripts = new Map(
+  assetReport.projects.map((project) => [
+    project.id,
+    project.categories.javascript.files.map((file) => `/${file.path}`).sort(),
+  ]),
+);
+const styleSources = [
+  "astro-bui/src/styles/globals.css",
+  "astro-react-shadcn/src/styles/globals.css",
+  "nextjs-shadcn/src/app/globals.css",
+].map((filePath) => readFileSync(join(benchmarkRoot, filePath), "utf8"));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -161,6 +173,8 @@ const measuredAt = new Date().toISOString();
 const qualityProjects = [];
 const interactionProjects = [];
 
+assert(new Set(styleSources).size === 1, "The benchmark variants do not share the same global styles");
+
 try {
   for (const project of projects) {
     console.log(`Verifying ${project.name}`);
@@ -229,6 +243,10 @@ try {
     );
     assert(pageData.nestedInteractiveControls === 0, `${project.name} contains nested interactive controls`);
     assert(pageData.fontRequests.length === 1, `${project.name} did not load exactly one font subset`);
+    assert(
+      JSON.stringify(pageData.scriptRequests) === JSON.stringify(expectedScripts.get(project.id)),
+      `${project.name} browser requests do not match results/assets.json`,
+    );
 
     qualityProjects.push({
       id: project.id,
@@ -266,12 +284,13 @@ const qualityReport = {
   },
   checks: [
     "identical normalized visible text",
-    "one local Geist font subset",
+    "identical global style source and one local Geist font subset",
     "six keyboard-focusable tooltip triggers",
     "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
     "zero nested interactive controls",
     "zero axe-core violations",
     "zero browser errors",
+    "browser JavaScript requests match the route asset report",
   ],
   projects: qualityProjects,
 };

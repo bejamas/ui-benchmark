@@ -1,38 +1,184 @@
-# Benchmark: Astro + b/ui vs Next.js + shadcn/ui
+# UI benchmark: Astro + b/ui, Astro + React, and Next.js
 
-> Same marketing page. Same components. Three approaches. Radically different JavaScript footprints.
+This repository compares three static implementations of the same marketing page:
 
-A controlled comparison of JavaScript footprint and performance between three
-identical marketing pages built with different component libraries.
+1. **Astro + b/ui** — Astro components with `data-slot` JavaScript primitives
+2. **Astro + React + shadcn/ui** — static Astro markup plus explicit React islands
+3. **Next.js + shadcn/ui** — a Server Component page with interactive Client Component boundaries
 
----
+The benchmark is scoped to this page, component set, and the locked dependency versions in this repository. It is not a universal framework ranking.
 
-## TL;DR
+## Current results
 
-| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn | 
-|---|---|---|---|
-| **JS bundle (gzipped)** | **22.80 KB** | 119.88 KB | 219.22 KB |
-| **JS bundle (raw)** | **60.42 KB** | 358.35 KB | 729.83 KB |
-| **JS files** | **7** | 19 | 10 |
-| **vs b/ui (gzip)** | **1x** | 5.3x more | 9.6x more |
-| **Zero-JS components** | 7 of 13 | 3 of 13 | 0 of 13 |
+### Route-delivered assets
 
----
+These are stable build-artifact measurements for `/`. JavaScript includes modern script tags and recursively imported ES modules; legacy `nomodule` files and unreferenced build artifacts are excluded. Each compressible response is compressed independently.
 
-## The Three Projects
+| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+|---|---:|---:|---:|
+| Route JS files | **7** | 18 | **7** |
+| Route JS raw | **84.56 KiB** | 375.05 KiB | 605.42 KiB |
+| Route JS gzip | **30.91 KiB** | 124.95 KiB | 179.67 KiB |
+| Route JS Brotli | **27.61 KiB** | 109.88 KiB | 155.25 KiB |
+| JS gzip relative to b/ui | **1×** | 4.0× | 5.8× |
+| HTML raw | 91.47 KiB | **57.90 KiB** | 112.35 KiB |
+| CSS raw | 68.24 KiB | **52.20 KiB** | 53.32 KiB |
+| Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
+| HTML + CSS + JS + font, gzip estimate | **81.04 KiB** | 171.43 KiB | 231.83 KiB |
 
-| | **Astro + b/ui** | **Astro + React + shadcn** | **Next.js + shadcn** |
-|---|---|---|---|
-| Framework | Astro 5 | Astro 5 + React | Next.js 16 |
-| Components | b/ui (data-slot) | shadcn/ui (Radix) | shadcn/ui (Radix) |
-| Styling | Tailwind CSS v4 | Tailwind CSS v4 | Tailwind CSS v4 |
-| Rendering | Static HTML | Per-section React islands | Static (SSG) |
-| Package Manager | Bun | npm | npm |
+The b/ui implementation sends substantially less JavaScript, but it also emits more HTML and more DOM nodes than the Astro React implementation. That tradeoff is part of the result.
 
-## Cloudflare Deployments
+Full file-level data is in [`results/assets.json`](results/assets.json).
 
-All three projects are deployed as static-asset Workers in the Cloudflare
-`Bejamas OSS` account.
+### Lighthouse mobile lab results
+
+Values are medians of five sequential Lighthouse 13.4.1 runs against local production builds served by one HTTP server with deterministic gzip.
+
+| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+|---|---:|---:|---:|
+| Performance score | **100** | 99 | 98 |
+| FCP | 1.51 s | 1.50 s | **1.07 s** |
+| LCP | **1.51 s** | 2.10 s | 2.46 s |
+| TBT | 0 ms | 0 ms | 0 ms |
+| CLS | 0.01 | 0.01 | 0.02 |
+| Speed Index | 1.51 s | 1.50 s | **1.07 s** |
+
+Protocol:
+
+- Mobile viewport: 412×823 at 1.75 DPR
+- Simulated network: 150 ms RTT, 1,638.4 Kbps throughput
+- CPU slowdown: 4×
+- Runs: 5 per project, sequentially
+- Aggregation: median per metric
+- CDN and production TTFB are intentionally excluded
+
+These are controlled lab results, not field Core Web Vitals. Full summaries are in [`results/performance.json`](results/performance.json); the 15 complete Lighthouse reports are written to `.benchmark-results/lighthouse/` and are intentionally untracked.
+
+### Interaction latency
+
+Chrome Event Timing measures three scripted pointer interactions under 4× CPU slowdown. Values are five-run medians in milliseconds.
+
+| Interaction | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+|---|---:|---:|---:|
+| Switch pricing tab | 24 | **16** | **16** |
+| Open FAQ item | 16 | 16 | 16 |
+| Toggle newsletter checkbox | 16 | 16 | 16 |
+
+These values are quantized by the Event Timing API and show no meaningful responsiveness separation at this page complexity. They are controlled lab interaction measurements, **not field INP**. Raw samples and p90 values are in [`results/interactions.json`](results/interactions.json).
+
+### Parity and accessibility
+
+The automated verification suite currently confirms:
+
+- Identical normalized visible text across all variants
+- The same theme tokens and one local Geist variable-font subset
+- Functional navigation, tooltips, tabs, hover cards, accordion, selects, and checkbox
+- Six keyboard-focusable tooltip triggers per page
+- No nested interactive controls
+- Zero axe-core violations
+- Zero browser console or page errors
+
+| Structural metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+|---|---:|---:|---:|
+| DOM elements after initialization | 472 | **256** | 274 |
+| Serialized DOM after initialization | 98.93 KiB | **56.83 KiB** | 111.58 KiB |
+
+See [`results/quality.json`](results/quality.json) for the machine-readable report.
+
+## What the comparison demonstrates
+
+For this page and component set:
+
+- b/ui uses the least JavaScript because static components remain HTML and interactive behavior comes from small vanilla-JavaScript primitives.
+- Astro React loads React, the Astro island runtime, and the Radix/shadcn code used by its interactive islands.
+- The Next page is an idiomatic Server Component. Static page text is not forced through a top-level `"use client"` boundary, but the client router/runtime and interactive shadcn components still contribute to the route bundle.
+- Lower JavaScript does not mean lower output in every category: b/ui renders more initial DOM and HTML for this component implementation.
+- All three implementations are responsive in the standardized interaction suite; the primary separation is payload and hydration architecture rather than observable interaction delay here.
+
+Claims such as “React + Radix has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.
+
+## Page parity
+
+Every variant renders the same content and interaction set:
+
+- Header navigation with two dropdown menus
+- Hero badge and calls to action
+- Six feature cards with tooltips
+- Monthly/yearly pricing tabs
+- Six inline hover cards
+- Six FAQ accordion items
+- Contact form with two selects and a checkbox
+- Footer link columns
+
+The projects use the same color tokens and local Geist variable font. Framework-specific DOM wrappers and runtime markers are allowed and reported rather than treated as identical markup.
+
+## Reproduce the benchmark
+
+### Requirements
+
+- Node.js 24.16.0 (`.node-version`)
+- npm 11.13.0
+- Bun 1.3.14
+- Google Chrome; set `CHROME_PATH` if it is installed in a nonstandard location
+
+All dependency lockfiles are tracked.
+
+```bash
+# Install the benchmark tools
+npm ci
+
+# Install each project from its lockfile
+(cd astro-bui && bun install --frozen-lockfile)
+npm ci --prefix astro-react-shadcn
+npm ci --prefix nextjs-shadcn
+
+# Build, measure assets, verify parity/a11y/interactions,
+# and run five Lighthouse samples per project
+npm run benchmark
+```
+
+Individual stages can also be run independently:
+
+```bash
+npm run build
+npm run measure
+npm run verify
+npm run performance
+```
+
+Use `BENCHMARK_RUNS` or `INTERACTION_RUNS` to change sample counts. The committed results use five runs for both.
+
+## Measurement details
+
+### Asset measurement
+
+`scripts/measure.mjs` begins at each generated `index.html` and includes:
+
+- The route HTML response
+- Referenced stylesheets
+- Font subsets whose Unicode ranges match the rendered route text
+- Modern JavaScript script tags
+- JavaScript reached through static or dynamic ES module imports
+
+It excludes:
+
+- `nomodule` fallback bundles in modern-browser totals
+- Manifests and chunks not referenced by `/`
+- HTTP headers and protocol overhead
+
+Gzip level 9 and Brotli quality 11 are calculated independently per response. These are reproducible compression estimates, not claims about a production CDN's negotiated encoding.
+
+### Performance measurement
+
+`scripts/performance.mjs` serves all production outputs through the same local server, runs Lighthouse sequentially, stores every full report, and commits a compact median summary. Running audits concurrently is deliberately avoided because resource contention distorts results.
+
+### Interaction and accessibility verification
+
+`scripts/verify.mjs` uses Chrome to exercise the equivalent controls, collects Event Timing samples, compares rendered text and requested assets, and runs axe-core. The suite fails immediately when parity, functionality, accessibility, or console-error checks regress.
+
+## Deployments
+
+The projects are configured as Cloudflare static-asset Workers in the `Bejamas OSS` account:
 
 | Project | Production URL | Build output |
 |---|---|---|
@@ -40,260 +186,26 @@ All three projects are deployed as static-asset Workers in the Cloudflare
 | Astro + React + shadcn | [astro-react-shadcn.bejamas-oss.workers.dev](https://astro-react-shadcn.bejamas-oss.workers.dev) | `astro-react-shadcn/dist` |
 | Next.js + shadcn | [nextjs-shadcn.bejamas-oss.workers.dev](https://nextjs-shadcn.bejamas-oss.workers.dev) | `nextjs-shadcn/out` |
 
-Each project has an account-pinned `wrangler.jsonc` and a deploy script that
-builds before publishing:
+Deployments are intentionally separate from the benchmark command:
 
 ```bash
-cd astro-bui && bun run deploy
-cd astro-react-shadcn && npm run deploy
-cd nextjs-shadcn && npm run deploy
+(cd astro-bui && bun run deploy)
+(cd astro-react-shadcn && npm run deploy)
+(cd nextjs-shadcn && npm run deploy)
 ```
 
-The **Astro + React + shadcn** version uses per-section islands — static shadcn components (Button, Card, etc.) are server-rendered to HTML with zero JS, while interactive components (NavigationMenu, Tabs, Accordion, etc.) each hydrate as separate `client:load` islands. This isolates the cost of React + Radix without Next.js overhead.
+## Limitations
 
----
+- This is one content-heavy marketing page, not a representative sample of every application type.
+- Results apply to the exact locked dependencies and implementation choices in this repository.
+- Local Lighthouse runs isolate application cost but do not represent production geography, caching, CDN behavior, or real-user hardware.
+- No CrUX or other field dataset is available, so the benchmark does not publish field LCP, CLS, or INP.
+- Event Timing results cover three scripted interactions and should not be generalized to a full user session.
+- Framework and library upgrades require regenerating and reviewing all committed result files.
 
-## The Page
+## References
 
-All three projects render the **exact same marketing onepager** with these interactive sections:
-
-- **Header** — NavigationMenu with 2 dropdown menus, 4 items each
-- **Hero** — Badge + 2 Buttons
-- **Features** — 6 Cards, each with a Tooltip
-- **Pricing** — Tabs (Monthly/Yearly) switching between 2 pricing grids
-- **Long-form text** — 4 paragraphs with 6 inline HoverCards
-- **FAQ** — Accordion with 6 collapsible items
-- **Contact form** — 2 Selects, 3 Inputs, 1 Checkbox, Labels
-- **Footer** — Separator + link columns
-
-### Components used (13 total)
-
-| Component | Interactive? | Astro b/ui JS | Astro React + shadcn JS | Next.js JS |
-|---|---|---|---|---|
-| NavigationMenu | ✅ | 7.20 KB gzip | Island (5.70 KB) | Bundled in ~219 KB |
-| Select (×2) | ✅ | 3.67 KB gzip | Island (14.02 KB) | Bundled in ~219 KB |
-| HoverCard (×6) | ✅ | 2.29 KB gzip | Island (2.04 KB) | Bundled in ~219 KB |
-| Tooltip (×6) | ✅ | 1.98 KB gzip | Island (3.25 KB) | Bundled in ~219 KB |
-| Tabs | ✅ | 1.79 KB gzip | Island (4.70 KB) | Bundled in ~219 KB |
-| Accordion (×6) | ✅ | 1.17 KB gzip | Island (3.32 KB) | Bundled in ~219 KB |
-| Button | ❌ Static | **0 KB** | ⚠️ Partial zero-JS | Bundled in ~219 KB |
-| Card | ❌ Static | **0 KB** | ⚠️ Partial zero-JS | Bundled in ~219 KB |
-| Badge | ❌ Static | **0 KB** | ⚠️ Partial zero-JS | Bundled in ~219 KB |
-| Input | ❌ Static | **0 KB** | **0 KB** | Bundled in ~219 KB |
-| Label | ❌ Static | **0 KB** | ⚠️ Partial zero-JS | Bundled in ~219 KB |
-| Checkbox | ❌ Static | **0 KB** | **0 KB** | Bundled in ~219 KB |
-| Separator | ❌ Static | **0 KB** | **0 KB** | Bundled in ~219 KB |
-| | | | | |
-| *Shared runtime* | | *Astro (4.70 KB)* | *React + Radix + Astro (86.85 KB)* | *Included above* |
-| **Total** | | **22.80 KB** | **119.88 KB** | **219.22 KB** |
-> In Astro + b/ui, **7 of 13 components ship zero JavaScript**.
->
-> In Astro + React + shadcn with per-section islands, **3 components are fully zero-JS** (Input, Checkbox, Separator) and **4 more are partially zero-JS** — their instances outside islands (hero buttons, feature cards) render as pure HTML, but the same components also appear inside interactive islands (PricingTabs) where they still ship JS.
->
-> In Next.js, every component contributes to the JS bundle.
-
----
-
-## JS Bundle Breakdown
-
-### Astro + b/ui (7 files, 22.80 KB gzipped)
-
-Each interactive component ships its own small JS module. Static components ship nothing.
-
-| File | Raw | Gzipped |
-|---|---|---|
-| NavigationMenu (data-slot) | 20.43 KB | 7.20 KB |
-| Shared index (Astro runtime) | 12.55 KB | 4.70 KB |
-| Select (data-slot) | 9.24 KB | 3.67 KB |
-| HoverCard (data-slot) | 6.15 KB | 2.29 KB |
-| Tooltip (data-slot) | 5.09 KB | 1.98 KB |
-| Tabs (data-slot) | 4.01 KB | 1.79 KB |
-| Accordion (data-slot) | 2.95 KB | 1.17 KB |
-| **Total** | **60.42 KB** | **22.80 KB** |
-
-### Astro + React + shadcn (19 files, 119.88 KB gzipped)
-
-Per-section React islands. Each interactive section hydrates independently. Static components (Button, Card, etc.) are server-rendered to HTML outside of islands.
-
-| File | Raw | Gzipped |
-|---|---|---|
-| React/ReactDOM runtime | 178.42 KB | 56.24 KB |
-| ContactSelects island | 40.61 KB | 14.02 KB |
-| Radix shared utilities | 31.02 KB | 10.39 KB |
-| React shared utilities | 26.97 KB | 10.43 KB |
-| SiteNav island | 18.43 KB | 5.70 KB |
-| PricingTabs island | 16.07 KB | 4.70 KB |
-| Astro island runtime | 11.94 KB | 4.30 KB |
-| FAQAccordion island | 8.49 KB | 3.32 KB |
-| FeatureTooltip island | 8.94 KB | 3.25 KB |
-| InlineHoverCard island | 5.50 KB | 2.04 KB |
-| *9 smaller chunks* | 11.96 KB | 5.49 KB |
-| **Total** | **358.35 KB** | **119.88 KB** |
-
-### Next.js + shadcn (10 files, 219.22 KB gzipped)
-
-Includes React runtime, Radix UI primitives, Next.js router, and framework code.
-
-| File | Raw | Gzipped |
-|---|---|---|
-| Main framework chunk | 219.37 KB | 68.50 KB |
-| Next.js router chunk | 154.61 KB | 39.30 KB |
-| Framework utilities | 109.96 KB | 38.70 KB |
-| Page/component code | 116.67 KB | 31.02 KB |
-| Hydration/RSC chunk | 72.37 KB | 24.60 KB |
-| *5 smaller chunks* | 56.85 KB | 17.10 KB |
-| **Total** | **729.83 KB** | **219.22 KB** |
-
----
-
-## Where Does the JavaScript Come From?
-
-```
-Astro + b/ui          ████ 22.80 KB
-                      └─ 6 data-slot modules + Astro runtime
-
-Astro + React + shadcn ████████████████████████ 119.88 KB
-                       └─ React (56 KB) + 6 Radix islands (44 KB) + Astro (4 KB)
-
-Next.js + shadcn       ████████████████████████████████████████████ 219.22 KB
-                       └─ React (56 KB) + Radix/components (~54 KB)
-                          + Next.js router (39 KB) + Framework (70 KB)
-```
-
-### What the Astro + React version tells us
-
-Even with per-section islands (each interactive component as its own `client:load` boundary), the gzipped JS is **~120 KB** — slightly *more* than the single-island approach (~114 KB). Splitting into islands causes Radix utility code to duplicate across chunks.
-
-1. **React + Radix** costs **~120 KB gzip** — that's the floor for shadcn/ui, even with optimized islands
-2. **Next.js adds ~100 KB** more on top (router, RSC, framework utils)
-3. **b/ui's data-slot approach** achieves the same interactive UX for **23 KB total**, because it replaces both React AND Radix with vanilla JS primitives
-4. **Islands don't solve the React tax** — they help with selective hydration but can't eliminate the runtime cost
-
----
-
-## Why This Happens
-
-### The hydration tax (React-based versions)
-
-In both React-based versions, the browser must:
-1. **Download** React + ReactDOM (~56 KB gzipped)
-2. **Download** Radix UI primitives for each component
-3. **Parse and execute** all JavaScript
-4. **Hydrate** the entire component tree — even static text
-
-Marketing sites are content-first. They have long text, forms, tooltips, and
-navigation — but they rarely need complex client-side state.
-
-In Next.js + shadcn, **every text node on the page must hydrate** even though
-it never changes. The React runtime, Radix primitives, and reconciliation engine
-are all loaded for what is essentially a static page with a few interactive
-widgets.
-
-### The framework tax (Next.js only)
-
-Next.js adds additional overhead on top of React:
-1. **Client-side router** — Links, prefetching, route transitions
-2. **RSC infrastructure** — Server/client component reconciliation
-3. **Framework utilities** — Error boundaries, loading states, metadata
-
-In Astro + React + shadcn, removing Next.js cuts the JS in half — but you still
-pay for React + Radix to hydrate the entire component tree.
-
-### The Astro + b/ui approach
-
-1. Static components → **pure HTML + CSS** (zero JavaScript)
-2. Interactive components → **data-slot primitives** (tiny vanilla JS)
-3. **No framework runtime**, no virtual DOM, no hydration
-4. JavaScript loaded **only for the 6 component types** that need it
-
-### Why b/ui Buttons inside Tabs are still zero-JS
-
-In b/ui, the Tabs `data-slot` JS only **toggles visibility** of pre-rendered HTML panels. It doesn't know or care what's inside them — Buttons and Cards are already compiled to static HTML at build time. The JS shows/hides a `<div>`, and the Button inside is just a `<button>` DOM node.
-
-In React, Tabs needs to **render** its children via `React.createElement()`. Button, Card, and Badge are function calls that must exist in the JS bundle. When you switch tabs, React re-renders the subtree — so it needs the component code for everything inside.
-
-**b/ui Tabs toggles HTML panels. React Tabs creates them.**
-
----
-
-## How to Reproduce
-
-### Prerequisites
-
-- Node.js 18+
-- Bun 1.2+ (for Astro b/ui project)
-- npm (for Next.js and Astro React projects)
-
-### Build & Measure
-
-```bash
-# Build all three
-cd astro-bui && bun install && bun run build
-cd astro-react-shadcn && npm install && npx astro build
-cd nextjs-shadcn && npm install && npm run build
-
-# Measure
-node scripts/measure.mjs
-```
-
-### Preview Production Builds
-
-```bash
-# Astro + b/ui (port 4321)
-cd astro-bui && bun run preview
-
-# Astro + React + shadcn (port 4322)
-cd astro-react-shadcn && npx astro preview --port 4322
-
-# Next.js (port 3000)
-cd nextjs-shadcn && npm run start
-```
-
-### Lighthouse Results (Mobile, Incognito)
-
-| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
-|---|---|---|---|
-| **FCP** | 1.4 s | 1.6 s | 0.8 s |
-| **LCP** | **1.4 s** | 2.1 s | 2.6 s |
-| **TBT** | **0 ms** | **0 ms** | 40 ms |
-| **CLS** | 0.013 | 0.013 | 0 |
-| **Speed Index** | 1.4 s | 1.6 s | 0.8 s |
-
-> **Note:** Next.js has the fastest FCP/Speed Index (0.8 s) because it pre-renders
-> HTML immediately — but it has the worst LCP (2.6 s) because the browser must
-> download, parse, and hydrate 219 KB of JavaScript before the page becomes fully
-> painted. Astro + b/ui paints and finishes in the same 1.4 s with zero blocking time.
-
-### INP — Interaction to Next Paint (20× CPU throttle)
-
-| | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
-|---|---|---|---|
-| **Worst INP** | ~100 ms | ~100 ms | 168 ms |
-
-> All three are under the 200 ms "good" threshold, but Next.js interactions are
-> ~70% slower due to React's reconciliation overhead on every state change.
-
-### Code Coverage (JS + CSS, after full interaction)
-
-| | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
-|---|---|---|---|
-| **Total loaded** | 132 KB | 424 KB | 695 KB |
-| **Used** | 85.7 KB | 260 KB | 431 KB |
-| **Unused** | **46.1 KB** | 163 KB | 265 KB |
-
-> Next.js ships **5.7× more unused code** than Astro + b/ui. Even after interacting
-> with every component on the page, 265 KB of downloaded JavaScript is never executed.
-
----
-
-## Methodology
-
-| Setting | Value |
-|---|---|
-| Astro version | 5.16.4 – 5.18.0 |
-| Next.js version | 16.1.6 (Turbopack) |
-| Build mode | Static (SSG) for all three |
-| Measurement | All `.js` files in build output, gzipped programmatically |
-| Viewport | 1280×800 |
-| Components | 13 identical types, same count and placement |
-| Next.js scope | `.next/static` (client-shipped JS only) |
+- [Next.js Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components)
+- [Astro framework component hydration](https://docs.astro.build/en/guides/framework-components/)
+- [Lighthouse score variability](https://github.com/GoogleChrome/lighthouse/blob/main/docs/variability.md)
+- [Interaction to Next Paint](https://web.dev/articles/inp)
