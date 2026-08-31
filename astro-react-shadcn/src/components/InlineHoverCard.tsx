@@ -18,12 +18,12 @@ export default function InlineHoverCard({
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <a
-          href="#"
+        <button
+          type="button"
           className="font-medium text-foreground underline decoration-dotted underline-offset-4"
         >
           {trigger}
-        </a>
+        </button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="space-y-1">

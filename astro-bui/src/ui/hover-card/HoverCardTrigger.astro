@@ -18,13 +18,13 @@ const {
 
 {
   asChild ? (
-    <div
+    <span
       data-slot="hover-card-trigger"
       data-as-child
       class={cn("inline-flex items-center", className)}
     >
       <slot />
-    </div>
+    </span>
   ) : (
     <button
       {...rest}

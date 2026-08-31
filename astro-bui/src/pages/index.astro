@@ -11,7 +11,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
-  NavigationMenuIndicator,
 } from "@/ui/navigation-menu";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/ui/tooltip";
 import {
@@ -58,7 +57,7 @@ import { Separator } from "@/ui/separator";
       >
         <span class="text-xl font-bold tracking-tight">Acme</span>
 
-        <NavigationMenu>
+        <NavigationMenu aria-label="Main">
           <NavigationMenuList>
             <NavigationMenuItem value="products">
               <NavigationMenuTrigger>Products</NavigationMenuTrigger>
@@ -167,8 +166,6 @@ import { Separator } from "@/ui/separator";
                 Contact
               </NavigationMenuLink>
             </NavigationMenuItem>
-
-            <NavigationMenuIndicator />
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -206,7 +203,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Zero-JS Components
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Components compile to static HTML with no client-side hydration">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -234,7 +231,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Instant Page Loads
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Typical score: 98-100 on PageSpeed Insights">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -259,7 +256,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Accessible by Default
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: WCAG 2.1 AA compliant out of the box">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -284,7 +281,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Copy & Own
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Similar to shadcn/ui's approach but for Astro">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -311,7 +308,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Tailwind v4 Native
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Uses @theme and CSS custom properties">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -336,7 +333,7 @@ import { Separator } from "@/ui/separator";
               <CardTitle class="flex items-center gap-2">
                 Rich Interactions
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Uses data-slot primitives for behavior">
                     <span
                       class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
                       >?</span
@@ -478,14 +475,7 @@ import { Separator } from "@/ui/separator";
             The average web page now ships over 500KB of JavaScript, and
             component libraries built on{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  React
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">React</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">React</h4>
@@ -499,14 +489,7 @@ import { Separator } from "@/ui/separator";
             </HoverCard>{" "}
             add significant overhead. Every component on the page needs to{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  hydrate
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">hydrate</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">Hydration</h4>
@@ -525,14 +508,7 @@ import { Separator } from "@/ui/separator";
             landing pages, and documentation sites are content-first by nature,
             yet frameworks like Next.js require the full{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  Virtual DOM
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">Virtual DOM</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">Virtual DOM</h4>
@@ -553,14 +529,7 @@ import { Separator } from "@/ui/separator";
             testimonials, and a contact form. In a traditional React setup, the
             browser must download, parse, and execute JavaScript for{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  Radix UI primitives
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">Radix UI primitives,</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">Radix UI</h4>
@@ -571,21 +540,14 @@ import { Separator } from "@/ui/separator";
                   </p>
                 </div>
               </HoverCardContent>
-            </HoverCard>, state management, event delegation, and the component
+            </HoverCard> state management, event delegation, and the component
             tree itself — even for sections that are purely presentational.
           </div>
           <div>
             The alternative is to use a server-first approach where components
             render to plain HTML by default. Interactive elements like{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  navigation menus
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">navigation menus</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">Navigation Menu</h4>
@@ -599,14 +561,7 @@ import { Separator } from "@/ui/separator";
             </HoverCard>{" "}
             and tooltips use lightweight{" "}
             <HoverCard>
-              <HoverCardTrigger>
-                <a
-                  href="#"
-                  class="font-medium text-foreground underline decoration-dotted underline-offset-4"
-                >
-                  data-slot primitives
-                </a>
-              </HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">data-slot primitives</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
                   <h4 class="text-sm font-semibold">data-slot Primitives</h4>

@@ -18,13 +18,11 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import {
   Accordion,
   AccordionContent,
@@ -43,8 +41,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import ContactControls from "@/components/ContactControls";
 
 /* ─────────────────────────── Header / Nav ────────────────────────── */
 
@@ -54,7 +52,7 @@ function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <span className="text-xl font-bold tracking-tight">Acme</span>
 
-        <NavigationMenu>
+        <NavigationMenu aria-label="Main">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Products</NavigationMenuTrigger>
@@ -300,9 +298,13 @@ function FeaturesSection() {
                 {feature.title}
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">
+                    <button
+                      type="button"
+                      aria-label={`More information: ${feature.tooltip}`}
+                      className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
+                    >
                       ?
-                    </span>
+                    </button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{feature.tooltip}</p>
@@ -459,12 +461,12 @@ function RichTextSection() {
           libraries built on{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
                 React
-              </a>
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -479,12 +481,12 @@ function RichTextSection() {
           add significant overhead. Every component on the page needs to{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
                 hydrate
-              </a>
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -505,12 +507,12 @@ function RichTextSection() {
           yet frameworks like Next.js require the full{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
                 Virtual DOM
-              </a>
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -533,12 +535,12 @@ function RichTextSection() {
           browser must download, parse, and execute JavaScript for{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
-                Radix UI primitives
-              </a>
+                Radix UI primitives,
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -550,8 +552,8 @@ function RichTextSection() {
                 </p>
               </div>
             </HoverCardContent>
-          </HoverCard>
-          , state management, event delegation, and the component tree itself —
+          </HoverCard>{" "}
+          state management, event delegation, and the component tree itself —
           even for sections that are purely presentational.
         </p>
         <p>
@@ -559,12 +561,12 @@ function RichTextSection() {
           render to plain HTML by default. Interactive elements like{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
                 navigation menus
-              </a>
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -580,12 +582,12 @@ function RichTextSection() {
           and tooltips use lightweight{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="font-medium text-foreground underline decoration-dotted underline-offset-4"
               >
                 data-slot primitives
-              </a>
+              </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -685,44 +687,7 @@ function ContactSection() {
             <Input id="email" type="email" placeholder="jane@example.com" />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="company-size">Company size</Label>
-            <Select>
-              <SelectTrigger id="company-size">
-                <SelectValue placeholder="Select team size" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1-10">1–10 employees</SelectItem>
-                <SelectItem value="11-50">11–50 employees</SelectItem>
-                <SelectItem value="51-200">51–200 employees</SelectItem>
-                <SelectItem value="201-500">201–500 employees</SelectItem>
-                <SelectItem value="500+">500+ employees</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="interest">I&apos;m interested in</Label>
-            <Select>
-              <SelectTrigger id="interest">
-                <SelectValue placeholder="Select topic" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="demo">Product demo</SelectItem>
-                <SelectItem value="pricing">Custom pricing</SelectItem>
-                <SelectItem value="migration">Migration support</SelectItem>
-                <SelectItem value="partnership">Partnership</SelectItem>
-                <SelectItem value="other">Something else</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Checkbox id="newsletter" />
-            <Label htmlFor="newsletter" className="text-sm font-normal">
-              Send me product updates and tips
-            </Label>
-          </div>
+          <ContactControls />
 
           <Button className="w-full" size="lg">
             Send message

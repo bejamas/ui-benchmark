@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Select,
   SelectContent,
@@ -5,9 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-export default function ContactSelects() {
+export default function ContactControls() {
   return (
     <>
       <div className="space-y-2">
@@ -40,6 +43,13 @@ export default function ContactSelects() {
             <SelectItem value="other">Something else</SelectItem>
           </SelectContent>
         </Select>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Checkbox id="newsletter" />
+        <Label htmlFor="newsletter" className="text-sm font-normal">
+          Send me product updates and tips
+        </Label>
       </div>
     </>
   );

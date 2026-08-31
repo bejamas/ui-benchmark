@@ -14,9 +14,13 @@ export default function FeatureTooltip({ text }: FeatureTooltipProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <span className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">
+          <button
+            type="button"
+            aria-label={`More information: ${text}`}
+            className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
+          >
             ?
-          </span>
+          </button>
         </TooltipTrigger>
         <TooltipContent>
           <p>{text}</p>

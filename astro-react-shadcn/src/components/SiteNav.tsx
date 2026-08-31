@@ -24,7 +24,7 @@ const solutions = [
 
 export default function SiteNav() {
   return (
-    <NavigationMenu>
+    <NavigationMenu aria-label="Main">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
