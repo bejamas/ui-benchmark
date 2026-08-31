@@ -1,0 +1,22 @@
+{
+  "name": "ui-benchmark",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.13.0",
+  "engines": {
+    "node": "24.16.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "measure": "node scripts/measure.mjs",
+    "verify": "node scripts/verify.mjs",
+    "performance": "node scripts/performance.mjs",
+    "benchmark": "npm run build && npm run measure && npm run verify && npm run performance"
+  },
+  "devDependencies": {
+    "axe-core": "4.13.0",
+    "chrome-launcher": "1.2.1",
+    "lighthouse": "13.4.1",
+    "playwright-core": "1.62.1"
+  }
+}

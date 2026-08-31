@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-08-31T18:17:45.893Z",
+  "methodology": {
+    "label": "scripted Chrome Event Timing interaction latency (lab data, not field INP)",
+    "runs": 5,
+    "cpuThrottlingRate": 4,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "aggregation": "median and nearest-rank p90"
+  },
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "interactions": {
+        "pricingTabs": {
+          "samplesMs": [
+            24,
+            24,
+            24,
+            24,
+            24
+          ],
+          "medianMs": 24,
+          "p90Ms": 24
+        },
+        "faqAccordion": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        },
+        "newsletterCheckbox": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn",
+      "interactions": {
+        "pricingTabs": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            32
+          ],
+          "medianMs": 16,
+          "p90Ms": 32
+        },
+        "faqAccordion": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        },
+        "newsletterCheckbox": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn",
+      "interactions": {
+        "pricingTabs": {
+          "samplesMs": [
+            16,
+            24,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 24
+        },
+        "faqAccordion": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        },
+        "newsletterCheckbox": {
+          "samplesMs": [
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "medianMs": 16,
+          "p90Ms": 16
+        }
+      }
+    }
+  ]
+}

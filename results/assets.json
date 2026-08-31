@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-08-31T17:57:16.940Z",
+  "measuredAt": "2026-08-31T18:13:45.158Z",
   "environment": {
     "node": "v24.16.0",
     "platform": "darwin",
@@ -304,13 +304,13 @@
               "path": "index.html",
               "raw": 115045,
               "gzip": 14227,
-              "brotli": 9982
+              "brotli": 9987
             }
           ],
           "fileCount": 1,
           "raw": 115045,
           "gzip": 14227,
-          "brotli": 9982
+          "brotli": 9987
         },
         "javascript": {
           "files": [
@@ -395,7 +395,7 @@
         "fileCount": 10,
         "raw": 818994,
         "gzip": 237394,
-        "brotli": 206902
+        "brotli": 206907
       }
     }
   ]
