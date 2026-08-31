@@ -26,7 +26,7 @@ These are stable build-artifact measurements for `/`. JavaScript includes modern
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
 | HTML + CSS + JS + font, gzip estimate | **81.04 KiB** | 171.43 KiB | 231.83 KiB |
 
-The b/ui implementation sends substantially less JavaScript, but it also emits more HTML and more DOM nodes than the Astro React implementation. That tradeoff is part of the result.
+The b/ui implementation sends substantially less JavaScript, but its current eager-markup component implementation also emits more HTML and more DOM nodes than the React variants. That tradeoff belongs to this implementation; it is not an inherent consequence of avoiding a virtual DOM.
 
 Full file-level data is in [`results/assets.json`](results/assets.json).
 
@@ -83,6 +83,10 @@ The automated verification suite currently confirms:
 | DOM elements after initialization | 472 | **256** | 274 |
 | Serialized DOM after initialization | 98.93 KiB | **56.83 KiB** | 111.58 KiB |
 
+Astro + b/ui has 216 more live elements than Astro React and 198 more than Next.js. A substantial part of that gap comes from keeping closed interactive content in the initial DOM: two navigation-menu panels, six tooltip panels, six hover-card panels, and two select panels—16 overlay content roots plus their descendants. The Radix-based variants generally mount those overlays only when opened.
+
+This measures real browser elements, not rendering-library data structures. React's virtual DOM and Fiber objects live in JavaScript memory and are therefore not counted. A vanilla-JavaScript implementation could also create overlay content lazily, so the DOM difference should be attributed to eager versus on-demand component markup rather than virtual DOM versus no virtual DOM.
+
 See [`results/quality.json`](results/quality.json) for the machine-readable report.
 
 ## What the comparison demonstrates
@@ -92,7 +96,7 @@ For this page and component set:
 - b/ui uses the least JavaScript because static components remain HTML and interactive behavior comes from small vanilla-JavaScript primitives.
 - Astro React loads React, the Astro island runtime, and the Radix/shadcn code used by its interactive islands.
 - The Next page is an idiomatic Server Component. Static page text is not forced through a top-level `"use client"` boundary, but the client router/runtime and interactive shadcn components still contribute to the route bundle.
-- Lower JavaScript does not mean lower output in every category: b/ui renders more initial DOM and HTML for this component implementation.
+- Lower JavaScript does not mean lower output in every category: b/ui renders more initial DOM and HTML because this component implementation eagerly includes closed overlay content.
 - All three implementations are responsive in the standardized interaction suite; the primary separation is payload and hydration architecture rather than observable interaction delay here.
 
 Claims such as “React + Radix has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.
