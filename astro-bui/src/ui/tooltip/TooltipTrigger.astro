@@ -2,11 +2,11 @@
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "astro/types";
 
-type Props = {
+interface Props extends HTMLAttributes<"button"> {
   class?: string;
   /** Radix-like: render wrapper so the child can be the interactive element */
   asChild?: boolean;
-} & HTMLAttributes<"button">;
+}
 
 const {
   class: className = "",
@@ -18,7 +18,7 @@ const {
 
 {
   asChild ? (
-    <div data-slot="tooltip-trigger" data-as-child class={cn(className)}>
+    <div data-slot="tooltip-trigger" data-as-child class={cn("", className)}>
       <slot />
     </div>
   ) : (
@@ -26,7 +26,7 @@ const {
       {...rest}
       type={type}
       data-slot="tooltip-trigger"
-      class={cn(className)}
+      class={cn("", className)}
     >
       <slot />
     </button>

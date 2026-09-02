@@ -13,6 +13,22 @@ import { startStaticServer } from "./static-server.mjs";
 const INTERACTION_RUNS = Number.parseInt(process.env.INTERACTION_RUNS ?? "5", 10);
 const CPU_THROTTLING_RATE = 4;
 const FIRST_FAQ = "How is this different from shadcn/ui?";
+const REQUIRED_BUI_SLOTS = [
+  "checkbox-indicator",
+  "hover-card-portal",
+  "hover-card-positioner",
+  "navigation-menu-popup",
+  "navigation-menu-portal",
+  "navigation-menu-positioner",
+  "navigation-menu-viewport",
+  "select-scroll-down-button",
+  "select-scroll-up-button",
+  "select-viewport",
+  "tabs-indicator",
+  "tooltip-arrow",
+  "tooltip-portal",
+  "tooltip-positioner",
+];
 const assetReport = JSON.parse(readFileSync(join(resultsDir, "assets.json"), "utf8"));
 const expectedScripts = new Map(
   assetReport.projects.map((project) => [
@@ -88,9 +104,40 @@ async function measureEventTiming(page, locator) {
   }, startIndex);
 }
 
-async function verifyInteractions(page) {
+async function verifyInteractions(page, projectId) {
   await page.getByRole("button", { name: "Products", exact: true }).click();
-  await page.getByRole("link", { name: /Analytics/ }).waitFor({ state: "visible" });
+  const analyticsLink = page.getByRole("link", { name: /Analytics/ });
+  await analyticsLink.waitFor({ state: "visible" });
+  const navigationPopup = await analyticsLink.evaluate((link, id) => {
+    const content = link.closest('[data-slot="navigation-menu-content"]');
+    const surface = id === "astro-bui"
+      ? document.querySelector('[data-slot="navigation-menu-popup"]') ??
+        document.querySelector('[data-slot="navigation-menu-viewport"]')
+      : content;
+
+    if (!(surface instanceof HTMLElement)) return null;
+
+    const rect = surface.getBoundingClientRect();
+    return {
+      left: roundForBrowser(rect.left),
+      right: roundForBrowser(rect.right),
+      width: roundForBrowser(rect.width),
+      viewportWidth: window.innerWidth,
+    };
+
+    function roundForBrowser(value) {
+      return Math.round(value * 100) / 100;
+    }
+  }, projectId);
+  assert(navigationPopup, `${projectId} navigation popup could not be measured`);
+  assert(
+    navigationPopup.width < navigationPopup.viewportWidth * 0.75,
+    `${projectId} navigation popup expanded to ${navigationPopup.width}px`,
+  );
+  assert(
+    navigationPopup.left >= 0 && navigationPopup.right <= navigationPopup.viewportWidth,
+    `${projectId} navigation popup extends outside the viewport`,
+  );
   await page.keyboard.press("Escape");
 
   const tooltipTrigger = page.getByRole("button", { name: /^More information:/ }).first();
@@ -119,6 +166,8 @@ async function verifyInteractions(page) {
   await checkbox.click();
   const after = await checkbox.getAttribute("aria-checked") ?? await checkbox.isChecked();
   assert(before !== after, "Newsletter checkbox did not change state");
+
+  return { navigationPopup };
 }
 
 async function collectInteractionLatency(page, cdp) {
@@ -218,6 +267,11 @@ try {
       nestedInteractiveControls: document.querySelectorAll(
         "button a, a button, button button, a a",
       ).length,
+      buiSlots: [...new Set(
+        [...document.querySelectorAll("[data-slot]")]
+          .map((element) => element.getAttribute("data-slot"))
+          .filter(Boolean),
+      )].sort(),
       scriptRequests: performance.getEntriesByType("resource")
         .filter((entry) => /\.js(?:$|\?)/.test(entry.name))
         .map((entry) => new URL(entry.name).pathname)
@@ -228,7 +282,7 @@ try {
         .sort(),
     }));
 
-    await verifyInteractions(page);
+    const interactionChecks = await verifyInteractions(page, project.id);
     const interactions = await collectInteractionLatency(page, cdp);
 
     assert(accessibility.length === 0, `${project.name} has ${accessibility.length} axe violations`);
@@ -242,6 +296,15 @@ try {
       `${project.name} has a non-keyboard-accessible tooltip trigger`,
     );
     assert(pageData.nestedInteractiveControls === 0, `${project.name} contains nested interactive controls`);
+    if (project.id === "astro-bui") {
+      const missingSlots = REQUIRED_BUI_SLOTS.filter(
+        (slot) => !pageData.buiSlots.includes(slot),
+      );
+      assert(
+        missingSlots.length === 0,
+        `${project.name} is missing current b/ui anatomy: ${missingSlots.join(", ")}`,
+      );
+    }
     assert(pageData.fontRequests.length === 1, `${project.name} did not load exactly one font subset`);
     assert(
       JSON.stringify(pageData.scriptRequests) === JSON.stringify(expectedScripts.get(project.id)),
@@ -258,6 +321,7 @@ try {
       fontRequests: pageData.fontRequests,
       accessibilityViolations: accessibility,
       browserErrors,
+      navigationPopup: interactionChecks.navigationPopup,
     });
     interactionProjects.push({ id: project.id, name: project.name, interactions });
 
@@ -287,6 +351,7 @@ const qualityReport = {
     "identical global style source and one local Geist font subset",
     "six keyboard-focusable tooltip triggers",
     "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
+    "current b/ui anatomy and bounded navigation popup geometry",
     "zero nested interactive controls",
     "zero axe-core violations",
     "zero browser errors",

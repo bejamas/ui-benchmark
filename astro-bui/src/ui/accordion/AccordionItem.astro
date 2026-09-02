@@ -1,29 +1,20 @@
 ---
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "astro/types";
 
-type Props = {
+interface Props extends HTMLAttributes<"div"> {
   value: string;
-  open?: boolean;
   class?: string;
-} & HTMLAttributes<"details">;
+}
 
-const {
-  value,
-  open = false,
-  class: className = "",
-  ...rest
-} = Astro.props as Props;
-
-const itemVariants = cva("border-b last:border-b-0");
+const { value, class: className = "", ...rest } = Astro.props as Props;
 ---
 
 <div
   {...rest}
   data-value={value}
   data-slot="accordion-item"
-  class={cn(itemVariants(), "group/accordion", className)}
+  class={cn("not-last:border-b", className)}
 >
   <slot />
 </div>

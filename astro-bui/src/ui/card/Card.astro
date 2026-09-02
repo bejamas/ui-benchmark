@@ -9,14 +9,14 @@
  *
  * <Card class="w-full max-w-sm">
  *   <CardMedia class="m-1">
- *     <img src="https://gradient.bejamas.com/api/gradient.png?funkiness=30&contrast=0&w=748&h=500&seed=bejamas" alt="Gradient Cover" class="w-full h-full object-cover" width="374" height="250" loading="lazy" />
+ *     <img src="https://gradient.bejamas.com/presets/bejamas/marine.png" alt="Gradient Cover" class="w-full h-full object-cover" width="374" height="250" loading="lazy" />
  *   </CardMedia>
  *   <CardHeader>
  *     <div class="flex items-center gap-2 justify-between">
  *       <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
  *         <Avatar>
  *           <AvatarImage>
- *             <img src="https://gradient.bejamas.com/api/gradient.png?funkiness=90&contrast=0&w=80&h=80&seed=bejamas-avatar" alt="grdient avatar" />
+ *             <img src="https://gradient.bejamas.com/presets/bejamas/marine.png" alt="grdient avatar" />
  *           </AvatarImage>
  *           <AvatarFallback>AW</AvatarFallback>
  *         </Avatar>
@@ -29,7 +29,6 @@
  *     <CardDescription>Like any enduring system, a scalable design system relies on clear structure, solid foundations, and careful layering over time.</CardDescription>
  *     <Button variant="outline" as="a" href="#">Read more</Button>
  *   </CardContent>
- *   <Separator />
  *   <CardFooter>
  *     <p class="text-sm text-muted-foreground">Categories</p>
  *     <div class="flex items-center gap-2">
@@ -67,10 +66,10 @@ import type { HTMLAttributes } from "astro/types";
 
 type CardVariant = "default" | "ghost";
 
-type Props = {
+interface Props extends HTMLAttributes<"div"> {
   variant?: CardVariant;
   class?: string;
-} & HTMLAttributes<"div">;
+}
 
 const {
   class: className = "",
@@ -79,12 +78,12 @@ const {
 } = Astro.props as Props;
 
 const cardVariants = cva(
-  "group/card bg-card overflow-clip text-card-foreground flex flex-col gap-6 rounded-xl ring-1 ring-border py-6 shadow-sm group/card [&:has(>_[data-slot=card-media]:first-child_img)]:pt-0 [a]:hover:bg-accent/5 [a]:transition-colors duration-100",
+  "group/card flex flex-col overflow-clip [&:has(>_[data-slot=card-media]:first-child_img)]:pt-0",
   {
     variants: {
       variant: {
         default: "",
-        ghost: "ring-transparent bg-transparent shadow-none",
+        ghost: "data-[variant=ghost]",
       },
     },
     defaultVariants: {
@@ -97,7 +96,8 @@ const cardVariants = cva(
 <div
   {...rest}
   data-slot="card"
-  class={cn(cardVariants({ variant }), className)}
+  data-variant={variant}
+  class={cn("ring-foreground/10 bg-card border-none text-card-foreground gap-6 overflow-hidden rounded-xl py-6 text-sm shadow-sm ring-1 has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl border border-border shadow-lg", cardVariants({ variant }), className)}
 >
   <slot />
 </div>

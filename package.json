@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "sync:bui": "node scripts/sync-bui.mjs",
     "measure": "node scripts/measure.mjs",
     "verify": "node scripts/verify.mjs",
     "performance": "node scripts/performance.mjs",

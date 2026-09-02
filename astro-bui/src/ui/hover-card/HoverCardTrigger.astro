@@ -2,11 +2,11 @@
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "astro/types";
 
-type Props = {
+interface Props extends HTMLAttributes<"button"> {
   class?: string;
   /** Radix-like: render wrapper so the child can be the interactive element */
   asChild?: boolean;
-} & HTMLAttributes<"button">;
+}
 
 const {
   class: className = "",
@@ -18,19 +18,19 @@ const {
 
 {
   asChild ? (
-    <span
+    <div
       data-slot="hover-card-trigger"
       data-as-child
-      class={cn("inline-flex items-center", className)}
+      class={cn("", "inline-flex items-center", className)}
     >
       <slot />
-    </span>
+    </div>
   ) : (
     <button
       {...rest}
       type={type}
       data-slot="hover-card-trigger"
-      class={cn("inline-flex items-center", className)}
+      class={cn("", "inline-flex items-center", className)}
     >
       <slot />
     </button>

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-08-31T18:22:36.325Z",
+  "measuredAt": "2026-09-02T18:42:06.780Z",
   "environment": {
     "node": "v24.16.0",
-    "browser": "152.0.7977.64",
+    "browser": "152.0.7977.65",
     "viewport": {
       "width": 1280,
       "height": 800
@@ -14,6 +14,7 @@
     "identical global style source and one local Geist font subset",
     "six keyboard-focusable tooltip triggers",
     "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
+    "current b/ui anatomy and bounded navigation popup geometry",
     "zero nested interactive controls",
     "zero axe-core violations",
     "zero browser errors",
@@ -24,13 +25,13 @@
       "id": "astro-bui",
       "name": "Astro + b/ui",
       "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
-      "domElements": 472,
-      "hydratedHtmlBytes": 101301,
+      "domElements": 488,
+      "hydratedHtmlBytes": 122913,
       "scriptRequests": [
-        "/_astro/Accordion.astro_astro_type_script_index_0_lang.vJn-J-Nl.js",
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.B-T91bZk.js",
         "/_astro/HoverCard.astro_astro_type_script_index_0_lang.B-IiyDXm.js",
-        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.D_F1vNK1.js",
-        "/_astro/Select.astro_astro_type_script_index_0_lang.BH3sp1qR.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.DtPirndW.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.DVsXhIfy.js",
         "/_astro/Tabs.astro_astro_type_script_index_0_lang.DSuh6QNG.js",
         "/_astro/Tooltip.astro_astro_type_script_index_0_lang.CsEIO5-f.js",
         "/_astro/index.BSoulxjI.js"
@@ -39,7 +40,13 @@
         "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
       ],
       "accessibilityViolations": [],
-      "browserErrors": []
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 439.7,
+        "right": 905.9,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
     },
     {
       "id": "astro-react-shadcn",
@@ -71,7 +78,13 @@
         "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
       ],
       "accessibilityViolations": [],
-      "browserErrors": []
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 418.39,
+        "right": 884.59,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
     },
     {
       "id": "nextjs-shadcn",
@@ -92,7 +105,13 @@
         "/_next/static/media/geist-latin-wght-normal.e574545b.woff2"
       ],
       "accessibilityViolations": [],
-      "browserErrors": []
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 418.39,
+        "right": 884.59,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
     }
   ]
 }

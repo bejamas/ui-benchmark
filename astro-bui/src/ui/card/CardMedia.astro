@@ -3,9 +3,9 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "astro/types";
 
-type Props = {
+interface Props extends HTMLAttributes<"div"> {
   class?: string;
-} & HTMLAttributes<"div">;
+}
 
 const {
   class: className = "",
@@ -20,7 +20,7 @@ const mediaVariants = cva(
 <div
   {...rest}
   data-slot="card-media"
-  class={cn(mediaVariants(), className)}
+  class={cn("", mediaVariants(), className)}
 >
   <slot />
 </div>

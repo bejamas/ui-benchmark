@@ -17,14 +17,14 @@ These are stable build-artifact measurements for `/`. JavaScript includes modern
 | Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
 | Route JS files | **7** | 18 | **7** |
-| Route JS raw | **84.56 KiB** | 375.05 KiB | 605.42 KiB |
-| Route JS gzip | **30.91 KiB** | 124.95 KiB | 179.67 KiB |
-| Route JS Brotli | **27.61 KiB** | 109.88 KiB | 155.25 KiB |
-| JS gzip relative to b/ui | **1×** | 4.0× | 5.8× |
-| HTML raw | 91.47 KiB | **57.90 KiB** | 112.35 KiB |
-| CSS raw | 68.24 KiB | **52.20 KiB** | 53.32 KiB |
+| Route JS raw | **87.00 KiB** | 375.05 KiB | 605.42 KiB |
+| Route JS gzip | **31.66 KiB** | 124.95 KiB | 179.67 KiB |
+| Route JS Brotli | **28.26 KiB** | 109.88 KiB | 155.25 KiB |
+| JS gzip relative to b/ui | **1×** | 3.9× | 5.7× |
+| HTML raw | 111.63 KiB | **57.90 KiB** | 112.35 KiB |
+| CSS raw | 85.06 KiB | **51.97 KiB** | 53.10 KiB |
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
-| HTML + CSS + JS + font, gzip estimate | **81.04 KiB** | 171.43 KiB | 231.83 KiB |
+| HTML + CSS + JS + font, gzip estimate | **84.78 KiB** | 171.42 KiB | 231.82 KiB |
 
 The b/ui implementation sends substantially less JavaScript, but its current eager-markup component implementation also emits more HTML and more DOM nodes than the React variants. That tradeoff belongs to this implementation; it is not an inherent consequence of avoiding a virtual DOM.
 
@@ -36,12 +36,12 @@ Values are medians of five sequential Lighthouse 13.4.1 runs against local produ
 
 | Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
-| Performance score | **100** | 99 | 98 |
-| FCP | 1.51 s | 1.50 s | **1.07 s** |
-| LCP | **1.51 s** | 2.10 s | 2.46 s |
+| Performance score | **99** | **99** | 98 |
+| FCP | 1.65 s | 1.51 s | **1.07 s** |
+| LCP | **1.65 s** | 1.95 s | 2.46 s |
 | TBT | 0 ms | 0 ms | 0 ms |
 | CLS | 0.01 | 0.01 | 0.02 |
-| Speed Index | 1.51 s | 1.50 s | **1.07 s** |
+| Speed Index | 1.65 s | 1.51 s | **1.07 s** |
 
 Protocol:
 
@@ -73,6 +73,7 @@ The automated verification suite currently confirms:
 - Identical normalized visible text across all variants
 - The same theme tokens and one local Geist variable-font subset
 - Functional navigation, tooltips, tabs, hover cards, accordion, selects, and checkbox
+- Current b/ui overlay anatomy and navigation popup geometry bounded by the viewport
 - Six keyboard-focusable tooltip triggers per page
 - No nested interactive controls
 - Zero axe-core violations
@@ -80,10 +81,10 @@ The automated verification suite currently confirms:
 
 | Structural metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
-| DOM elements after initialization | 472 | **256** | 274 |
-| Serialized DOM after initialization | 98.93 KiB | **56.83 KiB** | 111.58 KiB |
+| DOM elements after initialization | 488 | **256** | 274 |
+| Serialized DOM after initialization | 120.03 KiB | **56.83 KiB** | 111.58 KiB |
 
-Astro + b/ui has 216 more live elements than Astro React and 198 more than Next.js. A substantial part of that gap comes from keeping closed interactive content in the initial DOM: two navigation-menu panels, six tooltip panels, six hover-card panels, and two select panels—16 overlay content roots plus their descendants. The Radix-based variants generally mount those overlays only when opened.
+Astro + b/ui has 232 more live elements than Astro React and 214 more than Next.js. A substantial part of that gap comes from keeping closed interactive content in the initial DOM: two navigation-menu panels, six tooltip panels, six hover-card panels, and two select panels. These 16 overlay content roots and their descendants ship in the initial HTML. The Radix-based variants generally mount those overlays only when opened.
 
 This measures real browser elements, not rendering-library data structures. React's virtual DOM and Fiber objects live in JavaScript memory and are therefore not counted. A vanilla-JavaScript implementation could also create overlay content lazily, so the DOM difference should be attributed to eager versus on-demand component markup rather than virtual DOM versus no virtual DOM.
 
@@ -149,6 +150,8 @@ npm run measure
 npm run verify
 npm run performance
 ```
+
+Run `npm run sync:bui` to reapply the pinned Bejamas UI registry snapshot and its matching data-slot versions. Update the commit and version constants in `scripts/sync-bui.mjs` before intentionally moving the benchmark to a newer snapshot.
 
 Use `BENCHMARK_RUNS` or `INTERACTION_RUNS` to change sample counts. The committed results use five runs for both.
 

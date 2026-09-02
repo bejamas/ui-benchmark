@@ -2,9 +2,9 @@
 import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-type Props = {
+interface Props extends HTMLAttributes<"div"> {
   class?: string;
-} & HTMLAttributes<"div">;
+}
 
 const { class: className = "", ...rest } = Astro.props as Props;
 ---
@@ -13,7 +13,7 @@ const { class: className = "", ...rest } = Astro.props as Props;
   {...rest}
   role="group"
   data-slot="select-group"
-  class={cn("scroll-my-1", className)}
+  class={cn("scroll-my-1 p-1", className)}
 >
   <slot />
 </div>

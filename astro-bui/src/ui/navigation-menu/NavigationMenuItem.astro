@@ -2,10 +2,10 @@
 import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-type Props = {
+interface Props extends HTMLAttributes<"li"> {
   class?: string;
   value?: string;
-} & HTMLAttributes<"li">;
+}
 
 const { class: className = "", value, ...rest } = Astro.props as Props;
 ---
@@ -14,7 +14,7 @@ const { class: className = "", value, ...rest } = Astro.props as Props;
   {...rest}
   data-slot="navigation-menu-item"
   data-value={value}
-  class={cn("static", className)}
+  class={cn("relative", className)}
 >
   <slot />
 </li>
