@@ -1,43 +1,26 @@
-# Astro Starter Kit: Minimal
+# Astro + React + shadcn benchmark
 
-```sh
-bun create astro@latest -- --template minimal
-```
+This project implements the shared benchmark page with static Astro markup and explicit React islands for the interactive shadcn components. See the [benchmark README](../README.md) for the methodology and results.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Requirements
 
-## 🚀 Project Structure
+- Node.js 24.16.0
+- npm 11.13.0
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Run these commands from this directory.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| Command | Result |
+|---|---|
+| `npm ci` | Install the locked dependencies |
+| `npm run dev` | Start the Astro development server |
+| `npm run build` | Build the static site in `dist` |
+| `npm run preview` | Preview the production build locally |
+| `npm run deploy` | Build and deploy the site with Wrangler |
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Cloudflare deployment
 
-Any static assets, like images, can be placed in the `public/` directory.
+[`wrangler.jsonc`](wrangler.jsonc) deploys `dist` as Worker static assets in the Bejamas OSS account.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Production: [astro-react-shadcn.bejamas-oss.workers.dev](https://astro-react-shadcn.bejamas-oss.workers.dev)

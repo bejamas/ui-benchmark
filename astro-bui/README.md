@@ -1,43 +1,26 @@
-# Astro Starter Kit: Minimal
+# Astro + b/ui benchmark
 
-```sh
-bun create astro@latest -- --template minimal
-```
+This project implements the shared benchmark page with Astro components and data-slot behavior. See the [benchmark README](../README.md) for the methodology and results.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Requirements
 
-## 🚀 Project Structure
+- Node.js 24.16.0
+- Bun 1.3.14
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Run these commands from this directory.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| Command | Result |
+|---|---|
+| `bun install --frozen-lockfile` | Install the locked dependencies |
+| `bun run dev` | Start the Astro development server |
+| `bun run build` | Build the static site in `dist` |
+| `bun run preview` | Preview the production build locally |
+| `bun run deploy` | Build and deploy the site with Wrangler |
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Cloudflare deployment
 
-Any static assets, like images, can be placed in the `public/` directory.
+[`wrangler.jsonc`](wrangler.jsonc) deploys `dist` as Worker static assets in the Bejamas OSS account.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Production: [astro-bui.bejamas-oss.workers.dev](https://astro-bui.bejamas-oss.workers.dev)
