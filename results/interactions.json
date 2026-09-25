@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-02T18:42:06.780Z",
+  "measuredAt": "2026-09-25T11:09:54.043Z",
   "methodology": {
     "label": "scripted Chrome Event Timing interaction latency (lab data, not field INP)",
     "runs": 5,
@@ -18,25 +18,25 @@
       "interactions": {
         "pricingTabs": {
           "samplesMs": [
-            24,
-            24,
             16,
             16,
-            32
+            16,
+            32,
+            16
           ],
-          "medianMs": 24,
+          "medianMs": 16,
           "p90Ms": 32
         },
         "faqAccordion": {
           "samplesMs": [
             16,
             16,
-            16,
-            16,
+            24,
+            24,
             16
           ],
           "medianMs": 16,
-          "p90Ms": 16
+          "p90Ms": 24
         },
         "newsletterCheckbox": {
           "samplesMs": [
@@ -57,14 +57,14 @@
       "interactions": {
         "pricingTabs": {
           "samplesMs": [
+            24,
             16,
             16,
             16,
-            32,
             16
           ],
           "medianMs": 16,
-          "p90Ms": 32
+          "p90Ms": 24
         },
         "faqAccordion": {
           "samplesMs": [
@@ -96,14 +96,14 @@
       "interactions": {
         "pricingTabs": {
           "samplesMs": [
-            16,
+            24,
             16,
             16,
             16,
             16
           ],
           "medianMs": 16,
-          "p90Ms": 16
+          "p90Ms": 24
         },
         "faqAccordion": {
           "samplesMs": [

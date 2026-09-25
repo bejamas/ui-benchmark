@@ -6,8 +6,8 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import { benchmarkRoot } from "./benchmark-config.mjs";
 
 const BEJAMAS_CLI_VERSION = "0.4.1";
-const BEJAMAS_UI_COMMIT = "1dda26dcee5320d4e5e5204297e7315a88fb1f5f";
-const DATA_SLOT_VERSION = "0.2.166";
+const BEJAMAS_UI_COMMIT = "82f54f403a7e163d777436fd23e9a1fe2f7d8af5";
+const DATA_SLOT_VERSION = "1.0.0";
 const components = [
   "accordion",
   "badge",
@@ -98,7 +98,7 @@ const selectController = await selectControllerResponse.text();
 if (!selectController.includes('from "@data-slot/select"')) {
   throw new Error("The pinned b/ui Select controller has an unexpected shape.");
 }
-await writeFile(new URL("src/lib/select.ts", astroBuiUrl), selectController);
+await writeFile(new URL("src/lib/select.ts", astroBuiUrl), `${selectController.trimEnd()}\n`);
 
 const uiUrl = new URL("src/ui/", astroBuiUrl);
 for (const relativePath of await readdir(uiUrl, { recursive: true })) {

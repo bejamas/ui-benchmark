@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-02T18:42:06.780Z",
+  "measuredAt": "2026-09-25T11:09:54.043Z",
   "environment": {
     "node": "v24.16.0",
-    "browser": "152.0.7977.65",
+    "browser": "153.0.8010.54",
     "viewport": {
       "width": 1280,
       "height": 800
@@ -25,16 +25,16 @@
       "id": "astro-bui",
       "name": "Astro + b/ui",
       "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
-      "domElements": 488,
-      "hydratedHtmlBytes": 122913,
+      "domElements": 318,
+      "hydratedHtmlBytes": 77544,
       "scriptRequests": [
-        "/_astro/Accordion.astro_astro_type_script_index_0_lang.B-T91bZk.js",
-        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.B-IiyDXm.js",
-        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.DtPirndW.js",
-        "/_astro/Select.astro_astro_type_script_index_0_lang.DVsXhIfy.js",
-        "/_astro/Tabs.astro_astro_type_script_index_0_lang.DSuh6QNG.js",
-        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.CsEIO5-f.js",
-        "/_astro/index.BSoulxjI.js"
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
+        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.uBCULnHc.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
+        "/_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
+        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
+        "/_astro/index.mg7P-Rs7.js"
       ],
       "fontRequests": [
         "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
@@ -42,8 +42,8 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 439.7,
-        "right": 905.9,
+        "left": 445.03,
+        "right": 911.22,
         "width": 466.2,
         "viewportWidth": 1280
       }
@@ -80,9 +80,9 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 418.39,
-        "right": 884.59,
-        "width": 466.2,
+        "left": 435.26,
+        "right": 919.39,
+        "width": 484.13,
         "viewportWidth": 1280
       }
     },

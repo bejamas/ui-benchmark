@@ -17,16 +17,16 @@ These are stable build-artifact measurements for `/`. JavaScript includes modern
 | Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
 | Route JS files | **7** | 18 | **7** |
-| Route JS raw | **87.00 KiB** | 375.05 KiB | 605.42 KiB |
-| Route JS gzip | **31.66 KiB** | 124.95 KiB | 179.67 KiB |
-| Route JS Brotli | **28.26 KiB** | 109.88 KiB | 155.25 KiB |
-| JS gzip relative to b/ui | **1×** | 3.9× | 5.7× |
+| Route JS raw | **99.24 KiB** | 375.05 KiB | 605.42 KiB |
+| Route JS gzip | **36.26 KiB** | 124.95 KiB | 179.67 KiB |
+| Route JS Brotli | **32.41 KiB** | 109.88 KiB | 155.25 KiB |
+| JS gzip relative to b/ui | **1×** | 3.4× | 5.0× |
 | HTML raw | 111.63 KiB | **57.90 KiB** | 112.35 KiB |
 | CSS raw | 85.06 KiB | **51.97 KiB** | 53.10 KiB |
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
-| HTML + CSS + JS + font, gzip estimate | **84.78 KiB** | 171.42 KiB | 231.82 KiB |
+| HTML + CSS + JS + font, gzip estimate | **89.39 KiB** | 171.42 KiB | 231.81 KiB |
 
-The b/ui implementation sends substantially less JavaScript, but its current eager-markup component implementation also emits more HTML and more DOM nodes than the React variants. That tradeoff belongs to this implementation; it is not an inherent consequence of avoiding a virtual DOM.
+The b/ui implementation sends substantially less JavaScript. It also emits more HTML than Astro React and leaves more live DOM elements after initialization than either React variant. These differences reflect the current component implementations.
 
 Full file-level data is in [`results/assets.json`](results/assets.json).
 
@@ -36,12 +36,12 @@ Values are medians of five sequential Lighthouse 13.4.1 runs against local produ
 
 | Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
-| Performance score | **99** | **99** | 98 |
-| FCP | 1.65 s | 1.51 s | **1.07 s** |
-| LCP | **1.65 s** | 1.95 s | 2.46 s |
-| TBT | 0 ms | 0 ms | 0 ms |
-| CLS | 0.01 | 0.01 | 0.02 |
-| Speed Index | 1.65 s | 1.51 s | **1.07 s** |
+| Performance score | **99** | **99** | 97 |
+| FCP | 1.66 s | 1.44 s | **1.07 s** |
+| LCP | **1.66 s** | 2.26 s | 2.47 s |
+| TBT | **0 ms** | **0 ms** | 1.5 ms |
+| CLS | 0.01 | **0.00** | 0.02 |
+| Speed Index | 1.66 s | 1.44 s | **1.07 s** |
 
 Protocol:
 
@@ -60,7 +60,7 @@ Chrome Event Timing measures three scripted pointer interactions under 4× CPU s
 
 | Interaction | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
-| Switch pricing tab | 24 | **16** | **16** |
+| Switch pricing tab | 16 | 16 | 16 |
 | Open FAQ item | 16 | 16 | 16 |
 | Toggle newsletter checkbox | 16 | 16 | 16 |
 
@@ -81,12 +81,12 @@ The automated verification suite currently confirms:
 
 | Structural metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
 |---|---:|---:|---:|
-| DOM elements after initialization | 488 | **256** | 274 |
-| Serialized DOM after initialization | 120.03 KiB | **56.83 KiB** | 111.58 KiB |
+| DOM elements after initialization | 318 | **256** | 274 |
+| Serialized DOM after initialization | 75.73 KiB | **56.83 KiB** | 111.58 KiB |
 
-Astro + b/ui has 232 more live elements than Astro React and 214 more than Next.js. A substantial part of that gap comes from keeping closed interactive content in the initial DOM: two navigation-menu panels, six tooltip panels, six hover-card panels, and two select panels. These 16 overlay content roots and their descendants ship in the initial HTML. The Radix-based variants generally mount those overlays only when opened.
+Astro + b/ui has 62 more live elements than Astro React and 44 more than Next.js. Its initial HTML includes closed overlay markup, but the newer primitives remove some overlay anatomy from the live DOM until opened. The Radix-based variants generally mount those overlays only when opened.
 
-This measures real browser elements, not rendering-library data structures. React's virtual DOM and Fiber objects live in JavaScript memory and are therefore not counted. A vanilla-JavaScript implementation could also create overlay content lazily, so the DOM difference should be attributed to eager versus on-demand component markup rather than virtual DOM versus no virtual DOM.
+This measures real browser elements, not rendering-library data structures. React's virtual DOM and Fiber objects live in JavaScript memory and are therefore not counted. The remaining DOM difference reflects the markup each implementation keeps after initialization.
 
 See [`results/quality.json`](results/quality.json) for the machine-readable report.
 
@@ -97,7 +97,7 @@ For this page and component set:
 - b/ui uses the least JavaScript because static components remain HTML and interactive behavior comes from small vanilla-JavaScript primitives.
 - Astro React loads React, the Astro island runtime, and the Radix/shadcn code used by its interactive islands.
 - The Next page is an idiomatic Server Component. Static page text is not forced through a top-level `"use client"` boundary, but the client router/runtime and interactive shadcn components still contribute to the route bundle.
-- Lower JavaScript does not mean lower output in every category: b/ui renders more initial DOM and HTML because this component implementation eagerly includes closed overlay content.
+- Lower JavaScript does not mean lower output in every category: b/ui ships more HTML than Astro React and retains slightly more live DOM elements after initialization.
 - All three implementations are responsive in the standardized interaction suite; the primary separation is payload and hydration architecture rather than observable interaction delay here.
 
 Claims such as “React + Radix has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.

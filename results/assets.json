@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-02T18:42:04.970Z",
+  "measuredAt": "2026-09-25T10:50:04.962Z",
   "environment": {
     "node": "v24.16.0",
     "platform": "darwin",
@@ -27,64 +27,64 @@
             {
               "path": "index.html",
               "raw": 114307,
-              "gzip": 11389,
-              "brotli": 8646
+              "gzip": 11391,
+              "brotli": 8648
             }
           ],
           "fileCount": 1,
           "raw": 114307,
-          "gzip": 11389,
-          "brotli": 8646
+          "gzip": 11391,
+          "brotli": 8648
         },
         "javascript": {
           "files": [
             {
-              "path": "_astro/Accordion.astro_astro_type_script_index_0_lang.B-T91bZk.js",
-              "raw": 10404,
-              "gzip": 3654,
-              "brotli": 3250
+              "path": "_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
+              "raw": 10463,
+              "gzip": 3672,
+              "brotli": 3264
             },
             {
-              "path": "_astro/HoverCard.astro_astro_type_script_index_0_lang.B-IiyDXm.js",
-              "raw": 6666,
-              "gzip": 2522,
-              "brotli": 2221
+              "path": "_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
+              "raw": 7277,
+              "gzip": 2704,
+              "brotli": 2403
             },
             {
-              "path": "_astro/NavigationMenu.astro_astro_type_script_index_0_lang.DtPirndW.js",
-              "raw": 31851,
-              "gzip": 10627,
-              "brotli": 9477
+              "path": "_astro/NavigationMenu.astro_astro_type_script_index_0_lang.uBCULnHc.js",
+              "raw": 33334,
+              "gzip": 11501,
+              "brotli": 10314
             },
             {
-              "path": "_astro/Select.astro_astro_type_script_index_0_lang.DVsXhIfy.js",
-              "raw": 13971,
-              "gzip": 5308,
-              "brotli": 4749
+              "path": "_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
+              "raw": 15760,
+              "gzip": 5815,
+              "brotli": 5208
             },
             {
-              "path": "_astro/Tabs.astro_astro_type_script_index_0_lang.DSuh6QNG.js",
-              "raw": 5337,
-              "gzip": 2310,
-              "brotli": 2042
+              "path": "_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
+              "raw": 5211,
+              "gzip": 2268,
+              "brotli": 2006
             },
             {
-              "path": "_astro/Tooltip.astro_astro_type_script_index_0_lang.CsEIO5-f.js",
-              "raw": 6410,
-              "gzip": 2670,
-              "brotli": 2380
+              "path": "_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
+              "raw": 7152,
+              "gzip": 2962,
+              "brotli": 2644
             },
             {
-              "path": "_astro/index.BSoulxjI.js",
-              "raw": 14446,
-              "gzip": 5327,
-              "brotli": 4820
+              "path": "_astro/index.mg7P-Rs7.js",
+              "raw": 22423,
+              "gzip": 8212,
+              "brotli": 7346
             }
           ],
           "fileCount": 7,
-          "raw": 89085,
-          "gzip": 32418,
-          "brotli": 28939
+          "raw": 101620,
+          "gzip": 37134,
+          "brotli": 33185
         },
         "css": {
           "files": [
@@ -117,9 +117,9 @@
       },
       "total": {
         "fileCount": 10,
-        "raw": 319894,
-        "gzip": 86817,
-        "brotli": 78644
+        "raw": 332429,
+        "gzip": 91535,
+        "brotli": 82892
       }
     },
     {
@@ -303,14 +303,14 @@
             {
               "path": "index.html",
               "raw": 115045,
-              "gzip": 14230,
-              "brotli": 9989
+              "gzip": 14227,
+              "brotli": 9980
             }
           ],
           "fileCount": 1,
           "raw": 115045,
-          "gzip": 14230,
-          "brotli": 9989
+          "gzip": 14227,
+          "brotli": 9980
         },
         "javascript": {
           "files": [
@@ -394,8 +394,8 @@
       "total": {
         "fileCount": 10,
         "raw": 818764,
-        "gzip": 237381,
-        "brotli": 206875
+        "gzip": 237378,
+        "brotli": 206866
       }
     }
   ]

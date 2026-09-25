@@ -14,19 +14,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@data-slot/accordion": "0.2.166",
-    "@data-slot/hover-card": "0.2.166",
-    "@data-slot/navigation-menu": "0.2.166",
-    "@data-slot/select": "0.2.166",
-    "@data-slot/tabs": "0.2.166",
-    "@data-slot/tooltip": "0.2.166",
+    "@data-slot/accordion": "1.0.0",
+    "@data-slot/hover-card": "1.0.0",
+    "@data-slot/navigation-menu": "1.0.0",
+    "@data-slot/select": "1.0.0",
+    "@data-slot/tabs": "1.0.0",
+    "@data-slot/tooltip": "1.0.0",
     "@fontsource-variable/geist": "^5.2.8",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
     "bejamas": "0.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.17",
