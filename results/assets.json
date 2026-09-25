@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-25T10:50:04.962Z",
+  "measuredAt": "2026-09-25T12:54:40.546Z",
   "environment": {
     "node": "v24.16.0",
     "platform": "darwin",
@@ -303,14 +303,14 @@
             {
               "path": "index.html",
               "raw": 115045,
-              "gzip": 14227,
-              "brotli": 9980
+              "gzip": 14230,
+              "brotli": 9982
             }
           ],
           "fileCount": 1,
           "raw": 115045,
-          "gzip": 14227,
-          "brotli": 9980
+          "gzip": 14230,
+          "brotli": 9982
         },
         "javascript": {
           "files": [
@@ -394,8 +394,8 @@
       "total": {
         "fileCount": 10,
         "raw": 818764,
-        "gzip": 237378,
-        "brotli": 206866
+        "gzip": 237381,
+        "brotli": 206868
       }
     }
   ]

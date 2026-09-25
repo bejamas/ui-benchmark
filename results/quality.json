@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-25T11:09:54.043Z",
+  "measuredAt": "2026-09-25T13:38:46.506Z",
   "environment": {
     "node": "v24.16.0",
-    "browser": "153.0.8010.54",
+    "browser": "153.0.8010.53",
     "viewport": {
       "width": 1280,
       "height": 800
@@ -42,8 +42,8 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 445.03,
-        "right": 911.22,
+        "left": 439.73,
+        "right": 905.93,
         "width": 466.2,
         "viewportWidth": 1280
       }
@@ -80,9 +80,9 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 435.26,
-        "right": 919.39,
-        "width": 484.13,
+        "left": 441.27,
+        "right": 913.33,
+        "width": 472.05,
         "viewportWidth": 1280
       }
     },
@@ -107,8 +107,8 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 418.39,
-        "right": 884.59,
+        "left": 444.19,
+        "right": 910.39,
         "width": 466.2,
         "viewportWidth": 1280
       }

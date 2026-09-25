@@ -10,8 +10,6 @@ import { chromium } from "playwright-core";
 import { benchmarkRoot, projects, resultsDir } from "./benchmark-config.mjs";
 import { startStaticServer } from "./static-server.mjs";
 
-const INTERACTION_RUNS = Number.parseInt(process.env.INTERACTION_RUNS ?? "5", 10);
-const CPU_THROTTLING_RATE = 4;
 const FIRST_FAQ = "How is this different from shadcn/ui?";
 const REQUIRED_BUI_SLOTS = [
   "checkbox-indicator",
@@ -44,64 +42,6 @@ const styleSources = [
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
-}
-
-function round(value) {
-  return Math.round(value * 100) / 100;
-}
-
-function median(values) {
-  const sorted = [...values].sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 0
-    ? (sorted[middle - 1] + sorted[middle]) / 2
-    : sorted[middle];
-}
-
-function percentile(values, percentileValue) {
-  const sorted = [...values].sort((a, b) => a - b);
-  return sorted[Math.max(0, Math.ceil(percentileValue * sorted.length) - 1)];
-}
-
-async function installEventTimingObserver(page) {
-  await page.evaluate(() => {
-    globalThis.__benchmarkEvents = [];
-    const observer = new PerformanceObserver((list) => {
-      globalThis.__benchmarkEvents.push(
-        ...list.getEntries().map((entry) => ({
-          duration: entry.duration,
-          interactionId: entry.interactionId,
-          name: entry.name,
-        })),
-      );
-    });
-    observer.observe({ type: "event", durationThreshold: 0 });
-  });
-}
-
-async function measureEventTiming(page, locator) {
-  await locator.waitFor({ state: "visible" });
-  const startIndex = await page.evaluate(() => globalThis.__benchmarkEvents.length);
-  await locator.click();
-  await page.waitForFunction(
-    (index) => globalThis.__benchmarkEvents
-      .slice(index)
-      .some((entry) => entry.interactionId > 0),
-    startIndex,
-    { timeout: 2_000 },
-  );
-
-  return page.evaluate((index) => {
-    const entries = globalThis.__benchmarkEvents
-      .slice(index)
-      .filter((entry) => entry.interactionId > 0);
-    const interactionId = entries[0].interactionId;
-    return Math.max(
-      ...entries
-        .filter((entry) => entry.interactionId === interactionId)
-        .map((entry) => entry.duration),
-    );
-  }, startIndex);
 }
 
 async function verifyInteractions(page, projectId) {
@@ -185,44 +125,6 @@ async function verifyInteractions(page, projectId) {
   return { navigationPopup, observedBuiSlots: [...observedBuiSlots].sort() };
 }
 
-async function collectInteractionLatency(page, cdp) {
-  await cdp.send("Emulation.setCPUThrottlingRate", { rate: CPU_THROTTLING_RATE });
-  const samples = {
-    pricingTabs: [],
-    faqAccordion: [],
-    newsletterCheckbox: [],
-  };
-
-  for (let run = 0; run < INTERACTION_RUNS; run += 1) {
-    await page.reload({ waitUntil: "networkidle" });
-    await installEventTimingObserver(page);
-    samples.pricingTabs.push(
-      await measureEventTiming(
-        page,
-        page.getByRole("tab", { name: "Yearly", exact: true }),
-      ),
-    );
-    samples.faqAccordion.push(
-      await measureEventTiming(
-        page,
-        page.getByRole("button", { name: FIRST_FAQ, exact: true }),
-      ),
-    );
-    samples.newsletterCheckbox.push(
-      await measureEventTiming(page, page.locator("#newsletter")),
-    );
-  }
-
-  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 1 });
-  return Object.fromEntries(
-    Object.entries(samples).map(([interaction, values]) => [interaction, {
-      samplesMs: values.map(round),
-      medianMs: round(median(values)),
-      p90Ms: round(percentile(values, 0.9)),
-    }]),
-  );
-}
-
 const server = await startStaticServer();
 const browser = await chromium.launch({
   ...(process.env.CHROME_PATH
@@ -235,7 +137,6 @@ const browserVersion = browser.version();
 
 const measuredAt = new Date().toISOString();
 const qualityProjects = [];
-const interactionProjects = [];
 
 assert(new Set(styleSources).size === 1, "The benchmark variants do not share the same global styles");
 
@@ -247,7 +148,6 @@ try {
       viewport: { width: 1280, height: 800 },
     });
     const page = await context.newPage();
-    const cdp = await context.newCDPSession(page);
     const browserErrors = [];
 
     page.on("console", (message) => {
@@ -298,7 +198,6 @@ try {
     }));
 
     const interactionChecks = await verifyInteractions(page, project.id);
-    const interactions = await collectInteractionLatency(page, cdp);
 
     assert(accessibility.length === 0, `${project.name} has ${accessibility.length} axe violations`);
     assert(browserErrors.length === 0, `${project.name} logged browser errors: ${browserErrors.join("; ")}`);
@@ -342,7 +241,6 @@ try {
       browserErrors,
       navigationPopup: interactionChecks.navigationPopup,
     });
-    interactionProjects.push({ id: project.id, name: project.name, interactions });
 
     await context.close();
   }
@@ -378,24 +276,6 @@ const qualityReport = {
   ],
   projects: qualityProjects,
 };
-const interactionReport = {
-  schemaVersion: 1,
-  measuredAt,
-  methodology: {
-    label: "scripted Chrome Event Timing interaction latency (lab data, not field INP)",
-    runs: INTERACTION_RUNS,
-    cpuThrottlingRate: CPU_THROTTLING_RATE,
-    viewport: { width: 1280, height: 800 },
-    aggregation: "median and nearest-rank p90",
-  },
-  projects: interactionProjects,
-};
-
-for (const [filename, report] of [
-  ["quality.json", qualityReport],
-  ["interactions.json", interactionReport],
-]) {
-  const outputPath = join(resultsDir, filename);
-  writeFileSync(outputPath, `${JSON.stringify(report, null, 2)}\n`);
-  console.log(`Wrote ${relative(benchmarkRoot, outputPath)}`);
-}
+const outputPath = join(resultsDir, "quality.json");
+writeFileSync(outputPath, `${JSON.stringify(qualityReport, null, 2)}\n`);
+console.log(`Wrote ${relative(benchmarkRoot, outputPath)}`);

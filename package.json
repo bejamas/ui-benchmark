@@ -12,7 +12,10 @@
     "measure": "node scripts/measure.mjs",
     "verify": "node scripts/verify.mjs",
     "performance": "node scripts/performance.mjs",
-    "benchmark": "npm run build && npm run measure && npm run verify && npm run performance"
+    "benchmark": "npm run build && npm run measure && npm run verify && npm run interactions && npm run performance",
+    "interactions": "node scripts/interactions.mjs",
+    "test:interactions": "node --test scripts/interactions.test.mjs",
+    "serve:device": "node scripts/serve-device.mjs"
   },
   "devDependencies": {
     "axe-core": "4.13.0",

@@ -36,14 +36,14 @@ function resolveRequest(buildDir, pathname) {
   return null;
 }
 
-export async function startStaticServer() {
+export async function startStaticServer({ project: defaultProject = null, port = 0 } = {}) {
   const projectsByHost = new Map(
     projects.map((project) => [`${project.id}.localhost`, project]),
   );
 
   const server = createServer((request, response) => {
     const hostname = (request.headers.host ?? "").split(":", 1)[0];
-    const project = projectsByHost.get(hostname);
+    const project = projectsByHost.get(hostname) ?? defaultProject;
     if (!project) {
       response.writeHead(404).end("Unknown benchmark host");
       return;
@@ -76,7 +76,7 @@ export async function startStaticServer() {
 
   await new Promise((resolvePromise, reject) => {
     server.once("error", reject);
-    server.listen(0, "127.0.0.1", resolvePromise);
+    server.listen(port, "127.0.0.1", resolvePromise);
   });
 
   const address = server.address();
@@ -85,9 +85,9 @@ export async function startStaticServer() {
   return {
     port: address.port,
     urls: Object.fromEntries(
-      projects.map((project) => [
+      (defaultProject ? [defaultProject] : projects).map((project) => [
         project.id,
-        `http://${project.id}.localhost:${address.port}/`,
+        `http://${defaultProject ? "localhost" : `${project.id}.localhost`}:${address.port}/`,
       ]),
     ),
     close: () => new Promise((resolvePromise, reject) =>

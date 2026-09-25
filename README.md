@@ -24,7 +24,7 @@ These are stable build-artifact measurements for `/`. JavaScript includes modern
 | HTML raw | 111.63 KiB | **57.90 KiB** | 112.35 KiB |
 | CSS raw | 85.06 KiB | **51.97 KiB** | 53.10 KiB |
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
-| HTML + CSS + JS + font, gzip estimate | **89.39 KiB** | 171.42 KiB | 231.81 KiB |
+| HTML + CSS + JS + font, gzip estimate | **89.39 KiB** | 171.42 KiB | 231.82 KiB |
 
 The b/ui implementation sends substantially less JavaScript. It also emits more HTML than Astro React and leaves more live DOM elements after initialization than either React variant. These differences reflect the current component implementations.
 
@@ -56,15 +56,11 @@ These are controlled lab results, not field Core Web Vitals. Full summaries are 
 
 ### Interaction latency
 
-Chrome Event Timing measures three scripted pointer interactions under 4× CPU slowdown. Values are five-run medians in milliseconds.
+The interaction benchmark runs 30 visits per project under a 4× desktop baseline, calibrated mid-tier and low-tier mobile CPU profiles, and a 20× mobile stress profile. Each profile tests both settled controls and one early navigation input after the trigger first paints.
 
-| Interaction | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
-|---|---:|---:|---:|
-| Switch pricing tab | 16 | 16 | 16 |
-| Open FAQ item | 16 | 16 | 16 |
-| Toggle newsletter checkbox | 16 | 16 | 16 |
+Read the [generated comparison table](results/interactions.md), [methodology and summaries](results/interactions.json), and [raw samples](results/interactions.samples.jsonl). Success counts and missing timings accompany median and p90 latency. A click that does not open the control counts as a failed interaction even if its event handler is fast.
 
-These values are quantized by the Event Timing API and show no meaningful responsiveness separation at this page complexity. They are controlled lab interaction measurements, **not field INP**. Raw samples and p90 values are in [`results/interactions.json`](results/interactions.json).
+These are controlled lab measurements, **not field INP**. Calibration approximates CPU throughput; it does not turn desktop Chrome into a physical phone. See [the interaction benchmark guide](docs/interactions.md) for the methodology, limitations, and Android device workflow.
 
 ### Parity and accessibility
 
@@ -98,7 +94,7 @@ For this page and component set:
 - Astro React loads React, the Astro island runtime, and the Radix/shadcn code used by its interactive islands.
 - The Next page is an idiomatic Server Component. Static page text is not forced through a top-level `"use client"` boundary, but the client router/runtime and interactive shadcn components still contribute to the route bundle.
 - Lower JavaScript does not mean lower output in every category: b/ui ships more HTML than Astro React and retains slightly more live DOM elements after initialization.
-- All three implementations are responsive in the standardized interaction suite; the primary separation is payload and hydration architecture rather than observable interaction delay here.
+- Interaction results distinguish settled responsiveness from whether an early input produces a UI response. Read success counts alongside latency; the page's payload alone does not establish an interaction ranking.
 
 Claims such as “React + Radix has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.
 
@@ -137,8 +133,8 @@ npm ci
 npm ci --prefix astro-react-shadcn
 npm ci --prefix nextjs-shadcn
 
-# Build, measure assets, verify parity/a11y/interactions,
-# and run five Lighthouse samples per project
+# Build, measure assets, verify parity and accessibility,
+# run 30 interaction rounds, and run five Lighthouse samples per project
 npm run benchmark
 ```
 
@@ -148,12 +144,14 @@ Individual stages can also be run independently:
 npm run build
 npm run measure
 npm run verify
+npm run test:interactions
+npm run interactions
 npm run performance
 ```
 
 Run `npm run sync:bui` to reapply the pinned Bejamas UI registry snapshot and its matching data-slot versions. Update the commit and version constants in `scripts/sync-bui.mjs` before intentionally moving the benchmark to a newer snapshot.
 
-Use `BENCHMARK_RUNS` or `INTERACTION_RUNS` to change sample counts. The committed results use five runs for both.
+Use `BENCHMARK_RUNS` to change the five-run Lighthouse default. Use `INTERACTION_RUNS` to change the 30-round interaction default. The full interaction matrix runs sequentially and can take tens of minutes.
 
 ## Measurement details
 
@@ -181,7 +179,9 @@ Gzip level 9 and Brotli quality 11 are calculated independently per response. Th
 
 ### Interaction and accessibility verification
 
-`scripts/verify.mjs` uses Chrome to exercise the equivalent controls, collects Event Timing samples, compares rendered text and requested assets, and runs axe-core. The suite fails immediately when parity, functionality, accessibility, or console-error checks regress.
+`scripts/verify.mjs` uses Chrome to exercise the equivalent controls, compare rendered text and requested assets, and run axe-core. The suite fails immediately when parity, functionality, accessibility, or console-error checks regress.
+
+`scripts/interactions.mjs` separately calibrates CPU profiles and collects complete input sequences and UI outcomes. It rotates execution order, saves raw samples, and generates the result table. `npm run test:interactions` checks the harness against ignored inputs, slow handlers, delayed outcomes, missed deadlines, and remote Chrome transport. See [the interaction benchmark guide](docs/interactions.md).
 
 ## Deployments
 
@@ -207,7 +207,8 @@ Deployments are intentionally separate from the benchmark command:
 - Results apply to the exact locked dependencies and implementation choices in this repository.
 - Local Lighthouse runs isolate application cost but do not represent production geography, caching, CDN behavior, or real-user hardware.
 - No CrUX or other field dataset is available, so the benchmark does not publish field LCP, CLS, or INP.
-- Event Timing results cover three scripted interactions and should not be generalized to a full user session.
+- Event Timing results cover three settled controls and one early navigation input. They should not be generalized to a full user session.
+- CPU-calibrated mobile profiles are approximations. Physical-device results require a separate run; missing Event Timing entries remain unreported.
 - Framework and library upgrades require regenerating and reviewing all committed result files.
 
 ## References
