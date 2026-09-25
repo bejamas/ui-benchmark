@@ -10,6 +10,7 @@ const CONTINUOUS_SCROLL_DELAY = 80;
 function findPart<T extends Element>(root: ParentNode, slot: string): T | null {
   return root.querySelector<T>(`[data-slot="${slot}"]`);
 }
+
 function toggleHidden(element: HTMLElement, hidden: boolean) {
   if (hidden) {
     element.setAttribute("hidden", "");

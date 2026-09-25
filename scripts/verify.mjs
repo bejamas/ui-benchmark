@@ -105,6 +105,16 @@ async function measureEventTiming(page, locator) {
 }
 
 async function verifyInteractions(page, projectId) {
+  // Lazy overlays only connect their anatomy while open. Observe each open
+  // state without changing the initial-DOM measurement below.
+  const observedBuiSlots = new Set();
+  async function captureBuiSlots() {
+    if (projectId !== "astro-bui") return;
+    const slots = await page.locator("[data-slot]").evaluateAll((elements) =>
+      elements.map((element) => element.getAttribute("data-slot")),
+    );
+    for (const slot of slots) observedBuiSlots.add(slot);
+  }
   await page.getByRole("button", { name: "Products", exact: true }).click();
   const analyticsLink = page.getByRole("link", { name: /Analytics/ });
   await analyticsLink.waitFor({ state: "visible" });
@@ -138,11 +148,13 @@ async function verifyInteractions(page, projectId) {
     navigationPopup.left >= 0 && navigationPopup.right <= navigationPopup.viewportWidth,
     `${projectId} navigation popup extends outside the viewport`,
   );
+  await captureBuiSlots();
   await page.keyboard.press("Escape");
 
   const tooltipTrigger = page.getByRole("button", { name: /^More information:/ }).first();
   await tooltipTrigger.focus();
   await page.getByRole("tooltip").first().waitFor({ state: "visible" });
+  await captureBuiSlots();
   await page.keyboard.press("Escape");
 
   await page.getByRole("tab", { name: "Yearly", exact: true }).click();
@@ -155,11 +167,14 @@ async function verifyInteractions(page, projectId) {
   await page.locator("#company-size").click();
   await page.getByRole("option", { name: "1–10 employees", exact: true })
     .waitFor({ state: "visible" });
+  await captureBuiSlots();
   await page.keyboard.press("Escape");
 
   await page.getByRole("button", { name: "React", exact: true }).hover();
   await page.getByText("A JavaScript library for building user interfaces", { exact: false })
     .waitFor({ state: "visible" });
+
+  await captureBuiSlots();
 
   const checkbox = page.locator("#newsletter");
   const before = await checkbox.getAttribute("aria-checked") ?? await checkbox.isChecked();
@@ -167,7 +182,7 @@ async function verifyInteractions(page, projectId) {
   const after = await checkbox.getAttribute("aria-checked") ?? await checkbox.isChecked();
   assert(before !== after, "Newsletter checkbox did not change state");
 
-  return { navigationPopup };
+  return { navigationPopup, observedBuiSlots: [...observedBuiSlots].sort() };
 }
 
 async function collectInteractionLatency(page, cdp) {
@@ -297,8 +312,12 @@ try {
     );
     assert(pageData.nestedInteractiveControls === 0, `${project.name} contains nested interactive controls`);
     if (project.id === "astro-bui") {
+      const observedSlots = new Set([
+        ...pageData.buiSlots,
+        ...interactionChecks.observedBuiSlots,
+      ]);
       const missingSlots = REQUIRED_BUI_SLOTS.filter(
-        (slot) => !pageData.buiSlots.includes(slot),
+        (slot) => !observedSlots.has(slot),
       );
       assert(
         missingSlots.length === 0,
