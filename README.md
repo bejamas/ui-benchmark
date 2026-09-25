@@ -58,6 +58,16 @@ These are controlled lab results, not field Core Web Vitals. Full summaries are 
 
 The interaction benchmark runs 30 visits per project under a 4× desktop baseline, calibrated mid-tier and low-tier mobile CPU profiles, and a 20× mobile stress profile. Each profile tests both settled controls and one early navigation input after the trigger first paints.
 
+At **20× CPU slowdown**, the settled-page results show a clear difference in pricing-tab switching. Values are median interaction latency in milliseconds across 30 runs per control. Lower is better.
+
+| Interaction at 20× CPU slowdown | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+|---|---:|---:|---:|
+| Switch pricing tab | **88** | 148 | 648 |
+| Open FAQ item | **80** | 96 | 96 |
+| Toggle newsletter checkbox | **40** | 64 | 64 |
+
+On this page, the Next.js pricing-tab median is about **7.4×** the b/ui median. Every control succeeded in all 30 runs for each implementation, with no missing timings. The fixed 20× profile is a deliberate CPU stress test; the calibrated mobile profiles are included in the full results below.
+
 Read the [generated comparison table](results/interactions.md), [methodology and summaries](results/interactions.json), and [raw samples](results/interactions.samples.jsonl). Success counts and missing timings accompany median and p90 latency. A click that does not open the control counts as a failed interaction even if its event handler is fast.
 
 These are controlled lab measurements, **not field INP**. Calibration approximates CPU throughput; it does not turn desktop Chrome into a physical phone. See [the interaction benchmark guide](docs/interactions.md) for the methodology, limitations, and Android device workflow.
