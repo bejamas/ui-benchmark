@@ -1,0 +1,1544 @@
+{
+  "schemaVersion": 3,
+  "status": "complete",
+  "measuredAt": "2026-09-25T19:51:41.624Z",
+  "samplesFile": "interactions-expanded.samples.jsonl",
+  "environment": {
+    "node": "v24.16.0",
+    "browser": "153.0.8010.53",
+    "hostCPU": "Apple M5 Pro",
+    "platform": "darwin",
+    "arch": "arm64",
+    "gitCommit": "7808d2f0a51263353721d6fb20c33cdaff438ff9",
+    "worktreeDirty": true,
+    "buildHashes": {
+      "astro-bui": "5555e8a40ec88a8bae36a1afa1fa87b7c4bcbd9ad9b19ba86414df70e0b4edbe",
+      "astro-react-shadcn": "21d61a1aa7852682a1003b557e8276d4205e8e38d0d6295963a225c8ea85de04",
+      "nextjs-shadcn": "9d75c04eabc2b6d2e522c9e5354753fb598bb73e55720cd099d7b1182d9b8a39"
+    },
+    "remoteURLs": null
+  },
+  "methodology": {
+    "label": "Scripted Chrome interaction latency; lab data, not field INP",
+    "runs": 30,
+    "outcomeTimeoutMs": 2000,
+    "controls": {
+      "settled": [
+        "navigation",
+        "navigationClose",
+        "pricingTabs",
+        "pricingMonthly",
+        "faqAccordion",
+        "faqCollapse",
+        "companySelect",
+        "companyOption",
+        "newsletterCheckbox",
+        "newsletterUncheck"
+      ]
+    },
+    "execution": "Sequential; project order rotates every run; profile and scenario order rotate every run",
+    "cache": "Fresh browser context per visit; HTTP cache disabled and service workers bypassed; shared browser process",
+    "early": "One trusted input at the first observed painted navigation trigger, before any load or hydration wait; no retry",
+    "settled": "Wait for networkidle; open/close Products menu, switch Yearly/Monthly pricing tabs, expand/collapse first FAQ, open company-size select and choose 1–10 employees, check/uncheck newsletter. Fixed sequence; dependent actions skipped if their prerequisite fails; no retries.",
+    "earlyNetwork": {
+      "latency": 150,
+      "downloadThroughput": 200000,
+      "uploadThroughput": 93750
+    },
+    "settledNetwork": "No synthetic network throttling",
+    "timing": "Maximum reported event duration after complete input; first-input fallback for first interaction; 8ms quantization; missing timings are null, never zero",
+    "breakdown": "Longest event and processing span of events sharing its paint within 8ms; phase estimates are approximate due to duration quantization",
+    "outcome": "Expected state within timeout from pointerdown; aria-controls content visible for opening or absent/hidden for closing; selected company size must appear in trigger; reject outcomes already present before input. uiStateDelayMs measures observed DOM state, not a paint timestamp",
+    "deviceScope": "Calibrated profiles approximate CPU throughput only. Mobile viewport/touch do not emulate phone GPU, memory pressure or thermals. Baseline uses a desktop viewport."
+  },
+  "calibration": {
+    "tiers": {}
+  },
+  "profiles": [
+    {
+      "id": "stress-20x",
+      "label": "20× mobile stress test",
+      "rate": 20,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true
+    }
+  ],
+  "groups": [
+    {
+      "profile": "stress-20x",
+      "scenario": "settled",
+      "project": "astro-bui",
+      "summary": {
+        "navigation": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 1803.15,
+            "p90": 2480.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 2109.85,
+            "p90": 2895.9
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 324,
+            "p90": 416
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 29.9,
+            "p90": 38.8
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 256.7,
+            "p90": 332.2
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 33.95,
+            "p90": 46
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 312.8,
+            "p90": 405.7
+          }
+        },
+        "navigationClose": {
+          "attempts": 30,
+          "successful": 0,
+          "failures": 30,
+          "failureReasons": {
+            "wrong-target": 30
+          },
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 2684.95,
+            "p90": 3472.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": null,
+          "durationMs": null,
+          "inputDelayMs": null,
+          "processingMs": null,
+          "presentationDelayMs": null,
+          "uiStateDelayMs": null
+        },
+        "pricingTabs": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5169.8,
+            "p90": 5893.2
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5304.05,
+            "p90": 6061.4
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 160,
+            "p90": 208
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 18.8,
+            "p90": 25.5
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 105.45,
+            "p90": 146.2
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 32.05,
+            "p90": 41.1
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 139.15,
+            "p90": 192.9
+          }
+        },
+        "pricingMonthly": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5730.3,
+            "p90": 6515.8
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5797.5,
+            "p90": 6578.8
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 72,
+            "p90": 104
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 19.05,
+            "p90": 22.2
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 33.3,
+            "p90": 54.5
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 22.7,
+            "p90": 30.7
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 68.65,
+            "p90": 88.6
+          }
+        },
+        "faqAccordion": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 6247.45,
+            "p90": 7078.8
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 6318.4,
+            "p90": 7182.1
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 88,
+            "p90": 128
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 19.55,
+            "p90": 24.6
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 53.7,
+            "p90": 83.1
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 19.9,
+            "p90": 24.6
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 92,
+            "p90": 121.3
+          }
+        },
+        "faqCollapse": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 6788.6,
+            "p90": 7676.1
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7085.5,
+            "p90": 7977.6
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 72,
+            "p90": 96
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 17,
+            "p90": 21
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 37,
+            "p90": 51.2
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15.65,
+            "p90": 22.1
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 293.4,
+            "p90": 327.8
+          }
+        },
+        "companySelect": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 7459.15,
+            "p90": 8347.6
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7591.7,
+            "p90": 8442
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 112,
+            "p90": 144
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 20.8,
+            "p90": 27.7
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 67.15,
+            "p90": 80.3
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 25.25,
+            "p90": 33.9
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 107.05,
+            "p90": 131.9
+          }
+        },
+        "companyOption": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 8010.75,
+            "p90": 8852.1
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 8083.75,
+            "p90": 8919.2
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 92,
+            "p90": 112
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 18.85,
+            "p90": 21.9
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 35.45,
+            "p90": 44.5
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 38.8,
+            "p90": 48.3
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 68.65,
+            "p90": 79
+          }
+        },
+        "newsletterCheckbox": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 8575.7,
+            "p90": 9425.9
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 8617.6,
+            "p90": 9469.8
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 48,
+            "p90": 56
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 15.95,
+            "p90": 22.2
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 8.25,
+            "p90": 11.1
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 22.3,
+            "p90": 30.5
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 40,
+            "p90": 52.4
+          }
+        },
+        "newsletterUncheck": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 9011.4,
+            "p90": 9871.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 484,
+            "p90": 588
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 9036.75,
+            "p90": 9913.3
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 40,
+            "p90": 48
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 14.1,
+            "p90": 19.8
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 2.55,
+            "p90": 4.4
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 23.65,
+            "p90": 30.1
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 27.25,
+            "p90": 42.2
+          }
+        }
+      },
+      "sampleCount": 30
+    },
+    {
+      "profile": "stress-20x",
+      "scenario": "settled",
+      "project": "astro-react-shadcn",
+      "summary": {
+        "navigation": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 2635.1,
+            "p90": 3129.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 2908.35,
+            "p90": 3628.9
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 240,
+            "p90": 384
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 44.35,
+            "p90": 86.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 165.45,
+            "p90": 292.1
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 26,
+            "p90": 34.6
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 285.4,
+            "p90": 492.1
+          }
+        },
+        "navigationClose": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 3449.7,
+            "p90": 4420.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 3536.1,
+            "p90": 4637.1
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 88,
+            "p90": 160
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 19.45,
+            "p90": 57.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 45.35,
+            "p90": 76.3
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 19.3,
+            "p90": 25.7
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 96.4,
+            "p90": 180.4
+          }
+        },
+        "pricingTabs": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 3945.05,
+            "p90": 5300.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 4062.9,
+            "p90": 5490.5
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 128,
+            "p90": 192
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 27.6,
+            "p90": 36.1
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 83.45,
+            "p90": 111.5
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 19.4,
+            "p90": 27.3
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 112.05,
+            "p90": 139.6
+          }
+        },
+        "pricingMonthly": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 4559.25,
+            "p90": 5941.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 4675.8,
+            "p90": 6036.3
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 108,
+            "p90": 184
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 22.65,
+            "p90": 27.7
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 73.35,
+            "p90": 130.5
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15.3,
+            "p90": 24.5
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 94.6,
+            "p90": 140.8
+          }
+        },
+        "faqAccordion": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5136.55,
+            "p90": 6533.9
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5262.65,
+            "p90": 6664
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 96,
+            "p90": 144
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 24.65,
+            "p90": 31.9
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 56,
+            "p90": 84.7
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 16.4,
+            "p90": 26.4
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 105.1,
+            "p90": 132.5
+          }
+        },
+        "faqCollapse": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5729.55,
+            "p90": 7185.8
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5792.1,
+            "p90": 7268.1
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 64,
+            "p90": 80
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 22.6,
+            "p90": 26.2
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 27.55,
+            "p90": 39.3
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 13.25,
+            "p90": 18.7
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 70.3,
+            "p90": 82.3
+          }
+        },
+        "companySelect": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 6240.65,
+            "p90": 7752.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 6619,
+            "p90": 8412
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 404,
+            "p90": 720
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 24.75,
+            "p90": 30.2
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 355,
+            "p90": 654.4
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 26.55,
+            "p90": 40.3
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 393.1,
+            "p90": 705.6
+          }
+        },
+        "companyOption": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 7045.2,
+            "p90": 8890.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7195.05,
+            "p90": 9085.7
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 152,
+            "p90": 224
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 42.75,
+            "p90": 52.9
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 94.05,
+            "p90": 173.4
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15.35,
+            "p90": 20.9
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 154.6,
+            "p90": 226.9
+          }
+        },
+        "newsletterCheckbox": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 7653.25,
+            "p90": 9590.2
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7732.35,
+            "p90": 9674.6
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 64,
+            "p90": 96
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 26.35,
+            "p90": 31.8
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 26.9,
+            "p90": 40.4
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 16.5,
+            "p90": 25.9
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 72.25,
+            "p90": 89.3
+          }
+        },
+        "newsletterUncheck": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 8126.95,
+            "p90": 10071.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 376,
+            "p90": 484
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 8187.9,
+            "p90": 10137.7
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 48,
+            "p90": 64
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 21.75,
+            "p90": 25.5
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 17,
+            "p90": 24.3
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15,
+            "p90": 18.6
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 56.65,
+            "p90": 66.4
+          }
+        }
+      },
+      "sampleCount": 30
+    },
+    {
+      "profile": "stress-20x",
+      "scenario": "settled",
+      "project": "nextjs-shadcn",
+      "summary": {
+        "navigation": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 2199.05,
+            "p90": 3055.6
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 3155.65,
+            "p90": 4429.1
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 764,
+            "p90": 1128
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 44.8,
+            "p90": 69.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 692.6,
+            "p90": 1047.9
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 24.65,
+            "p90": 32.4
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 982.4,
+            "p90": 1483.1
+          }
+        },
+        "navigationClose": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 3634.45,
+            "p90": 4933.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 3750.7,
+            "p90": 5043.6
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 88,
+            "p90": 120
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 20.7,
+            "p90": 34.8
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 50.7,
+            "p90": 69.7
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 20.65,
+            "p90": 26
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 95.5,
+            "p90": 121.9
+          }
+        },
+        "pricingTabs": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 4184.8,
+            "p90": 5494.5
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 4297.1,
+            "p90": 5618.2
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 136,
+            "p90": 168
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 25.65,
+            "p90": 32.9
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 90.15,
+            "p90": 114
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 20.45,
+            "p90": 25.4
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 111.25,
+            "p90": 124.1
+          }
+        },
+        "pricingMonthly": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 4782.6,
+            "p90": 6118.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 4860.85,
+            "p90": 6217.3
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 112,
+            "p90": 136
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 23.6,
+            "p90": 28.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 72.4,
+            "p90": 92.6
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15.45,
+            "p90": 21.9
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 92.45,
+            "p90": 111.9
+          }
+        },
+        "faqAccordion": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5293.15,
+            "p90": 6660
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5389.45,
+            "p90": 6786.2
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 104,
+            "p90": 128
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 23.95,
+            "p90": 30.7
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 63.7,
+            "p90": 77.2
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 17.8,
+            "p90": 21.8
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 103.35,
+            "p90": 126.7
+          }
+        },
+        "faqCollapse": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 5863.3,
+            "p90": 7267.2
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 5925.45,
+            "p90": 7333.6
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 56,
+            "p90": 72
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 19.85,
+            "p90": 25.2
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 27.15,
+            "p90": 36.1
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 12.05,
+            "p90": 16.4
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 64.3,
+            "p90": 73.6
+          }
+        },
+        "companySelect": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 6385.65,
+            "p90": 7811.6
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 6766.65,
+            "p90": 8184.7
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 428,
+            "p90": 544
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 22.65,
+            "p90": 30.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 382.55,
+            "p90": 479.2
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 23.4,
+            "p90": 32.8
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 425.35,
+            "p90": 533.7
+          }
+        },
+        "companyOption": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 7189.7,
+            "p90": 8704
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7332.15,
+            "p90": 8910.7
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 152,
+            "p90": 192
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 44.75,
+            "p90": 58.7
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 97.15,
+            "p90": 130.6
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 13.6,
+            "p90": 20
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 156.6,
+            "p90": 206.7
+          }
+        },
+        "newsletterCheckbox": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 7737.7,
+            "p90": 9723.3
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 7807.5,
+            "p90": 9810.7
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 64,
+            "p90": 80
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 23.75,
+            "p90": 28
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 25.65,
+            "p90": 37.9
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 15.1,
+            "p90": 19.1
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 68.9,
+            "p90": 77.4
+          }
+        },
+        "newsletterUncheck": {
+          "attempts": 30,
+          "successful": 30,
+          "failures": 0,
+          "failureReasons": {},
+          "harnessErrors": 0,
+          "unreportedTimings": 0,
+          "inputsBeforeLoad": 0,
+          "inputTimeMs": {
+            "count": 30,
+            "median": 8178.6,
+            "p90": 10193
+          },
+          "firstContentfulPaintMs": {
+            "count": 30,
+            "median": 664,
+            "p90": 780
+          },
+          "outcomeTimeMs": {
+            "count": 30,
+            "median": 8240.95,
+            "p90": 10255.8
+          },
+          "durationMs": {
+            "count": 30,
+            "median": 56,
+            "p90": 64
+          },
+          "inputDelayMs": {
+            "count": 30,
+            "median": 20.5,
+            "p90": 25.3
+          },
+          "processingMs": {
+            "count": 30,
+            "median": 19.15,
+            "p90": 26.9
+          },
+          "presentationDelayMs": {
+            "count": 30,
+            "median": 16,
+            "p90": 18.5
+          },
+          "uiStateDelayMs": {
+            "count": 30,
+            "median": 60.85,
+            "p90": 67.9
+          }
+        }
+      },
+      "sampleCount": 30
+    }
+  ],
+  "completedAt": "2026-09-25T20:05:46.062Z"
+}

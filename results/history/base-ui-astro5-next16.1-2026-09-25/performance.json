@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-25T20:52:25.354Z",
+  "environment": {
+    "node": "v24.16.0",
+    "lighthouse": "13.4.1",
+    "runsPerProject": 5,
+    "execution": "sequential"
+  },
+  "methodology": {
+    "source": "local production builds served with deterministic gzip by one HTTP server on isolated localhost hostnames",
+    "formFactor": "mobile",
+    "aggregation": "median of independent Lighthouse runs",
+    "fieldData": false,
+    "interactionMetric": "Not included; see results/interactions.json for scripted lab interaction latency.",
+    "lighthouseSettings": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    }
+  },
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "runs": [
+        {
+          "run": 1,
+          "performanceScore": 100,
+          "metrics": {
+            "firstContentfulPaint": 1507.19,
+            "largestContentfulPaint": 1509.58,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.01,
+            "speedIndex": 1507.19
+          },
+          "report": ".benchmark-results/lighthouse/astro-bui/run-1.json"
+        },
+        {
+          "run": 2,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1657.46,
+            "largestContentfulPaint": 1657.46,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.01,
+            "speedIndex": 1657.46
+          },
+          "report": ".benchmark-results/lighthouse/astro-bui/run-2.json"
+        },
+        {
+          "run": 3,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1659.47,
+            "largestContentfulPaint": 1659.47,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.01,
+            "speedIndex": 1659.47
+          },
+          "report": ".benchmark-results/lighthouse/astro-bui/run-3.json"
+        },
+        {
+          "run": 4,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1656.95,
+            "largestContentfulPaint": 1656.95,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.01,
+            "speedIndex": 1656.95
+          },
+          "report": ".benchmark-results/lighthouse/astro-bui/run-4.json"
+        },
+        {
+          "run": 5,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1657.55,
+            "largestContentfulPaint": 1657.55,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.01,
+            "speedIndex": 1657.55
+          },
+          "report": ".benchmark-results/lighthouse/astro-bui/run-5.json"
+        }
+      ],
+      "medians": {
+        "performanceScore": 99,
+        "metrics": {
+          "firstContentfulPaint": 1657.46,
+          "largestContentfulPaint": 1657.46,
+          "totalBlockingTime": 0,
+          "cumulativeLayoutShift": 0.01,
+          "speedIndex": 1657.46
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn (Base UI)",
+      "runs": [
+        {
+          "run": 1,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1506.85,
+            "largestContentfulPaint": 1955.48,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1506.85
+          },
+          "report": ".benchmark-results/lighthouse/astro-react-shadcn/run-1.json"
+        },
+        {
+          "run": 2,
+          "performanceScore": 98,
+          "metrics": {
+            "firstContentfulPaint": 1655.04,
+            "largestContentfulPaint": 2254.03,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1655.04
+          },
+          "report": ".benchmark-results/lighthouse/astro-react-shadcn/run-2.json"
+        },
+        {
+          "run": 3,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1507.18,
+            "largestContentfulPaint": 1955.75,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1507.18
+          },
+          "report": ".benchmark-results/lighthouse/astro-react-shadcn/run-3.json"
+        },
+        {
+          "run": 4,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1804.95,
+            "largestContentfulPaint": 2553.96,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1804.95
+          },
+          "report": ".benchmark-results/lighthouse/astro-react-shadcn/run-4.json"
+        },
+        {
+          "run": 5,
+          "performanceScore": 99,
+          "metrics": {
+            "firstContentfulPaint": 1508.3,
+            "largestContentfulPaint": 1956.64,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1508.3
+          },
+          "report": ".benchmark-results/lighthouse/astro-react-shadcn/run-5.json"
+        }
+      ],
+      "medians": {
+        "performanceScore": 99,
+        "metrics": {
+          "firstContentfulPaint": 1508.3,
+          "largestContentfulPaint": 1956.64,
+          "totalBlockingTime": 0,
+          "cumulativeLayoutShift": 0.02,
+          "speedIndex": 1508.3
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn (Base UI)",
+      "runs": [
+        {
+          "run": 1,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1211.74,
+            "largestContentfulPaint": 2756.83,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1211.74
+          },
+          "report": ".benchmark-results/lighthouse/nextjs-shadcn/run-1.json"
+        },
+        {
+          "run": 2,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1224.25,
+            "largestContentfulPaint": 2769.17,
+            "totalBlockingTime": 1.5,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1224.25
+          },
+          "report": ".benchmark-results/lighthouse/nextjs-shadcn/run-2.json"
+        },
+        {
+          "run": 3,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1221.15,
+            "largestContentfulPaint": 2762.1,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1221.15
+          },
+          "report": ".benchmark-results/lighthouse/nextjs-shadcn/run-3.json"
+        },
+        {
+          "run": 4,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1219.61,
+            "largestContentfulPaint": 2760.07,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1219.61
+          },
+          "report": ".benchmark-results/lighthouse/nextjs-shadcn/run-4.json"
+        },
+        {
+          "run": 5,
+          "performanceScore": 96,
+          "metrics": {
+            "firstContentfulPaint": 1218.31,
+            "largestContentfulPaint": 2761.2,
+            "totalBlockingTime": 0,
+            "cumulativeLayoutShift": 0.02,
+            "speedIndex": 1218.31
+          },
+          "report": ".benchmark-results/lighthouse/nextjs-shadcn/run-5.json"
+        }
+      ],
+      "medians": {
+        "performanceScore": 96,
+        "metrics": {
+          "firstContentfulPaint": 1219.61,
+          "largestContentfulPaint": 2761.2,
+          "totalBlockingTime": 0,
+          "cumulativeLayoutShift": 0.02,
+          "speedIndex": 1219.61
+        }
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const { class: className = "", ...rest } = Astro.props as Props;
   {...rest}
   data-slot="navigation-menu-indicator"
   class={cn(
-    "rounded-md data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in absolute left-0 top-0 z-0 pointer-events-none opacity-0 transition-[translate,width,height,opacity] duration-150 ease data-instant:transition-none data-[state=visible]:opacity-100",
+    "rounded-lg data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in absolute left-0 top-0 z-0 pointer-events-none opacity-0 transition-[translate,width,height,opacity] duration-150 ease data-instant:transition-none data-[state=visible]:opacity-100",
     "translate-x-(--indicator-left,0px) translate-y-(--indicator-top,0px)",
     "w-(--indicator-width,0) h-(--indicator-height,0)",
     className,

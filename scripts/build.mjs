@@ -6,8 +6,8 @@ import { benchmarkRoot } from "./benchmark-config.mjs";
 
 const builds = [
   { name: "Astro + b/ui", cwd: "astro-bui", command: "bun", args: ["run", "build"] },
-  { name: "Astro + React + shadcn", cwd: "astro-react-shadcn", command: "npm", args: ["run", "build"] },
-  { name: "Next.js + shadcn", cwd: "nextjs-shadcn", command: "npm", args: ["run", "build"] },
+  { name: "Astro + React + shadcn (Base UI)", cwd: "astro-react-shadcn", command: "npm", args: ["run", "build"] },
+  { name: "Next.js + shadcn (Base UI)", cwd: "nextjs-shadcn", command: "npm", args: ["run", "build"] },
 ];
 
 function run({ name, cwd, command, args }) {

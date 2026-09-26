@@ -1,0 +1,982 @@
+{
+  "startedAt": "2026-09-25T20:08:14.557Z",
+  "completedAt": "2026-09-25T20:15:15.181Z",
+  "runsPerCasePerMode": 3,
+  "environment": {
+    "node": "v24.16.0",
+    "lighthouse": "13.4.1"
+  },
+  "methodology": "Native production builds: Astro build.inlineStylesheets=always; Next experimental.inlineCss=true. Baseline uses framework defaults. All six cases use one gzip server, cold navigation, mobile viewport, sequential audits and rotating case order. Both throttling modes are lab approximations. No script-priority changes. Generated baseline output is restored after building inline cases.",
+  "settings": {
+    "simulate": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    },
+    "devtools": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 5250,
+      "pauseAfterLoadMs": 5250,
+      "networkQuietThresholdMs": 5250,
+      "cpuQuietThresholdMs": 5250,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "devtools",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    }
+  },
+  "verification": [
+    {
+      "id": "astro-bui-baseline",
+      "htmlSha256": "5a97d6aa230676832e555a2ae23315a783c280954af443bc3f5c1677f413dd3f",
+      "htmlBytes": 114307,
+      "htmlGzipBytes": 11391,
+      "stylesheetRequests": [
+        "/_astro/index.Cv1g_i6S.css"
+      ],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    },
+    {
+      "id": "astro-bui-inline",
+      "htmlSha256": "d0b054029b25dc2b61be27ca26bcc54cff94c66a938c4abab3d1d60ef74e2125",
+      "htmlBytes": 201367,
+      "htmlGzipBytes": 24948,
+      "stylesheetRequests": [],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "htmlSha256": "34762439483303cda28f290f013fb04308672aa9f2fbbb221d2d9137b615b2af",
+      "htmlBytes": 59294,
+      "htmlGzipBytes": 8890,
+      "stylesheetRequests": [
+        "/_astro/index.TvQwZfGO.css"
+      ],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "htmlSha256": "c7b59dfe21c63e457073b884e4c0750359b5a4350aefb1b0f7f23e2751569752",
+      "htmlBytes": 112473,
+      "htmlGzipBytes": 18030,
+      "stylesheetRequests": [],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "htmlSha256": "8641f3a59c1adf780aca656325fa6390efd2d124bd60d8d8e1c77ac5e386e40d",
+      "htmlBytes": 115045,
+      "htmlGzipBytes": 14227,
+      "stylesheetRequests": [
+        "/_next/static/chunks/8a707662c59e07f7.css"
+      ],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "htmlSha256": "90c31ab0e2f3e7a503095a4b54a2b835c93b2fb3a2b954de6b450711ec00a3d0",
+      "htmlBytes": 225418,
+      "htmlGzipBytes": 33783,
+      "stylesheetRequests": [],
+      "visibleTextMatchesBaseline": true,
+      "navigationAndTabsPassed": true,
+      "browserErrors": []
+    }
+  ],
+  "summaries": [
+    {
+      "id": "astro-bui-baseline",
+      "name": "Astro + b/ui",
+      "delivery": "baseline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1654,
+          "min": 1654,
+          "max": 1656
+        },
+        "lcp": {
+          "median": 1654,
+          "min": 1654,
+          "max": 1656
+        },
+        "speedIndex": {
+          "median": 1654,
+          "min": 1654,
+          "max": 1656
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01320914145577954,
+          "min": 0,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "astro-bui-inline",
+      "name": "Astro + b/ui",
+      "delivery": "inline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1503,
+          "min": 1503,
+          "max": 1506
+        },
+        "lcp": {
+          "median": 1504,
+          "min": 1503,
+          "max": 1507
+        },
+        "speedIndex": {
+          "median": 1503,
+          "min": 1503,
+          "max": 1506
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "name": "Astro + React + shadcn",
+      "delivery": "baseline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1430,
+          "min": 1057,
+          "max": 1655
+        },
+        "lcp": {
+          "median": 2254,
+          "min": 1804,
+          "max": 2255
+        },
+        "speedIndex": {
+          "median": 1430,
+          "min": 1057,
+          "max": 1655
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01267086861700919,
+          "min": 0,
+          "max": 0.01267086861700919
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "name": "Astro + React + shadcn",
+      "delivery": "inline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1661,
+          "min": 1436,
+          "max": 1661
+        },
+        "lcp": {
+          "median": 2269,
+          "min": 1818,
+          "max": 2269
+        },
+        "speedIndex": {
+          "median": 1661,
+          "min": 1436,
+          "max": 1661
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01267086861700919,
+          "min": 0.01267086861700919,
+          "max": 0.01267086861700919
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "name": "Next.js + shadcn",
+      "delivery": "baseline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1056,
+          "min": 1056,
+          "max": 1059
+        },
+        "lcp": {
+          "median": 2452,
+          "min": 2451,
+          "max": 2456
+        },
+        "speedIndex": {
+          "median": 1056,
+          "min": 1056,
+          "max": 1059
+        },
+        "tbt": {
+          "median": 2,
+          "min": 2,
+          "max": 5
+        },
+        "cls": {
+          "median": 0.02088289772475371,
+          "min": 0.02088289772475371,
+          "max": 0.02088289772475371
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "name": "Next.js + shadcn",
+      "delivery": "inline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1062,
+          "min": 1061,
+          "max": 1069
+        },
+        "lcp": {
+          "median": 2458,
+          "min": 2457,
+          "max": 2471
+        },
+        "speedIndex": {
+          "median": 1062,
+          "min": 1061,
+          "max": 1069
+        },
+        "tbt": {
+          "median": 3,
+          "min": 3,
+          "max": 4
+        },
+        "cls": {
+          "median": 0.02088289772475371,
+          "min": 0.02088289772475371,
+          "max": 0.02088289772475371
+        }
+      }
+    },
+    {
+      "id": "astro-bui-baseline",
+      "name": "Astro + b/ui",
+      "delivery": "baseline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1438,
+          "min": 1433,
+          "max": 1477
+        },
+        "lcp": {
+          "median": 1438,
+          "min": 1433,
+          "max": 1477
+        },
+        "speedIndex": {
+          "median": 1576,
+          "min": 1569,
+          "max": 1618
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "astro-bui-inline",
+      "name": "Astro + b/ui",
+      "delivery": "inline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 669,
+          "min": 667,
+          "max": 672
+        },
+        "lcp": {
+          "median": 707,
+          "min": 705,
+          "max": 712
+        },
+        "speedIndex": {
+          "median": 863,
+          "min": 861,
+          "max": 866
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "name": "Astro + React + shadcn",
+      "delivery": "baseline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1219,
+          "min": 1218,
+          "max": 1238
+        },
+        "lcp": {
+          "median": 1276,
+          "min": 1273,
+          "max": 1291
+        },
+        "speedIndex": {
+          "median": 1429,
+          "min": 1428,
+          "max": 1450
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "name": "Astro + React + shadcn",
+      "delivery": "inline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 640,
+          "min": 640,
+          "max": 653
+        },
+        "lcp": {
+          "median": 710,
+          "min": 683,
+          "max": 714
+        },
+        "speedIndex": {
+          "median": 867,
+          "min": 841,
+          "max": 880
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 4
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "name": "Next.js + shadcn",
+      "delivery": "baseline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1475,
+          "min": 1475,
+          "max": 1503
+        },
+        "lcp": {
+          "median": 1475,
+          "min": 1475,
+          "max": 1503
+        },
+        "speedIndex": {
+          "median": 1574,
+          "min": 1574,
+          "max": 1602
+        },
+        "tbt": {
+          "median": 15,
+          "min": 9,
+          "max": 29
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "name": "Next.js + shadcn",
+      "delivery": "inline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 665,
+          "min": 655,
+          "max": 667
+        },
+        "lcp": {
+          "median": 730,
+          "min": 705,
+          "max": 745
+        },
+        "speedIndex": {
+          "median": 851,
+          "min": 835,
+          "max": 866
+        },
+        "tbt": {
+          "median": 13,
+          "min": 5,
+          "max": 29
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "samples": [
+    {
+      "id": "astro-bui-baseline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1654,
+      "lcp": 1654,
+      "speedIndex": 1654,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-simulate-1.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1503,
+      "lcp": 1503,
+      "speedIndex": 1503,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-simulate-1.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1655,
+      "lcp": 2254,
+      "speedIndex": 1655,
+      "tbt": 0,
+      "cls": 0.01267086861700919,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-simulate-1.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1436,
+      "lcp": 1818,
+      "speedIndex": 1436,
+      "tbt": 0,
+      "cls": 0.01267086861700919,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-simulate-1.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1056,
+      "lcp": 2452,
+      "speedIndex": 1056,
+      "tbt": 2,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-simulate-1.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1062,
+      "lcp": 2457,
+      "speedIndex": 1062,
+      "tbt": 3,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-simulate-1.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1503,
+      "lcp": 1504,
+      "speedIndex": 1503,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-simulate-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1057,
+      "lcp": 2255,
+      "speedIndex": 1057,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-simulate-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1661,
+      "lcp": 2269,
+      "speedIndex": 1661,
+      "tbt": 0,
+      "cls": 0.01267086861700919,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-simulate-2.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1059,
+      "lcp": 2456,
+      "speedIndex": 1059,
+      "tbt": 5,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-simulate-2.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1069,
+      "lcp": 2471,
+      "speedIndex": 1069,
+      "tbt": 4,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-simulate-2.json"
+    },
+    {
+      "id": "astro-bui-baseline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1656,
+      "lcp": 1656,
+      "speedIndex": 1656,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-simulate-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1430,
+      "lcp": 1804,
+      "speedIndex": 1430,
+      "tbt": 0,
+      "cls": 0.01267086861700919,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-simulate-3.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1661,
+      "lcp": 2269,
+      "speedIndex": 1661,
+      "tbt": 0,
+      "cls": 0.01267086861700919,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-simulate-3.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1056,
+      "lcp": 2451,
+      "speedIndex": 1056,
+      "tbt": 2,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-simulate-3.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1061,
+      "lcp": 2458,
+      "speedIndex": 1061,
+      "tbt": 3,
+      "cls": 0.02088289772475371,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-simulate-3.json"
+    },
+    {
+      "id": "astro-bui-baseline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1654,
+      "lcp": 1654,
+      "speedIndex": 1654,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-simulate-3.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1506,
+      "lcp": 1507,
+      "speedIndex": 1506,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-simulate-3.json"
+    },
+    {
+      "id": "astro-bui-baseline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1438,
+      "lcp": 1438,
+      "speedIndex": 1576,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-devtools-1.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 667,
+      "lcp": 712,
+      "speedIndex": 866,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-devtools-1.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1219,
+      "lcp": 1276,
+      "speedIndex": 1428,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-devtools-1.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 640,
+      "lcp": 683,
+      "speedIndex": 841,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-devtools-1.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1475,
+      "lcp": 1475,
+      "speedIndex": 1574,
+      "tbt": 9,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-devtools-1.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 655,
+      "lcp": 705,
+      "speedIndex": 835,
+      "tbt": 5,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-devtools-1.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 672,
+      "lcp": 705,
+      "speedIndex": 861,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-devtools-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1218,
+      "lcp": 1273,
+      "speedIndex": 1429,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-devtools-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 640,
+      "lcp": 710,
+      "speedIndex": 867,
+      "tbt": 4,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-devtools-2.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1475,
+      "lcp": 1475,
+      "speedIndex": 1574,
+      "tbt": 15,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-devtools-2.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 665,
+      "lcp": 730,
+      "speedIndex": 851,
+      "tbt": 13,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-devtools-2.json"
+    },
+    {
+      "id": "astro-bui-baseline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1433,
+      "lcp": 1433,
+      "speedIndex": 1569,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-devtools-2.json"
+    },
+    {
+      "id": "astro-react-shadcn-baseline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1238,
+      "lcp": 1291,
+      "speedIndex": 1450,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-baseline-devtools-3.json"
+    },
+    {
+      "id": "astro-react-shadcn-inline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 653,
+      "lcp": 714,
+      "speedIndex": 880,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-react-shadcn-inline-devtools-3.json"
+    },
+    {
+      "id": "nextjs-shadcn-baseline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1503,
+      "lcp": 1503,
+      "speedIndex": 1602,
+      "tbt": 29,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-baseline-devtools-3.json"
+    },
+    {
+      "id": "nextjs-shadcn-inline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 667,
+      "lcp": 745,
+      "speedIndex": 866,
+      "tbt": 29,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/nextjs-shadcn-inline-devtools-3.json"
+    },
+    {
+      "id": "astro-bui-baseline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1477,
+      "lcp": 1477,
+      "speedIndex": 1618,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-baseline-devtools-3.json"
+    },
+    {
+      "id": "astro-bui-inline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 669,
+      "lcp": 707,
+      "speedIndex": 863,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/css-delivery/2026-09-25T20-08-14.557Z/astro-bui-inline-devtools-3.json"
+    }
+  ]
+}

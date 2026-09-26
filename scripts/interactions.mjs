@@ -6,10 +6,10 @@ import { cpus, arch, platform } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
-import { benchmarkRoot, projects, resultsDir } from "./benchmark-config.mjs";
+import { benchmarkRoot, projects, resultsDir, readProjectVersions } from "./benchmark-config.mjs";
 import { startStaticServer } from "./static-server.mjs";
 import { calibrateCPU, cpuProfiles, positiveInteger, summarize } from "./interaction-profiles.mjs";
-import { controls, dispatchInput, installProbe, measureSettled } from "./interaction-probe.mjs";
+import { controls, scenarioControls, dispatchInput, installProbe, measureSettled } from "./interaction-probe.mjs";
 
 export const coldNetwork = { latency: 150, downloadThroughput: 1_600_000 / 8, uploadThroughput: 750_000 / 8 };
 
@@ -56,8 +56,17 @@ export async function runVisit({ browser, url, profile, scenario, outcomeTimeout
       try { await input.promise; } finally { clearTimeout(timer); }
       results.navigation = await page.evaluate(() => globalThis.__interactionProbe.result());
     } else {
-      for (const key of ["pricingTabs", "faqAccordion", "newsletterCheckbox"]) {
-        results[key] = await measureSettled(page, cdp, controls[key], profile.touch);
+      for (const key of scenarioControls.settled) {
+        const control = controls[key];
+        if (control.requires && results[control.requires].status !== "success") {
+          results[key] = { status: "prerequisite-failed", eventTiming: null, prerequisite: control.requires };
+          continue;
+        }
+        try {
+          results[key] = await measureSettled(page, cdp, control, profile.touch);
+        } catch (error) {
+          results[key] = { status: "harness-error", eventTiming: null, error: error.message };
+        }
       }
     }
     const device = await page.evaluate(() => ({
@@ -82,7 +91,7 @@ export function summarizeSamples(samples, key) {
     failureReasons: Object.fromEntries([...new Set(measurements.map((sample) => sample.status))]
       .filter((status) => status !== "success")
       .map((status) => [status, measurements.filter((sample) => sample.status === status).length])),
-    harnessErrors: samples.filter((sample) => sample.harnessError).length,
+    harnessErrors: samples.filter((sample) => sample.harnessError || sample.results?.[key]?.status === "harness-error").length,
     unreportedTimings: successful.length - timed.length,
     inputsBeforeLoad: measurements.filter((sample) => sample.input && sample.input.loadAt === null).length,
     inputTimeMs: summarize(measurements.filter((sample) => sample.input).map((sample) => sample.input.startTime)),
@@ -117,14 +126,14 @@ export function markdownReport(report) {
   if (failedGroups.length) {
     lines.push("", "## Failed attempts", "",
       "Wrong-target and missing-input attempts cannot establish a handler failure. They remain in the attempt totals and are separated from missing or late UI outcomes below.", "",
-      "| Profile | Scenario | Project | Control | No UI change | Too late | Wrong target | Missing input | Harness errors |",
-      "|---|---|---|---|---:|---:|---:|---:|---:|");
+      "| Profile | Scenario | Project | Control | No UI change | Too late | Wrong target | Missing input | Prerequisite failed | Harness errors |",
+      "|---|---|---|---|---:|---:|---:|---:|---:|---:|");
     for (const group of failedGroups) {
       const reasons = group.failureSummary.failureReasons;
-      lines.push(`| ${group.profile} | ${group.scenario} | ${group.project} | ${group.control} | ${reasons["no-ui-change"] ?? 0} | ${reasons["outcome-too-late"] ?? 0} | ${reasons["wrong-target"] ?? 0} | ${reasons["input-missing"] ?? 0} | ${group.failureSummary.harnessErrors} |`);
+      lines.push(`| ${group.profile} | ${group.scenario} | ${group.project} | ${group.control} | ${reasons["no-ui-change"] ?? 0} | ${reasons["outcome-too-late"] ?? 0} | ${reasons["wrong-target"] ?? 0} | ${reasons["input-missing"] ?? 0} | ${reasons["prerequisite-failed"] ?? 0} | ${group.failureSummary.harnessErrors} |`);
     }
   }
-  lines.push("", "## Early input relative to navigation", "",
+  if (report.groups.some((group) => group.scenario === "early")) lines.push("", "## Early input relative to navigation", "",
     "Times below start at navigation. Outcome times include successful inputs only. A later first paint can shift input until after startup has settled; compare these times with the success and before-load counts above.", "",
     "| Profile | Project | Median FCP ms | Median input time ms | Median successful outcome time ms |",
     "|---|---|---:|---:|---:|");
@@ -149,13 +158,22 @@ async function main() {
   const runs = positiveInteger(process.env.INTERACTION_RUNS ?? "30", "INTERACTION_RUNS");
   const outcomeTimeoutMs = positiveInteger(process.env.INTERACTION_TIMEOUT_MS ?? "2000", "INTERACTION_TIMEOUT_MS");
   const endpoint = process.env.INTERACTION_CDP_URL;
+  const requestedProjects = (process.env.INTERACTION_PROJECTS ?? projects.map(({ id }) => id).join(",")).split(",");
+  if (requestedProjects.some(id => !projects.some(project => project.id === id)) || new Set(requestedProjects).size !== requestedProjects.length) {
+    throw new Error(`INTERACTION_PROJECTS must be a comma-separated subset of ${projects.map(({ id }) => id).join(",")}`);
+  }
+  const selectedProjects = projects.filter(({ id }) => requestedProjects.includes(id));
+  const scenarios = (process.env.INTERACTION_SCENARIOS ?? "settled,early").split(",");
+  if (scenarios.some((id) => !Object.hasOwn(scenarioControls, id)) || new Set(scenarios).size !== scenarios.length) {
+    throw new Error("INTERACTION_SCENARIOS must be a comma-separated subset of settled,early");
+  }
   const requested = (process.env.INTERACTION_PROFILES ?? (endpoint ? "device" : "baseline-4x,mobile-mid,mobile-low,stress-20x")).split(",");
   const allowed = endpoint ? ["device"] : ["baseline-4x", "mobile-mid", "mobile-low", "stress-20x"];
   if (requested.some((id) => !allowed.includes(id)) || new Set(requested).size !== requested.length) {
     throw new Error(`INTERACTION_PROFILES must be a comma-separated subset of ${allowed.join(",")}`);
   }
   const deviceUrls = endpoint ? JSON.parse(process.env.INTERACTION_DEVICE_URLS ?? "null") : null;
-  if (endpoint && (!process.env.INTERACTION_DEVICE_LABEL || !deviceUrls || projects.some(({ id }) => {
+  if (endpoint && (!process.env.INTERACTION_DEVICE_LABEL || !deviceUrls || selectedProjects.some(({ id }) => {
     try { return !["http:", "https:"].includes(new URL(deviceUrls[id]).protocol); } catch { return true; }
   }))) throw new Error("Device mode requires INTERACTION_DEVICE_LABEL and INTERACTION_DEVICE_URLS with an HTTP(S) URL for every project");
   const output = resolve(process.env.INTERACTION_OUTPUT ?? join(resultsDir, endpoint ? "interactions-device.json" : "interactions.json"));
@@ -176,35 +194,37 @@ async function main() {
     if (missing.length) throw new Error(`CPU calibration could not produce ${missing.join(", ")}: ${JSON.stringify(calibration.tiers)}. Close CPU-heavy applications and retry, or explicitly select available profiles.`);
     console.log(`Profiles: ${profiles.map((profile) => `${profile.id} ${profile.rate ?? "native"}×`).join(", ")}`);
     const report = {
-      schemaVersion: 2, status: "running", measuredAt: new Date().toISOString(),
+      schemaVersion: 3, status: "running", measuredAt: new Date().toISOString(),
       samplesFile: basename(output.replace(/\.json$/, ".samples.jsonl")),
       environment: {
+        versions: endpoint ? null : readProjectVersions(),
         node: process.version, browser: browser.version(), hostCPU: cpus()[0]?.model,
         platform: platform(), arch: arch(), gitCommit: execFileSync("git", ["rev-parse", "HEAD"], { cwd: benchmarkRoot, encoding: "utf8" }).trim(),
         worktreeDirty: Boolean(execFileSync("git", ["status", "--porcelain"], { cwd: benchmarkRoot, encoding: "utf8" }).trim()),
-        buildHashes: endpoint ? null : Object.fromEntries(projects.map((project) => [project.id, buildFingerprint(project)])),
+        buildHashes: endpoint ? null : Object.fromEntries(selectedProjects.map((project) => [project.id, buildFingerprint(project)])),
         remoteURLs: deviceUrls,
       },
       methodology: {
         label: "Scripted Chrome interaction latency; lab data, not field INP", runs, outcomeTimeoutMs,
+        controls: Object.fromEntries(scenarios.map((scenario) => [scenario, scenarioControls[scenario]])),
         execution: "Sequential; project order rotates every run; profile and scenario order rotate every run",
         cache: endpoint ? "HTTP cache disabled and service workers bypassed; existing device context" : "Fresh browser context per visit; HTTP cache disabled and service workers bypassed; shared browser process",
         early: "One trusted input at the first observed painted navigation trigger, before any load or hydration wait; no retry",
-        settled: "Wait for networkidle, then exercise pricing tab, FAQ and checkbox",
+        settled: "Wait for networkidle; open/close Products menu, switch Yearly/Monthly pricing tabs, expand/collapse first FAQ, open company-size select and choose 1–10 employees, check/uncheck newsletter. Fixed sequence; dependent actions skipped if their prerequisite fails; no retries.",
         earlyNetwork: endpoint ? "Native device connection; no synthetic network throttling" : coldNetwork,
         settledNetwork: "No synthetic network throttling",
         timing: "Maximum reported event duration after complete input; first-input fallback for first interaction; 8ms quantization; missing timings are null, never zero",
         breakdown: "Longest event and processing span of events sharing its paint within 8ms; phase estimates are approximate due to duration quantization",
-        outcome: "Expected state and visible aria-controls content within the timeout from pointerdown; uiStateDelayMs measures observed DOM state, not a paint timestamp",
+        outcome: "Expected state within timeout from pointerdown; aria-controls content visible for opening or absent/hidden for closing; selected company size must appear in trigger; reject outcomes already present before input. uiStateDelayMs measures observed DOM state, not a paint timestamp",
         deviceScope: "Calibrated profiles approximate CPU throughput only. Mobile viewport/touch do not emulate phone GPU, memory pressure or thermals. Baseline uses a desktop viewport.",
       }, calibration, profiles, groups: [],
     };
-    for (const profile of profiles) for (const scenario of ["settled", "early"]) for (const project of projects) {
+    for (const profile of profiles) for (const scenario of scenarios) for (const project of selectedProjects) {
       report.groups.push({ profile: profile.id, scenario, project: project.id, samples: [], summary: {} });
     }
     function save() {
       for (const group of report.groups) {
-        const keys = group.scenario === "early" ? ["navigation"] : ["pricingTabs", "faqAccordion", "newsletterCheckbox"];
+        const keys = report.methodology.controls[group.scenario];
         group.summary = Object.fromEntries(keys.map((key) => [key, summarizeSamples(group.samples, key)]));
       }
       mkdirSync(dirname(output), { recursive: true });
@@ -217,13 +237,13 @@ async function main() {
         }, roundNumbers))).join("\n") + "\n");
       writeFileSync(output.replace(/\.json$/, ".md"), markdownReport(report));
     }
-    const jobs = profiles.flatMap((profile) => ["settled", "early"].map((scenario) => ({ profile, scenario })));
+    const jobs = profiles.flatMap((profile) => scenarios.map((scenario) => ({ profile, scenario })));
     for (let run = 0; run < runs; run += 1) {
       console.log(`Interaction round ${run + 1}/${runs}`);
       for (let offset = 0; offset < jobs.length; offset += 1) {
         const { profile, scenario } = jobs[(run + offset) % jobs.length];
-        for (let index = 0; index < projects.length; index += 1) {
-          const project = projects[(run + index) % projects.length];
+        for (let index = 0; index < selectedProjects.length; index += 1) {
+          const project = selectedProjects[(run + index) % selectedProjects.length];
           const group = report.groups.find((item) => item.profile === profile.id && item.scenario === scenario && item.project === project.id);
           let sample;
           try {
@@ -240,7 +260,8 @@ async function main() {
     report.status = "complete";
     report.completedAt = new Date().toISOString();
     save();
-    if (report.groups.some((group) => group.samples.some((sample) => sample.harnessError || sample.errors.length))) process.exitCode = 1;
+    if (report.groups.some((group) => group.samples.some((sample) => sample.harnessError || sample.errors.length ||
+      Object.values(sample.results).some((result) => result.status === "harness-error")))) process.exitCode = 1;
     console.log(`Wrote ${output} and ${output.replace(/\.json$/, ".md")}`);
   } finally {
     await browser?.close();

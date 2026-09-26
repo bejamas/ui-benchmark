@@ -17,12 +17,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,
   AccordionContent,
@@ -59,63 +54,55 @@ function SiteHeader() {
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Analytics
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Real-time dashboards and reporting
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Analytics
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Real-time dashboards and reporting
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Automation
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Workflow builders and integrations
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Automation
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Workflow builders and integrations
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Security
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Enterprise-grade protection
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Security
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Enterprise-grade protection
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Integrations
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Connect your favorite tools
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Integrations
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Connect your favorite tools
+                      </p>
                     </NavigationMenuLink>
                   </li>
                 </ul>
@@ -127,63 +114,55 @@ function SiteHeader() {
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Startups
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Move fast and ship faster
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Startups
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Move fast and ship faster
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Enterprise
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Scale with confidence
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Enterprise
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Scale with confidence
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          Agencies
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Deliver client projects
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        Agencies
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Deliver client projects
+                      </p>
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="#"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">
-                          E-commerce
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Sell smarter online
-                        </p>
-                      </a>
+                    <NavigationMenuLink
+                      href="#"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="text-sm font-medium leading-none">
+                        E-commerce
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        Sell smarter online
+                      </p>
                     </NavigationMenuLink>
                   </li>
                 </ul>
@@ -297,14 +276,12 @@ function FeaturesSection() {
               <CardTitle className="flex items-center gap-2">
                 {feature.title}
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button
-                      type="button"
-                      aria-label={`More information: ${feature.tooltip}`}
-                      className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                    >
-                      ?
-                    </button>
+                  <TooltipTrigger
+                    type="button"
+                    aria-label={`More information: ${feature.tooltip}`}
+                    className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
+                  >
+                    ?
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{feature.tooltip}</p>
@@ -460,13 +437,15 @@ function RichTextSection() {
           The average web page now ships over 500KB of JavaScript, and component
           libraries built on{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                React
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              React
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -480,13 +459,15 @@ function RichTextSection() {
           </HoverCard>{" "}
           add significant overhead. Every component on the page needs to{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                hydrate
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              hydrate
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -506,13 +487,15 @@ function RichTextSection() {
           landing pages, and documentation sites are content-first by nature,
           yet frameworks like Next.js require the full{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                Virtual DOM
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              Virtual DOM
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -534,21 +517,23 @@ function RichTextSection() {
           testimonials, and a contact form. In a traditional React setup, the
           browser must download, parse, and execute JavaScript for{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                Radix UI primitives,
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              Base UI primitives,
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
-                <h4 className="text-sm font-semibold">Radix UI</h4>
+                <h4 className="text-sm font-semibold">Base UI</h4>
                 <p className="text-sm text-muted-foreground">
-                  A popular headless component library for React. Each primitive
-                  (Dialog, Select, NavigationMenu, etc.) adds 5-30KB of
-                  JavaScript to handle accessibility and interactions.
+                  A headless component library for React that provides
+                  accessible controls and interaction behavior. Both shadcn
+                  demos in this benchmark use Base UI.
                 </p>
               </div>
             </HoverCardContent>
@@ -560,34 +545,39 @@ function RichTextSection() {
           The alternative is to use a server-first approach where components
           render to plain HTML by default. Interactive elements like{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                navigation menus
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              navigation menus
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
                 <h4 className="text-sm font-semibold">Navigation Menu</h4>
                 <p className="text-sm text-muted-foreground">
                   A complex component requiring hover detection, keyboard
-                  navigation, focus management, and animated transitions. In
-                  Astro + data-slot, this costs ~3KB vs ~25KB in React + Radix.
+                  navigation, focus management, and animated transitions. Its
+                  JavaScript cost depends on the implementation and the
+                  components included in the page.
                 </p>
               </div>
             </HoverCardContent>
           </HoverCard>{" "}
           and tooltips use lightweight{" "}
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button
-                type="button"
-                className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-              >
-                data-slot primitives
-              </button>
+            <HoverCardTrigger
+              render={
+                <button
+                  type="button"
+                  className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+                />
+              }
+            >
+              data-slot primitives
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="space-y-1">
@@ -614,7 +604,7 @@ const faqs = [
   {
     question: "How is this different from shadcn/ui?",
     answer:
-      "While inspired by shadcn/ui's copy-and-own approach, our components are built natively for Astro. They compile to pure HTML and CSS with zero React runtime overhead. Interactive components use lightweight data-slot primitives instead of Radix UI.",
+      "While inspired by shadcn/ui's copy-and-own approach, our components are built natively for Astro. They compile to pure HTML and CSS with zero React runtime overhead. Interactive components use lightweight data-slot primitives. The React demos use Base UI.",
   },
   {
     question: "Can I use this with React or Vue?",
@@ -629,7 +619,7 @@ const faqs = [
   {
     question: "How does the JavaScript footprint compare?",
     answer:
-      "A typical marketing page built with our components ships 5-15KB of JavaScript total. The same page with Next.js + shadcn/Radix typically ships 150-300KB. That's a 10-20x difference in JavaScript payload.",
+      "JavaScript payload depends on the components and framework used. This benchmark measures the production output of the same page in all three implementations.",
   },
   {
     question: "Is this production-ready?",
@@ -649,7 +639,7 @@ function FAQSection() {
       <h2 className="mb-12 text-center text-3xl font-bold tracking-tight">
         Frequently asked questions
       </h2>
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion className="w-full">
         {faqs.map((faq, i) => (
           <AccordionItem key={i} value={`item-${i}`}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>

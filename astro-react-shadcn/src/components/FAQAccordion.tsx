@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "How is this different from shadcn/ui?",
     answer:
-      "While inspired by shadcn/ui's copy-and-own approach, our components are built natively for Astro. They compile to pure HTML and CSS with zero React runtime overhead. Interactive components use lightweight data-slot primitives instead of Radix UI.",
+      "While inspired by shadcn/ui's copy-and-own approach, our components are built natively for Astro. They compile to pure HTML and CSS with zero React runtime overhead. Interactive components use lightweight data-slot primitives. The React demos use Base UI.",
   },
   {
     question: "Can I use this with React or Vue?",
@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "How does the JavaScript footprint compare?",
     answer:
-      "A typical marketing page built with our components ships 5-15KB of JavaScript total. The same page with Next.js + shadcn/Radix typically ships 150-300KB. That's a 10-20x difference in JavaScript payload.",
+      "JavaScript payload depends on the components and framework used. This benchmark measures the production output of the same page in all three implementations.",
   },
   {
     question: "Is this production-ready?",
@@ -40,7 +40,7 @@ const faqs = [
 
 export default function FAQAccordion() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion className="w-full">
       {faqs.map((faq, i) => (
         <AccordionItem key={i} value={`item-${i}`}>
           <AccordionTrigger>{faq.question}</AccordionTrigger>

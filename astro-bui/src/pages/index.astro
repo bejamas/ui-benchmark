@@ -60,7 +60,7 @@ import { Separator } from "@/ui/separator";
         <NavigationMenu aria-label="Main">
           <NavigationMenuList>
             <NavigationMenuItem value="products">
-              <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+              <NavigationMenuTrigger class="bg-transparent">Products</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                   <NavigationMenuLink href="#">
@@ -106,7 +106,7 @@ import { Separator } from "@/ui/separator";
             </NavigationMenuItem>
 
             <NavigationMenuItem value="solutions">
-              <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+              <NavigationMenuTrigger class="bg-transparent">Solutions</NavigationMenuTrigger>
               <NavigationMenuContent align="center">
                 <div class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                   <NavigationMenuLink href="#">
@@ -152,7 +152,7 @@ import { Separator } from "@/ui/separator";
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#pricing"
-                class="px-4 py-2.5 bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors relative z-1 rounded-sm hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
+                class="inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium"
               >
                 Pricing
               </NavigationMenuLink>
@@ -161,7 +161,7 @@ import { Separator } from "@/ui/separator";
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#contact"
-                class="px-4 py-2.5 bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors relative z-1 rounded-sm hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
+                class="inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium"
               >
                 Contact
               </NavigationMenuLink>
@@ -176,7 +176,7 @@ import { Separator } from "@/ui/separator";
     <main>
       <!-- ─────────────────── Hero ─────────────────── -->
       <section class="mx-auto max-w-6xl px-4 py-24 text-center">
-        <Badge variant="secondary" class="mb-4">Now in public beta</Badge>
+        <Badge shape="pill" size="sm" variant="secondary" class="mb-4">Now in public beta</Badge>
         <h1
           class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
         >
@@ -199,16 +199,11 @@ import { Separator } from "@/ui/separator";
         </h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Zero-JS Components
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: Components compile to static HTML with no client-side hydration">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Components compile to static HTML with no client-side hydration" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>
                       Components compile to static HTML with no client-side
@@ -227,16 +222,11 @@ import { Separator } from "@/ui/separator";
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Instant Page Loads
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: Typical score: 98-100 on PageSpeed Insights">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Typical score: 98-100 on PageSpeed Insights" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>Typical score: 98-100 on PageSpeed Insights</p>
                   </TooltipContent>
@@ -252,16 +242,11 @@ import { Separator } from "@/ui/separator";
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Accessible by Default
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: WCAG 2.1 AA compliant out of the box">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: WCAG 2.1 AA compliant out of the box" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>WCAG 2.1 AA compliant out of the box</p>
                   </TooltipContent>
@@ -277,16 +262,11 @@ import { Separator } from "@/ui/separator";
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Copy & Own
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: Similar to shadcn/ui's approach but for Astro">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Similar to shadcn/ui's approach but for Astro" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>
                       Similar to shadcn/ui's approach but for Astro
@@ -304,16 +284,11 @@ import { Separator } from "@/ui/separator";
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Tailwind v4 Native
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: Uses @theme and CSS custom properties">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Uses @theme and CSS custom properties" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>Uses @theme and CSS custom properties</p>
                   </TooltipContent>
@@ -329,16 +304,11 @@ import { Separator } from "@/ui/separator";
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader class="grid-rows-1">
               <CardTitle class="flex items-center gap-2">
                 Rich Interactions
                 <Tooltip>
-                  <TooltipTrigger aria-label="More information: Uses data-slot primitives for behavior">
-                    <span
-                      class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground"
-                      >?</span
-                    >
-                  </TooltipTrigger>
+                  <TooltipTrigger aria-label="More information: Uses data-slot primitives for behavior" class="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">?</TooltipTrigger>
                   <TooltipContent>
                     <p>Uses data-slot primitives for behavior</p>
                   </TooltipContent>
@@ -361,7 +331,7 @@ import { Separator } from "@/ui/separator";
           Simple, transparent pricing
         </h2>
         <Tabs defaultValue="monthly" class="mx-auto max-w-3xl">
-          <TabsList class="mx-auto grid w-[240px] grid-cols-2">
+          <TabsList variant="default" class="mx-auto grid w-[240px] grid-cols-2">
             <TabsTrigger value="monthly">Monthly</TabsTrigger>
             <TabsTrigger value="yearly">Yearly</TabsTrigger>
           </TabsList>
@@ -386,7 +356,7 @@ import { Separator } from "@/ui/separator";
                 <CardHeader>
                   <div class="flex items-center justify-between">
                     <CardTitle>Pro</CardTitle>
-                    <Badge>Popular</Badge>
+                    <Badge shape="pill" size="sm">Popular</Badge>
                   </div>
                   <CardDescription>For growing teams</CardDescription>
                 </CardHeader>
@@ -434,7 +404,7 @@ import { Separator } from "@/ui/separator";
                 <CardHeader>
                   <div class="flex items-center justify-between">
                     <CardTitle>Pro</CardTitle>
-                    <Badge>Save 20%</Badge>
+                    <Badge shape="pill" size="sm">Save 20%</Badge>
                   </div>
                   <CardDescription>For growing teams</CardDescription>
                 </CardHeader>
@@ -529,14 +499,12 @@ import { Separator } from "@/ui/separator";
             testimonials, and a contact form. In a traditional React setup, the
             browser must download, parse, and execute JavaScript for{" "}
             <HoverCard>
-              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">Radix UI primitives,</HoverCardTrigger>
+              <HoverCardTrigger class="font-medium text-foreground underline decoration-dotted underline-offset-4">Base UI primitives,</HoverCardTrigger>
               <HoverCardContent class="w-80">
                 <div class="space-y-1">
-                  <h4 class="text-sm font-semibold">Radix UI</h4>
+                  <h4 class="text-sm font-semibold">Base UI</h4>
                   <p class="text-sm text-muted-foreground">
-                    A popular headless component library for React. Each
-                    primitive (Dialog, Select, NavigationMenu, etc.) adds 5-30KB
-                    of JavaScript to handle accessibility and interactions.
+                    A headless component library for React that provides accessible controls and interaction behavior. Both shadcn demos in this benchmark use Base UI.
                   </p>
                 </div>
               </HoverCardContent>
@@ -553,8 +521,7 @@ import { Separator } from "@/ui/separator";
                   <h4 class="text-sm font-semibold">Navigation Menu</h4>
                   <p class="text-sm text-muted-foreground">
                     A complex component requiring hover detection, keyboard
-                    navigation, focus management, and animated transitions. In
-                    Astro + data-slot, this costs ~3KB vs ~25KB in React + Radix.
+                    navigation, focus management, and animated transitions. Its JavaScript cost depends on the implementation and the components included in the page.
                   </p>
                 </div>
               </HoverCardContent>
@@ -592,8 +559,7 @@ import { Separator } from "@/ui/separator";
             <AccordionContent>
               While inspired by shadcn/ui's copy-and-own approach, our
               components are built natively for Astro. They compile to pure HTML
-              and CSS with zero React runtime overhead. Interactive components use
-              lightweight data-slot primitives instead of Radix UI.
+              and CSS with zero React runtime overhead. Interactive components use lightweight data-slot primitives. The React demos use Base UI.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-1">
@@ -621,10 +587,7 @@ import { Separator } from "@/ui/separator";
               >How does the JavaScript footprint compare?</AccordionTrigger
             >
             <AccordionContent>
-              A typical marketing page built with our components ships 5-15KB of
-              JavaScript total. The same page with Next.js + shadcn/Radix
-              typically ships 150-300KB. That's a 10-20x difference in
-              JavaScript payload.
+              JavaScript payload depends on the components and framework used. This benchmark measures the production output of the same page in all three implementations.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
@@ -671,7 +634,7 @@ import { Separator } from "@/ui/separator";
 
             <div class="space-y-2">
               <Label for="company-size">Company size</Label>
-              <Select>
+              <Select class="flex">
                 <SelectTrigger id="company-size">
                   <SelectValue placeholder="Select team size" />
                 </SelectTrigger>
@@ -687,7 +650,7 @@ import { Separator } from "@/ui/separator";
 
             <div class="space-y-2">
               <Label for="interest">I'm interested in</Label>
-              <Select>
+              <Select class="flex">
                 <SelectTrigger id="interest">
                   <SelectValue placeholder="Select topic" />
                 </SelectTrigger>

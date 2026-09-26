@@ -1,0 +1,961 @@
+{
+  "startedAt": "2026-09-25T21:17:16.042Z",
+  "completedAt": "2026-09-25T21:23:19.329Z",
+  "runs": 3,
+  "versions": {
+    "astro-bui": {
+      "astro": "7.3.5",
+      "tailwindcss": "4.3.3",
+      "bejamas": "0.4.1"
+    },
+    "astro-react-shadcn": {
+      "astro": "7.3.5",
+      "@astrojs/react": "7.0.0",
+      "react": "19.3.0",
+      "react-dom": "19.3.0",
+      "@base-ui/react": "1.8.0",
+      "tailwindcss": "4.3.3",
+      "bejamas": "0.4.1"
+    },
+    "nextjs-shadcn": {
+      "next": "16.3.6",
+      "react": "19.3.0",
+      "react-dom": "19.3.0",
+      "@base-ui/react": "1.8.0",
+      "tailwindcss": "4.3.3",
+      "bejamas": "0.4.1"
+    }
+  },
+  "methodology": "Isolated copies of existing production builds. Page-only CSS generated from every class in the complete server-rendered HTML, including closed overlays. Short class names replace classes in HTML and CSS selectors together, preserving JS-referenced classes and CSS attribute-selector fragments. All b/ui JavaScript is byte-identical. No CSS inlining, script-priority changes, content removal or HTML reserialization. Unchanged Next.js control. Sequential cold-load Lighthouse runs with rotating case order, simulated and applied DevTools throttling. These page-specific experiments are not a general library optimization.",
+  "classCount": 520,
+  "aliasCount": 497,
+  "assets": [
+    {
+      "id": "bui-baseline",
+      "html": {
+        "raw": 113137,
+        "gzip": 11143
+      },
+      "css": {
+        "raw": 86828,
+        "gzip": 13600
+      },
+      "htmlHash": "f975d7c1c96ba681d981396604b5799091becf5d902ff2b87f60c6c9f7dc22f9",
+      "cssHash": "c6408f9f3beec36446a150df2c1478c4d2cfdc51aabf11ec2fef2da14e11cc59"
+    },
+    {
+      "id": "bui-css",
+      "html": {
+        "raw": 113137,
+        "gzip": 11143
+      },
+      "css": {
+        "raw": 69149,
+        "gzip": 11265
+      },
+      "htmlHash": "f975d7c1c96ba681d981396604b5799091becf5d902ff2b87f60c6c9f7dc22f9",
+      "cssHash": "c8919320d90d75bf97959c8eac20948dae31aa72ddd8a14cdc4dd6cd5c66cb85"
+    },
+    {
+      "id": "bui-short",
+      "html": {
+        "raw": 54592,
+        "gzip": 7799
+      },
+      "css": {
+        "raw": 72657,
+        "gzip": 12066
+      },
+      "htmlHash": "1b12e536c27bc3e7adba22bd75efd410fd55e1f136523d3cedc9ed1ae2fe567b",
+      "cssHash": "6cbfb6a9d08e9798bf1a63a3b23d14e0c20340b8b7ed7c80829eef06f4185a45"
+    },
+    {
+      "id": "bui-both",
+      "html": {
+        "raw": 54592,
+        "gzip": 7799
+      },
+      "css": {
+        "raw": 55066,
+        "gzip": 9392
+      },
+      "htmlHash": "1b12e536c27bc3e7adba22bd75efd410fd55e1f136523d3cedc9ed1ae2fe567b",
+      "cssHash": "db384b8e52643a6f3ec03d4e2668f0b728dfd3a0a094163dc475144bb8463946"
+    },
+    {
+      "id": "next-baseline",
+      "html": {
+        "raw": 143949,
+        "gzip": 15819
+      },
+      "css": {
+        "raw": 69909,
+        "gzip": 11684
+      }
+    }
+  ],
+  "verification": [
+    {
+      "id": "bui-baseline",
+      "width": 412,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-css",
+      "width": 412,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-short",
+      "width": 412,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-both",
+      "width": 412,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "next-baseline",
+      "width": 412,
+      "textMatches": true,
+      "initialAppearanceMatches": null,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-baseline",
+      "width": 1280,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-css",
+      "width": 1280,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-short",
+      "width": 1280,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "bui-both",
+      "width": 1280,
+      "textMatches": true,
+      "initialAppearanceMatches": true,
+      "interactionsPassed": true
+    },
+    {
+      "id": "next-baseline",
+      "width": 1280,
+      "textMatches": true,
+      "initialAppearanceMatches": null,
+      "interactionsPassed": true
+    }
+  ],
+  "settings": {
+    "simulate": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    },
+    "devtools": {
+      "output": "json",
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 5250,
+      "pauseAfterLoadMs": 5250,
+      "networkQuietThresholdMs": 5250,
+      "cpuQuietThresholdMs": 5250,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "devtools",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "node",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    }
+  },
+  "summaries": [
+    {
+      "id": "bui-baseline",
+      "name": "b/ui baseline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1655,
+          "min": 1506,
+          "max": 1656
+        },
+        "lcp": {
+          "median": 1655,
+          "min": 1506,
+          "max": 1656
+        },
+        "speedIndex": {
+          "median": 1655,
+          "min": 1506,
+          "max": 1656
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01320914145577954,
+          "min": 0,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "bui-css",
+      "name": "b/ui page-only CSS",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1580,
+          "min": 1504,
+          "max": 1582
+        },
+        "lcp": {
+          "median": 1655,
+          "min": 1504,
+          "max": 1657
+        },
+        "speedIndex": {
+          "median": 1580,
+          "min": 1504,
+          "max": 1582
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01320914145577954,
+          "min": 0.01320914145577954,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "bui-short",
+      "name": "b/ui short class names",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1579,
+          "min": 1505,
+          "max": 1580
+        },
+        "lcp": {
+          "median": 1654,
+          "min": 1505,
+          "max": 1655
+        },
+        "speedIndex": {
+          "median": 1579,
+          "min": 1505,
+          "max": 1580
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01320914145577954,
+          "min": 0,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "bui-both",
+      "name": "b/ui page-only CSS + short names",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1579,
+          "min": 1507,
+          "max": 1580
+        },
+        "lcp": {
+          "median": 1654,
+          "min": 1507,
+          "max": 1655
+        },
+        "speedIndex": {
+          "median": 1579,
+          "min": 1507,
+          "max": 1580
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0.01320914145577954,
+          "min": 0.01320914145577954,
+          "max": 0.01320914145577954
+        }
+      }
+    },
+    {
+      "id": "next-baseline",
+      "name": "Next.js baseline",
+      "mode": "simulate",
+      "metrics": {
+        "fcp": {
+          "median": 1209,
+          "min": 1209,
+          "max": 1212
+        },
+        "lcp": {
+          "median": 2761,
+          "min": 2756,
+          "max": 2770
+        },
+        "speedIndex": {
+          "median": 1209,
+          "min": 1209,
+          "max": 1212
+        },
+        "tbt": {
+          "median": 3,
+          "min": 0,
+          "max": 6
+        },
+        "cls": {
+          "median": 0.02071454655979017,
+          "min": 0.02071454655979017,
+          "max": 0.02071454655979017
+        }
+      }
+    },
+    {
+      "id": "bui-baseline",
+      "name": "b/ui baseline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1454,
+          "min": 1451,
+          "max": 1465
+        },
+        "lcp": {
+          "median": 1454,
+          "min": 1451,
+          "max": 1465
+        },
+        "speedIndex": {
+          "median": 1588,
+          "min": 1581,
+          "max": 1605
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "bui-css",
+      "name": "b/ui page-only CSS",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1423,
+          "min": 1408,
+          "max": 1432
+        },
+        "lcp": {
+          "median": 1423,
+          "min": 1408,
+          "max": 1432
+        },
+        "speedIndex": {
+          "median": 1560,
+          "min": 1543,
+          "max": 1568
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "bui-short",
+      "name": "b/ui short class names",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1447,
+          "min": 1433,
+          "max": 1449
+        },
+        "lcp": {
+          "median": 1447,
+          "min": 1433,
+          "max": 1449
+        },
+        "speedIndex": {
+          "median": 1585,
+          "min": 1570,
+          "max": 1588
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "bui-both",
+      "name": "b/ui page-only CSS + short names",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1414,
+          "min": 1410,
+          "max": 1423
+        },
+        "lcp": {
+          "median": 1414,
+          "min": 1410,
+          "max": 1423
+        },
+        "speedIndex": {
+          "median": 1549,
+          "min": 1545,
+          "max": 1559
+        },
+        "tbt": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "id": "next-baseline",
+      "name": "Next.js baseline",
+      "mode": "devtools",
+      "metrics": {
+        "fcp": {
+          "median": 1497,
+          "min": 1496,
+          "max": 1503
+        },
+        "lcp": {
+          "median": 1497,
+          "min": 1496,
+          "max": 1503
+        },
+        "speedIndex": {
+          "median": 1597,
+          "min": 1597,
+          "max": 1599
+        },
+        "tbt": {
+          "median": 7,
+          "min": 3,
+          "max": 7
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "samples": [
+    {
+      "id": "bui-baseline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1506,
+      "lcp": 1506,
+      "speedIndex": 1506,
+      "observedFcp": 40,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-simulate-1.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1504,
+      "lcp": 1504,
+      "speedIndex": 1504,
+      "observedFcp": 26,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-simulate-1.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1579,
+      "lcp": 1654,
+      "speedIndex": 1579,
+      "observedFcp": 38,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-simulate-1.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1579,
+      "lcp": 1654,
+      "speedIndex": 1579,
+      "observedFcp": 25,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-simulate-1.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "simulate",
+      "run": 1,
+      "fcp": 1212,
+      "lcp": 2770,
+      "speedIndex": 1212,
+      "observedFcp": 45,
+      "tbt": 6,
+      "cls": 0.02071454655979017,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-simulate-1.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1582,
+      "lcp": 1657,
+      "speedIndex": 1582,
+      "observedFcp": 35,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-simulate-2.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1580,
+      "lcp": 1655,
+      "speedIndex": 1580,
+      "observedFcp": 34,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-simulate-2.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1580,
+      "lcp": 1655,
+      "speedIndex": 1580,
+      "observedFcp": 28,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-simulate-2.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1209,
+      "lcp": 2761,
+      "speedIndex": 1209,
+      "observedFcp": 43,
+      "tbt": 3,
+      "cls": 0.02071454655979017,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-simulate-2.json"
+    },
+    {
+      "id": "bui-baseline",
+      "mode": "simulate",
+      "run": 2,
+      "fcp": 1655,
+      "lcp": 1655,
+      "speedIndex": 1655,
+      "observedFcp": 27,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-simulate-2.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1505,
+      "lcp": 1505,
+      "speedIndex": 1505,
+      "observedFcp": 34,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-simulate-3.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1507,
+      "lcp": 1507,
+      "speedIndex": 1507,
+      "observedFcp": 42,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-simulate-3.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1209,
+      "lcp": 2756,
+      "speedIndex": 1209,
+      "observedFcp": 57,
+      "tbt": 0,
+      "cls": 0.02071454655979017,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-simulate-3.json"
+    },
+    {
+      "id": "bui-baseline",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1656,
+      "lcp": 1656,
+      "speedIndex": 1656,
+      "observedFcp": 41,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-simulate-3.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "simulate",
+      "run": 3,
+      "fcp": 1580,
+      "lcp": 1655,
+      "speedIndex": 1580,
+      "observedFcp": 28,
+      "tbt": 0,
+      "cls": 0.01320914145577954,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-simulate-3.json"
+    },
+    {
+      "id": "bui-baseline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1454,
+      "lcp": 1454,
+      "speedIndex": 1581,
+      "observedFcp": 1454,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-devtools-1.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1423,
+      "lcp": 1423,
+      "speedIndex": 1560,
+      "observedFcp": 1423,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-devtools-1.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1449,
+      "lcp": 1449,
+      "speedIndex": 1585,
+      "observedFcp": 1449,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-devtools-1.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1423,
+      "lcp": 1423,
+      "speedIndex": 1559,
+      "observedFcp": 1423,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-devtools-1.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "devtools",
+      "run": 1,
+      "fcp": 1503,
+      "lcp": 1503,
+      "speedIndex": 1599,
+      "observedFcp": 1503,
+      "tbt": 3,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-devtools-1.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1432,
+      "lcp": 1432,
+      "speedIndex": 1568,
+      "observedFcp": 1432,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-devtools-2.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1447,
+      "lcp": 1447,
+      "speedIndex": 1588,
+      "observedFcp": 1447,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-devtools-2.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1414,
+      "lcp": 1414,
+      "speedIndex": 1549,
+      "observedFcp": 1414,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-devtools-2.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1496,
+      "lcp": 1496,
+      "speedIndex": 1597,
+      "observedFcp": 1496,
+      "tbt": 7,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-devtools-2.json"
+    },
+    {
+      "id": "bui-baseline",
+      "mode": "devtools",
+      "run": 2,
+      "fcp": 1465,
+      "lcp": 1465,
+      "speedIndex": 1605,
+      "observedFcp": 1465,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-devtools-2.json"
+    },
+    {
+      "id": "bui-short",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1433,
+      "lcp": 1433,
+      "speedIndex": 1570,
+      "observedFcp": 1433,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-short-devtools-3.json"
+    },
+    {
+      "id": "bui-both",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1410,
+      "lcp": 1410,
+      "speedIndex": 1545,
+      "observedFcp": 1410,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-both-devtools-3.json"
+    },
+    {
+      "id": "next-baseline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1497,
+      "lcp": 1497,
+      "speedIndex": 1597,
+      "observedFcp": 1497,
+      "tbt": 7,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/next-baseline-devtools-3.json"
+    },
+    {
+      "id": "bui-baseline",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1451,
+      "lcp": 1451,
+      "speedIndex": 1588,
+      "observedFcp": 1451,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-baseline-devtools-3.json"
+    },
+    {
+      "id": "bui-css",
+      "mode": "devtools",
+      "run": 3,
+      "fcp": 1408,
+      "lcp": 1408,
+      "speedIndex": 1543,
+      "observedFcp": 1408,
+      "tbt": 0,
+      "cls": 0,
+      "report": ".benchmark-results/fcp-size/2026-09-25T21-17-16.042Z/bui-css-devtools-3.json"
+    }
+  ]
+}

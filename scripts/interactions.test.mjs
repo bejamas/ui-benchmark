@@ -158,3 +158,85 @@ test("device CDP transport preserves existing pages and uses a separate benchmar
     await chrome.kill();
   }
 });
+
+test("settled suite verifies reverse actions and selected values", async (t) => {
+  const browser = await chromium.launch({
+    ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : { channel: "chrome" }), headless: true,
+  });
+  try {
+    for (const touch of [false, true]) {
+      for (const mode of ["native", "custom", "pointerdown-open", "ignored-nav", "wrong-selection", "visible-after-close", "already-checked"]) {
+        await t.test(`${touch ? "touch" : "mouse"}: ${mode}`, async () => {
+          const html = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+            <button data-slot="navigation-menu-trigger" aria-expanded="false" aria-controls="nav">Products</button>
+            <div id="nav" hidden>Analytics</div>
+            <button role="tab" aria-selected="true" aria-controls="monthly">Monthly</button>
+            <button role="tab" aria-selected="false" aria-controls="yearly">Yearly</button>
+            <div id="monthly">Monthly prices</div><div id="yearly" hidden>Yearly prices</div>
+            <button data-slot="accordion-trigger" aria-expanded="false" aria-controls="faq">How is this different from shadcn/ui?</button>
+            <div id="faq" hidden>Answer</div>
+            <button id="company-size" aria-expanded="false" aria-controls="options">Select team size</button>
+            <div id="options" hidden><button role="option">1–10 employees</button></div>
+            ${mode === "custom" ? '<input type="checkbox" aria-hidden="true" tabindex="-1"><button id="newsletter" role="checkbox" aria-checked="false">Newsletter</button>'
+              : `<input type="checkbox" id="newsletter" ${mode === "already-checked" ? "checked" : ""}>`}
+            <script>
+              const handle = ({target, type}) => {
+                const opensOnDown = ${JSON.stringify(mode)} === 'pointerdown-open' && target.id === 'company-size';
+                if ((type === 'pointerdown') !== opensOnDown) return;
+                if (target.matches('[aria-expanded]')) {
+                  if (${JSON.stringify(mode)} === 'ignored-nav' && target.textContent === 'Products') return;
+                  const open = target.getAttribute('aria-expanded') !== 'true';
+                  target.setAttribute('aria-expanded', String(open));
+                  if (!(${JSON.stringify(mode)} === 'visible-after-close' && target.textContent === 'Products' && !open)) {
+                    document.getElementById(target.getAttribute('aria-controls')).hidden = !open;
+                  }
+                  if (opensOnDown) {
+                    // Opening on down can put an overlay under the pointer before up/click.
+                    document.getElementById('options').style.cssText = 'position:fixed;inset:0;background:white;padding-top:400px';
+                  }
+                }
+                if (target.matches('[role=tab]')) {
+                  for (const tab of document.querySelectorAll('[role=tab]')) {
+                    tab.setAttribute('aria-selected', String(tab === target));
+                    document.getElementById(tab.getAttribute('aria-controls')).hidden = tab !== target;
+                  }
+                }
+                if (target.matches('[role=option]')) {
+                  const trigger = document.getElementById('company-size');
+                  trigger.textContent = ${JSON.stringify(mode)} === 'wrong-selection' ? '11–50 employees' : target.textContent;
+                  const icon = document.createElement('span');
+                  icon.setAttribute('aria-hidden', 'true');
+                  icon.textContent = '▼';
+                  trigger.append(icon);
+                  trigger.setAttribute('aria-expanded', 'false');
+                  document.getElementById('options').remove();
+                }
+                if (target.matches('button#newsletter')) {
+                  target.setAttribute('aria-checked', String(target.getAttribute('aria-checked') !== 'true'));
+                  document.querySelector('input[aria-hidden="true"]').click();
+                }
+              };
+              document.addEventListener('click', handle);
+              document.addEventListener('pointerdown', handle);
+            </script>`;
+          const visit = await runVisit({
+            browser, url: `data:text/html,${encodeURIComponent(html)}`,
+            profile: { rate: 1, viewport: { width: 390, height: 844 }, touch },
+            scenario: "settled", outcomeTimeoutMs: 200,
+          });
+          assert.deepEqual(visit.errors, []);
+          assert.equal(Object.keys(visit.results).length, 10);
+          const expectedFailures = mode === "ignored-nav" ? { navigation: "no-ui-change", navigationClose: "prerequisite-failed" }
+            : mode === "wrong-selection" ? { companyOption: "no-ui-change" }
+              : mode === "visible-after-close" ? { navigationClose: "no-ui-change" }
+                : mode === "already-checked" ? { newsletterCheckbox: "harness-error", newsletterUncheck: "prerequisite-failed" } : {};
+          for (const [key, result] of Object.entries(visit.results)) {
+            assert.equal(result.status, expectedFailures[key] ?? "success", `${key}: ${JSON.stringify(result)}`);
+          }
+        });
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+});

@@ -6,7 +6,7 @@ import { join, relative } from "node:path";
 import { launch } from "chrome-launcher";
 import lighthouse from "lighthouse";
 
-import { benchmarkRoot, projects, resultsDir } from "./benchmark-config.mjs";
+import { benchmarkRoot, projects, resultsDir, readProjectVersions, readProjectStyles } from "./benchmark-config.mjs";
 import { startStaticServer } from "./static-server.mjs";
 
 const RUNS = Number.parseInt(process.env.BENCHMARK_RUNS ?? "5", 10);
@@ -118,6 +118,8 @@ const report = {
   schemaVersion: 1,
   measuredAt: new Date().toISOString(),
   environment: {
+    versions: readProjectVersions(),
+    styles: readProjectStyles(),
     node: process.version,
     lighthouse: lighthousePackage.version,
     runsPerProject: RUNS,

@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.bejamas.com/schema.json",
-  "style": "bejamas-juno",
+  "style": "bejamas-nova",
   "tailwind": {
     "config": "",
     "css": "src/styles/globals.css",

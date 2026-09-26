@@ -15,9 +15,9 @@ export const tabsListVariants = cva(
           "rounded-none gap-1 bg-transparent p-0",
       },
       size: {
-        default: "group-data-horizontal/tabs:h-9",
-        sm: "group-data-horizontal/tabs:h-8",
-        lg: "group-data-horizontal/tabs:h-10",
+        default: "group-data-horizontal/tabs:h-8",
+        sm: "group-data-horizontal/tabs:h-7",
+        lg: "group-data-horizontal/tabs:h-9",
       },
     },
     defaultVariants: {
@@ -52,7 +52,7 @@ const {
       <div
         aria-hidden="true"
         data-slot="tabs-indicator"
-        class="gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg:not([class*='size-'])]:size-4 pointer-events-none absolute top-(--active-tab-top) left-(--active-tab-left) z-0 h-(--active-tab-height) w-(--active-tab-width) bg-background shadow-sm transition-all duration-150 ease dark:border-input dark:bg-input/30"
+        class="gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg:not([class*='size-'])]:size-4 pointer-events-none absolute top-(--active-tab-top) left-(--active-tab-left) z-0 h-(--active-tab-height) w-(--active-tab-width) bg-background shadow-sm transition-all duration-150 ease dark:border-input dark:bg-input/30"
       />
     )
   }

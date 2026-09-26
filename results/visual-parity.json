@@ -1,0 +1,77 @@
+{
+  "measuredAt": "2026-09-26T09:04:11.584Z",
+  "environment": {
+    "browser": "153.0.8010.53",
+    "styles": {
+      "astro-bui": "bejamas-nova",
+      "astro-react-shadcn": "base-nova",
+      "nextjs-shadcn": "base-nova"
+    },
+    "versions": {
+      "astro-bui": {
+        "astro": "7.3.5",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1",
+        "@data-slot/accordion": "1.0.1",
+        "@data-slot/hover-card": "1.0.1",
+        "@data-slot/navigation-menu": "1.0.1",
+        "@data-slot/select": "1.0.1",
+        "@data-slot/tabs": "1.0.1",
+        "@data-slot/tooltip": "1.0.1",
+        "@data-slot/core": "1.0.1"
+      },
+      "astro-react-shadcn": {
+        "astro": "7.3.5",
+        "@astrojs/react": "7.0.0",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      },
+      "nextjs-shadcn": {
+        "next": "16.3.6",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      }
+    }
+  },
+  "methodology": "Compare width and height of visible data-slot elements matched by slot, whitespace-normalized text and occurrence, with 0.5px tolerance. Also compare the positions and dimensions of the header, every main section and footer. Unmatched framework wrappers are excluded. This is a settled light-mode geometry check, not pixel equality or animation equivalence. Full-page screenshots and computed styles accompany the check in .benchmark-results/visual-parity/.",
+  "comparisons": [
+    {
+      "width": 412,
+      "reference": "astro-bui",
+      "compared": "astro-react-shadcn",
+      "matchedElements": 98,
+      "differences": [],
+      "landmarkDifferences": []
+    },
+    {
+      "width": 412,
+      "reference": "astro-bui",
+      "compared": "nextjs-shadcn",
+      "matchedElements": 98,
+      "differences": [],
+      "landmarkDifferences": []
+    },
+    {
+      "width": 1280,
+      "reference": "astro-bui",
+      "compared": "astro-react-shadcn",
+      "matchedElements": 98,
+      "differences": [],
+      "landmarkDifferences": []
+    },
+    {
+      "width": 1280,
+      "reference": "astro-bui",
+      "compared": "nextjs-shadcn",
+      "matchedElements": 98,
+      "differences": [],
+      "landmarkDifferences": []
+    }
+  ]
+}

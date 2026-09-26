@@ -3,110 +3,115 @@
 This repository compares three static implementations of the same marketing page:
 
 1. **Astro + b/ui** — Astro components with `data-slot` JavaScript primitives
-2. **Astro + React + shadcn/ui** — static Astro markup plus explicit React islands
-3. **Next.js + shadcn/ui** — a Server Component page with interactive Client Component boundaries
+2. **Astro + React + shadcn/ui + Base UI** — static Astro markup plus explicit React islands
+3. **Next.js + shadcn/ui + Base UI** — a Server Component page with interactive Client Component boundaries
 
 The benchmark is scoped to this page, component set, and the locked dependency versions in this repository. It is not a universal framework ranking.
 
-## Current results
+## Current Base UI results
+
+Frameworks updated September 25, 2026: **Astro 7.3.5** in both Astro demos, **Next.js 16.3.6**, and **React / React DOM 19.3.0** in both React demos. Astro React uses `@astrojs/react` 7.0.0. All versions are pinned in the project manifests and lockfiles. Generated reports record installed versions in `environment.versions`.
+
+Data-slot was updated to **1.0.1** on September 26. All six b/ui primitives and their shared core use that release; the upstream navigation fix replaces the local patch.
+
+All three demos use **Nova**: `bejamas-nova` for b/ui and shadcn's `base-nova` with Base UI 1.8.0 for both React demos. The September 26 alignment also matches badge, tab and navigation variants, tooltip markup, and contact form spacing. See [the component snapshot and migration details](docs/base-ui.md). Shared presets do not imply identical generated CSS or runtime implementations.
 
 ### Route-delivered assets
 
-These are stable build-artifact measurements for `/`. JavaScript includes modern script tags and recursively imported ES modules; legacy `nomodule` files and unreferenced build artifacts are excluded. Each compressible response is compressed independently.
+Fresh production build measurements for `/`. Each compressible response is compressed independently. See [the complete asset report](results/assets.json).
 
-| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+| Metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| Route JS files | **7** | 18 | **7** |
-| Route JS raw | **99.24 KiB** | 375.05 KiB | 605.42 KiB |
-| Route JS gzip | **36.26 KiB** | 124.95 KiB | 179.67 KiB |
-| Route JS Brotli | **32.41 KiB** | 109.88 KiB | 155.25 KiB |
-| JS gzip relative to b/ui | **1×** | 3.4× | 5.0× |
-| HTML raw | 111.63 KiB | **57.90 KiB** | 112.35 KiB |
-| CSS raw | 85.06 KiB | **51.97 KiB** | 53.10 KiB |
+| Route JS files | 7 | 21 | 7 |
+| Route JS raw | 97.54 KiB | 477.10 KiB | 757.32 KiB |
+| Route JS gzip | 35.26 KiB | 160.39 KiB | 230.21 KiB |
+| Route JS Brotli | 31.66 KiB | 142.39 KiB | 197.37 KiB |
+| HTML raw | 107.03 KiB | 65.90 KiB | 140.61 KiB |
+| CSS raw | 82.03 KiB | 66.54 KiB | 68.31 KiB |
+| CSS gzip | 12.92 KiB | 10.89 KiB | 11.42 KiB |
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
-| HTML + CSS + JS + font, gzip estimate | **89.39 KiB** | 171.42 KiB | 231.82 KiB |
+| HTML + CSS + JS + font, gzip estimate | 87.37 KiB | 209.29 KiB | 285.79 KiB |
 
-The b/ui implementation sends substantially less JavaScript. It also emits more HTML than Astro React and leaves more live DOM elements after initialization than either React variant. These differences reflect the current component implementations.
-
-Full file-level data is in [`results/assets.json`](results/assets.json).
+The current raw CSS gap between b/ui and Astro React is 15.49 KiB. Nova alignment reduced b/ui CSS from 84.72 KiB to 82.03 KiB raw. The remaining gap includes differences in component source, supported variants and selectors; matching the visual preset does not make the implementations byte-identical.
 
 ### Lighthouse mobile lab results
 
-Values are medians of five sequential Lighthouse 13.4.1 runs against local production builds served by one HTTP server with deterministic gzip.
+This September 26 baseline uses Nova in all three demos and data-slot 1.0.1 in b/ui. The previous Juno baseline is preserved in [the archive](results/history/juno-data-slot-1.0.1-2026-09-26/README.md).
 
-| Metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+Values are medians of five sequential Lighthouse 13.4.1 mobile runs against local production builds, served by one HTTP server with deterministic gzip. All three use their default CSS delivery for this baseline. Mobile viewport 412×823, 150 ms simulated RTT, 1,638.4 Kbps throughput, and 4× CPU slowdown.
+
+| Metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| Performance score | **99** | **99** | 97 |
-| FCP | 1.66 s | 1.44 s | **1.07 s** |
-| LCP | **1.66 s** | 2.26 s | 2.47 s |
-| TBT | **0 ms** | **0 ms** | 1.5 ms |
-| CLS | 0.01 | **0.00** | 0.02 |
-| Speed Index | 1.66 s | 1.44 s | **1.07 s** |
+| Performance score | 99 | 97 | 96 |
+| FCP | 1.65 s | 1.73 s | 1.21 s |
+| LCP | 1.65 s | 2.40 s | 2.76 s |
+| TBT | 0.0 ms | 0.0 ms | 0.0 ms |
+| CLS | 0.02 | 0.02 | 0.02 |
+| Speed Index | 1.65 s | 1.73 s | 1.21 s |
 
-Protocol:
+See [the five individual samples and methodology](results/performance.json). These are controlled local lab results, not field Core Web Vitals. CDN behavior, production TTFB and repeat-visit caching are outside this comparison.
 
-- Mobile viewport: 412×823 at 1.75 DPR
-- Simulated network: 150 ms RTT, 1,638.4 Kbps throughput
-- CPU slowdown: 4×
-- Runs: 5 per project, sequentially
-- Aggregation: median per metric
-- CDN and production TTFB are intentionally excluded
+The following diagnostics predate the Nova alignment and use Juno in b/ui. The [FCP cause investigation](results/fcp-cause.md) shows that script priority strongly affects this simulated ranking. With unchanged CSS and JavaScript files, lowering all b/ui module priorities produced a 1.06 s median, while raising Next.js script priority produced 2.76 s. The b/ui variant ranged from 1.06–1.36 s because scripts involved in initial layout can remain in Lighthouse's paint dependency graph. Under applied DevTools throttling, the baseline medians were 1.45 s for b/ui and 1.50 s for Next.js. These are separate diagnostic runs; the table above retains each framework's default output.
 
-These are controlled lab results, not field Core Web Vitals. Full summaries are in [`results/performance.json`](results/performance.json); the 15 complete Lighthouse reports are written to `.benchmark-results/lighthouse/` and are intentionally untracked.
+### Historical Juno interaction latency at 20× CPU slowdown
 
-### Interaction latency
+These interaction timings predate the Nova alignment and are retained as historical results, not measurements of the current page.
 
-The interaction benchmark runs 30 visits per project under a 4× desktop baseline, calibrated mid-tier and low-tier mobile CPU profiles, and a 20× mobile stress profile. Each profile tests both settled controls and one early navigation input after the trigger first paints.
+Measured September 26, 2026: **30 visits per implementation, ten settled actions per visit** on an Apple M5 Pro with Chrome 153, a 390 × 844 mobile viewport, and touch input. Each cell is median interaction latency in milliseconds; lower is faster. All **900 actions succeeded** within the 2-second outcome deadline, with no missing Event Timing samples.
 
-At **20× CPU slowdown**, the settled-page results show a clear difference in pricing-tab switching. Values are median interaction latency in milliseconds across 30 runs per control. Lower is better.
-
-| Interaction at 20× CPU slowdown | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+| Interaction | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| Switch pricing tab | **88** | 148 | 648 |
-| Open FAQ item | **80** | 96 | 96 |
-| Toggle newsletter checkbox | **40** | 64 | 64 |
+| Open Products menu | 200 | 384 | 544 |
+| Close Products menu | 72 | 112 | 112 |
+| Switch pricing to Yearly | 72 | 144 | 152 |
+| Switch pricing to Monthly | 56 | 104 | 112 |
+| Expand FAQ item | 64 | 72 | 80 |
+| Collapse FAQ item | 48 | 56 | 56 |
+| Open company-size select | 76 | 40 | 40 |
+| Choose company size | 76 | 216 | 224 |
+| Check newsletter box | 40 | 72 | 76 |
+| Uncheck newsletter box | 32 | 48 | 52 |
 
-On this page, the Next.js pricing-tab median is about **7.4×** the b/ui median. Every control succeeded in all 30 runs for each implementation, with no missing timings. The fixed 20× profile is a deliberate CPU stress test; the calibrated mobile profiles are included in the full results below.
+On this page, the largest measured changes from data-slot 1.0.0 to 1.0.1 were **opening Products: 256 → 200 ms (22% lower)** and **opening the company-size select: 96 → 76 ms (21% lower)**. FAQ expansion changed from 72 to 64 ms; checkbox medians were unchanged. The old version already had the local navigation fix, and both versions passed all 300 b/ui actions. See [the complete before/after table](results/data-slot-1.0.1.md), including p90 and success counts.
 
-Read the [generated comparison table](results/interactions.md), [methodology and summaries](results/interactions.json), and [raw samples](results/interactions.samples.jsonl). Success counts and missing timings accompany median and p90 latency. A click that does not open the control counts as a failed interaction even if its event handler is fast.
-
-These are controlled lab measurements, **not field INP**. Calibration approximates CPU throughput; it does not turn desktop Chrome into a physical phone. See [the interaction benchmark guide](docs/interactions.md) for the methodology, limitations, and Android device workflow.
+These are scripted lab interaction timings, not field INP or measurements from a physical phone. The before/after runs used the same page, framework versions, and Chrome, but ran sequentially; small differences can reflect run variation and Event Timing's 8 ms granularity. The select-opening row needs care: Base UI has lower Event Timing latency, but the expected open DOM state was observed later. The median touch-down-to-open-state delay was **69.5 ms for b/ui, 207.1 ms for Astro React, and 206.35 ms for Next.js**. This is a DOM observation, not an exact pixel-presentation timestamp. Base UI schedules opening through an animation-frame callback, so its reported next paint can precede the completed dropdown update. The 40 ms entry therefore does not establish that its dropdown appears sooner. See [all p90 values and counts](results/interactions.md), [raw samples](results/interactions.samples.jsonl), and [the reproduction and physical-device guide](docs/interactions.md).
 
 ### Parity and accessibility
 
-The automated verification suite currently confirms:
+[Browser verification](results/quality.json) confirms identical visible text, theme CSS and local font; working navigation, keyboard tooltips, tabs, hover cards, accordion, both select labels and checkbox; bounded navigation popups; six focusable tooltip triggers; zero nested controls, axe violations or browser errors; and requests matching the asset report. It also enforces Nova in all three demos, identical Base UI component source, matching installed Astro versions, and matching React / React DOM versions.
 
-- Identical normalized visible text across all variants
-- The same theme tokens and one local Geist variable-font subset
-- Functional navigation, tooltips, tabs, hover cards, accordion, selects, and checkbox
-- Current b/ui overlay anatomy and navigation popup geometry bounded by the viewport
-- Six keyboard-focusable tooltip triggers per page
-- No nested interactive controls
-- Zero axe-core violations
-- Zero browser console or page errors
+[Visual geometry verification](results/visual-parity.json) compares 98 corresponding visible component boxes, plus header, section and footer layout, against both React demos at 412px and 1280px widths. All comparisons pass within 0.5px. This checks settled light-mode layout, not pixel equality or every animated state. Run `npm run verify:visual` for screenshots and the report; the full benchmark includes this check.
 
-| Structural metric | Astro + b/ui | Astro + React + shadcn | Next.js + shadcn |
+| Structural metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| DOM elements after initialization | 318 | **256** | 274 |
-| Serialized DOM after initialization | 75.73 KiB | **56.83 KiB** | 111.58 KiB |
+| DOM elements after initialization | 311 | 263 | 257 |
+| Serialized DOM after initialization | 72.71 KiB | 65.56 KiB | 140.59 KiB |
 
-Astro + b/ui has 62 more live elements than Astro React and 44 more than Next.js. Its initial HTML includes closed overlay markup, but the newer primitives remove some overlay anatomy from the live DOM until opened. The Radix-based variants generally mount those overlays only when opened.
+These counts measure browser elements. They do not include React's virtual DOM or Fiber objects in JavaScript memory.
 
-This measures real browser elements, not rendering-library data structures. React's virtual DOM and Fiber objects live in JavaScript memory and are therefore not counted. The remaining DOM difference reflects the markup each implementation keeps after initialization.
+### Historical results
 
-See [`results/quality.json`](results/quality.json) for the machine-readable report.
+The [pre-Nova Juno archive](results/history/juno-data-slot-1.0.1-2026-09-26/README.md) preserves the earlier assets, quality, Lighthouse and interaction reports. `npm run verify:visual` captures the current production pages at mobile and desktop widths for visual review.
+
+The [data-slot 1.0.0 archive](results/history/data-slot-1.0.0-2026-09-26/README.md) preserves the reports, dependency lockfile, and local navigation patch from before the 1.0.1 upgrade. Its separate 30-visit b/ui baseline uses the same page and framework versions as the new interaction study.
+
+The [Base UI baseline before framework upgrades](results/history/base-ui-astro5-next16.1-2026-09-25/README.md) preserves the Astro 5.18.2 / Next.js 16.1.6 measurements and installed versions. It already uses Base UI 1.8.0, so it is the relevant baseline for this framework upgrade. The upgrade also aligns both React demos on React 19.3.0; changes in results cannot be attributed to the framework alone.
+
+The [Radix archive](results/history/radix-2026-09-25/README.md) preserves all earlier reports, including the [CSS inlining experiment](results/history/radix-2026-09-25/css-delivery.md), [component CSS attribution](results/history/radix-2026-09-25/css-components.md), [expanded 20× interaction study](results/history/radix-2026-09-25/interactions-expanded.md), and [earlier four-profile study](results/history/radix-2026-09-25/interactions.md). Their timings describe the pre-migration code. The expanded study also predates the [b/ui navigation bridge fix](astro-bui/patches/README.md).
+
+CSS inlining remains available through native build settings for all three projects. The old inlining numbers have not been relabeled as Base UI results. Run `npm run performance:css` for a fresh experiment.
 
 ## What the comparison demonstrates
 
 For this page and component set:
 
 - b/ui uses the least JavaScript because static components remain HTML and interactive behavior comes from small vanilla-JavaScript primitives.
-- Astro React loads React, the Astro island runtime, and the Radix/shadcn code used by its interactive islands.
+- Astro React loads React, the Astro island runtime, and the Base UI/shadcn code used by its interactive islands.
 - The Next page is an idiomatic Server Component. Static page text is not forced through a top-level `"use client"` boundary, but the client router/runtime and interactive shadcn components still contribute to the route bundle.
 - Lower JavaScript does not mean lower output in every category: b/ui ships more HTML than Astro React and retains slightly more live DOM elements after initialization.
 - Interaction results distinguish settled responsiveness from whether an early input produces a UI response. Read success counts alongside latency; the page's payload alone does not establish an interaction ranking.
 
-Claims such as “React + Radix has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.
+Claims such as “React + Base UI has a fixed bundle floor” or “Next always adds a specific number of kilobytes” are intentionally avoided. Those values change with component selection, package versions, bundler behavior, and application architecture.
 
 ## Page parity
 
@@ -155,13 +160,23 @@ npm run build
 npm run measure
 npm run verify
 npm run test:interactions
+npm run test:navigation
 npm run interactions
 npm run performance
+npm run performance:css
+npm run performance:size
+npm run performance:cause
 ```
 
 Run `npm run sync:bui` to reapply the pinned Bejamas UI registry snapshot and its matching data-slot versions. Update the commit and version constants in `scripts/sync-bui.mjs` before intentionally moving the benchmark to a newer snapshot.
 
 Use `BENCHMARK_RUNS` to change the five-run Lighthouse default. Use `INTERACTION_RUNS` to change the 30-round interaction default. The full interaction matrix runs sequentially and can take tens of minutes.
+
+`npm run performance:css` builds baseline and inline variants, saves isolated snapshots, and restores the baseline build outputs before measuring. Set `CSS_RUNS` to change its three-run default. `BENCHMARK_INLINE_CSS=1 npm run build` enables full CSS inlining in all three projects; ordinary builds retain their default CSS delivery. Next.js uses its experimental `inlineCss` setting.
+
+`npm run performance:size` tests page-specific CSS generation and shorter class names in isolated b/ui build copies against an unchanged Next.js control. It verifies mobile and desktop appearance and controls, then measures both simulated and applied mobile throttling. Set `FCP_SIZE_RUNS` to change the three-run default. Results go to [the size experiment report](results/fcp-size.md); production builds and headline measurements stay unchanged.
+
+`npm run performance:cause` tests script priority and preconnect hints in isolated build copies, reconstructs Lighthouse's FCP dependency graph, replays priority changes against the same trace, and checks page content and controls. It writes [the FCP cause investigation](results/fcp-cause.md). `FCP_CAUSE_RUNS`, `FCP_CAUSE_CASES`, and `FCP_CAUSE_MODES` select runs, variants, and throttling methods; defaults cover seven variants with three runs under each method. These diagnostics keep production builds and headline results unchanged.
 
 ## Measurement details
 
@@ -191,7 +206,7 @@ Gzip level 9 and Brotli quality 11 are calculated independently per response. Th
 
 `scripts/verify.mjs` uses Chrome to exercise the equivalent controls, compare rendered text and requested assets, and run axe-core. The suite fails immediately when parity, functionality, accessibility, or console-error checks regress.
 
-`scripts/interactions.mjs` separately calibrates CPU profiles and collects complete input sequences and UI outcomes. It rotates execution order, saves raw samples, and generates the result table. `npm run test:interactions` checks the harness against ignored inputs, slow handlers, delayed outcomes, missed deadlines, and remote Chrome transport. See [the interaction benchmark guide](docs/interactions.md).
+`scripts/interactions.mjs` separately calibrates CPU profiles and collects complete input sequences and UI outcomes. It rotates execution order, saves raw samples, and generates the result table. `npm run test:interactions` checks ignored inputs, slow handlers, delayed outcomes, missed deadlines, opening and closing controls, selected values, failed prerequisites, and remote Chrome transport. See [the interaction benchmark guide](docs/interactions.md).
 
 ## Deployments
 
@@ -217,7 +232,7 @@ Deployments are intentionally separate from the benchmark command:
 - Results apply to the exact locked dependencies and implementation choices in this repository.
 - Local Lighthouse runs isolate application cost but do not represent production geography, caching, CDN behavior, or real-user hardware.
 - No CrUX or other field dataset is available, so the benchmark does not publish field LCP, CLS, or INP.
-- Event Timing results cover three settled controls and one early navigation input. They should not be generalized to a full user session.
+- The current interaction study uses 30 visits per implementation at 20× CPU slowdown, with ten settled actions per visit. It does not cover early input in this run or represent a full user session.
 - CPU-calibrated mobile profiles are approximations. Physical-device results require a separate run; missing Event Timing entries remain unreported.
 - Framework and library upgrades require regenerating and reviewing all committed result files.
 

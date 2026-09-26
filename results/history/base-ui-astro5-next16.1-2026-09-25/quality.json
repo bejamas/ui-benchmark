@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-25T20:48:23.986Z",
+  "environment": {
+    "node": "v24.16.0",
+    "browser": "153.0.8010.53",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "checks": [
+    "identical normalized visible text",
+    "identical shadcn base-nova source and pinned Base UI 1.8.0 in both React demos",
+    "both selects display option labels after selection",
+    "identical global style source and one local Geist font subset",
+    "six keyboard-focusable tooltip triggers",
+    "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
+    "current b/ui anatomy and bounded navigation popup geometry",
+    "zero nested interactive controls",
+    "zero axe-core violations",
+    "zero browser errors",
+    "browser JavaScript requests match the route asset report"
+  ],
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 318,
+      "hydratedHtmlBytes": 77450,
+      "scriptRequests": [
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
+        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.CM_SqbLu.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
+        "/_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
+        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
+        "/_astro/index.mg7P-Rs7.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 445.03,
+        "right": 911.22,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 262,
+      "hydratedHtmlBytes": 66525,
+      "scriptRequests": [
+        "/_astro/ContactControls.C0h_aVZd.js",
+        "/_astro/DirectionContext.Bxav2pjX.js",
+        "/_astro/FAQAccordion.BuoPealj.js",
+        "/_astro/FeatureTooltip.BI6ZN0ap.js",
+        "/_astro/FloatingPortalLite.lNgNMZXk.js",
+        "/_astro/InlineHoverCard.BzD2zzD7.js",
+        "/_astro/PricingTabs.BeDnKQbv.js",
+        "/_astro/SiteNav.B755zCP5.js",
+        "/_astro/addEventListener.CHiL7udQ.js",
+        "/_astro/chevron-down.BWUPk8PO.js",
+        "/_astro/chevron-up.B3T64ZKq.js",
+        "/_astro/client.BQ9MoTom.js",
+        "/_astro/composite.C7RauV6A.js",
+        "/_astro/index.CDAi2RRI.js",
+        "/_astro/index.CMfShDsX.js",
+        "/_astro/popupStoreUtils.DM8VHrQq.js",
+        "/_astro/safePolygon.C21spv6V.js",
+        "/_astro/useClick.PO0wWF1n.js",
+        "/_astro/useCompositeListItem.C_zmf7vz.js",
+        "/_astro/usePositioner.CBqvgx-K.js",
+        "/_astro/utils.D6WiCYvx.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 290,
+      "hydratedHtmlBytes": 143508,
+      "scriptRequests": [
+        "/_next/static/chunks/058bb4c357bb57b3.js",
+        "/_next/static/chunks/2f236954d6a65e12.js",
+        "/_next/static/chunks/50050692d4e0a283.js",
+        "/_next/static/chunks/58c60a5fa6b544da.js",
+        "/_next/static/chunks/79764a2363f49b32.js",
+        "/_next/static/chunks/f26c4bd2b6d16093.js",
+        "/_next/static/chunks/turbopack-905363175caf285d.js"
+      ],
+      "fontRequests": [
+        "/_next/static/media/geist-latin-wght-normal.e574545b.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
+        "viewportWidth": 1280
+      }
+    }
+  ]
+}

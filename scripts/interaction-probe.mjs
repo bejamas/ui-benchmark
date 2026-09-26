@@ -3,15 +3,40 @@ export const controls = {
     selector: '[data-slot="navigation-menu-trigger"]', text: "Products",
     attribute: "aria-expanded", value: "true",
   },
+  navigationClose: {
+    selector: '[data-slot="navigation-menu-trigger"]', text: "Products",
+    attribute: "aria-expanded", value: "false", requires: "navigation",
+  },
   pricingTabs: {
     selector: '[role="tab"]', text: "Yearly", attribute: "aria-selected", value: "true",
+  },
+  pricingMonthly: {
+    selector: '[role="tab"]', text: "Monthly", attribute: "aria-selected", value: "true",
+    requires: "pricingTabs",
   },
   faqAccordion: {
     selector: '[data-slot="accordion-trigger"]', text: "How is this different from shadcn/ui?",
     attribute: "aria-expanded", value: "true",
   },
-  newsletterCheckbox: { selector: "#newsletter", attribute: "aria-checked", value: "true" },
+  faqCollapse: {
+    selector: '[data-slot="accordion-trigger"]', text: "How is this different from shadcn/ui?",
+    attribute: "aria-expanded", value: "false", requires: "faqAccordion",
+  },
+  companySelect: {
+    // Selects can open on pointerdown and retarget the later click to the popup.
+    selector: "#company-size", attribute: "aria-expanded", value: "true", activation: "pointerdown",
+  },
+  companyOption: {
+    selector: '[role="option"]', text: "1–10 employees", requires: "companySelect",
+    outcome: { selector: "#company-size", attribute: "aria-expanded", value: "false", content: "1–10 employees" },
+  },
+  newsletterCheckbox: { selector: '[role="checkbox"], input[type="checkbox"]:not([aria-hidden="true"])', attribute: "aria-checked", value: "true" },
+  newsletterUncheck: {
+    selector: '[role="checkbox"], input[type="checkbox"]:not([aria-hidden="true"])', attribute: "aria-checked", value: "false", requires: "newsletterCheckbox",
+  },
 };
+
+export const scenarioControls = { settled: Object.keys(controls), early: ["navigation"] };
 
 // Runs before application scripts. No application imports, synthetic DOM clicks,
 // hydration waits, or retries. Only one input is active in a document at a time.
@@ -46,12 +71,19 @@ export function installProbe({ earlyControl, outcomeTimeoutMs }) {
       getComputedStyle(node).visibility !== "hidden" && getComputedStyle(node).display !== "none";
   }
   function changed(control) {
-    const target = find(control);
+    const outcome = control.outcome ?? control;
+    const target = find(outcome);
     if (!target) return false;
     const checked = target instanceof HTMLInputElement && target.type === "checkbox";
-    if (checked ? !target.checked : target.getAttribute(control.attribute) !== control.value) return false;
+    if (checked ? String(target.checked) !== outcome.value : target.getAttribute(outcome.attribute) !== outcome.value) return false;
+    if (outcome.content) {
+      const label = target.cloneNode(true);
+      // Base UI's select icon contains an aria-hidden fallback glyph.
+      for (const hidden of label.querySelectorAll('[aria-hidden="true"]')) hidden.remove();
+      if (label.textContent.trim() !== outcome.content) return false;
+    }
     const contentId = target.getAttribute("aria-controls");
-    return !contentId || visible(document.getElementById(contentId));
+    return !contentId || Boolean(visible(document.getElementById(contentId))) === (outcome.value !== "false");
   }
   function observeOutcome() {
     if (active?.input && active.outcomeAt === null && changed(active.control)) {
@@ -64,17 +96,25 @@ export function installProbe({ earlyControl, outcomeTimeoutMs }) {
   });
   for (const type of ["pointerdown", "pointerup", "click"]) {
     addEventListener(type, (event) => {
-      if (!active) return;
-      const target = find(active.control);
+      // A custom checkbox can forward a synthetic click to its hidden input.
+      // It must not replace the actual user click in the measured sequence.
+      if (!active || !event.isTrusted) return;
+      const target = active.target;
       const matched = target && event.composedPath().includes(target);
+      const receivedTarget = {
+        tag: event.target.tagName, id: event.target.id,
+        slot: event.target.getAttribute?.("data-slot") ?? null,
+        role: event.target.getAttribute?.("role") ?? null,
+      };
       if (type === "pointerdown") {
         active.input = {
           startTime: event.timeStamp, receivedAt: performance.now(), matched: Boolean(matched),
+          target: receivedTarget,
           readyState: document.readyState, loadAt, domContentLoadedAt,
         };
       }
       if (type === "click") {
-        active.click = { startTime: event.timeStamp, matched: Boolean(matched) };
+        active.click = { startTime: event.timeStamp, matched: Boolean(matched), target: receivedTarget };
         // Native checkbox state is a property change, not necessarily a mutation.
         queueMicrotask(observeOutcome);
         requestAnimationFrame(observeOutcome);
@@ -83,7 +123,8 @@ export function installProbe({ earlyControl, outcomeTimeoutMs }) {
   }
   globalThis.__interactionProbe = {
     arm(control) {
-      active = { control, armedAt: performance.now(), input: null, click: null, outcomeAt: null };
+      if (changed(control)) throw new Error("Expected outcome already present before input");
+      active = { control, target: find(control), armedAt: performance.now(), input: null, click: null, outcomeAt: null };
     },
     async result() {
       const deadline = (active.input?.startTime ?? active.armedAt) + outcomeTimeoutMs;
@@ -109,12 +150,13 @@ export function installProbe({ earlyControl, outcomeTimeoutMs }) {
       const processingStart = Math.min(...frame.map((entry) => entry.processingStart));
       const processingEnd = Math.max(...frame.map((entry) => entry.processingEnd));
       const status = !active.input || !active.click ? "input-missing"
-        : !active.input.matched || !active.click.matched ? "wrong-target"
+        : !active.input.matched || (active.control.activation !== "pointerdown" && !active.click.matched) ? "wrong-target"
           : active.outcomeAt === null ? "no-ui-change"
             : active.outcomeAt > deadline ? "outcome-too-late" : "success";
       return {
         status,
         input: active.input,
+        click: active.click,
         outcomeAt: active.outcomeAt,
         uiStateDelayMs: active.outcomeAt !== null && active.input ? active.outcomeAt - active.input.startTime : null,
         eventTiming: longest ? {

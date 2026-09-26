@@ -5,11 +5,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    inlineStylesheets: process.env.BENCHMARK_INLINE_CSS === '1' ? 'always' : 'auto',
+  },
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
-    ssr: {
-      noExternal: ['@radix-ui/*'],
-    },
   },
 });

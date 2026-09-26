@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-25T13:38:46.506Z",
+  "environment": {
+    "node": "v24.16.0",
+    "browser": "153.0.8010.53",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "checks": [
+    "identical normalized visible text",
+    "identical global style source and one local Geist font subset",
+    "six keyboard-focusable tooltip triggers",
+    "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
+    "current b/ui anatomy and bounded navigation popup geometry",
+    "zero nested interactive controls",
+    "zero axe-core violations",
+    "zero browser errors",
+    "browser JavaScript requests match the route asset report"
+  ],
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
+      "domElements": 318,
+      "hydratedHtmlBytes": 77544,
+      "scriptRequests": [
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
+        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.uBCULnHc.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
+        "/_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
+        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
+        "/_astro/index.mg7P-Rs7.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 439.73,
+        "right": 905.93,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn",
+      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
+      "domElements": 256,
+      "hydratedHtmlBytes": 58197,
+      "scriptRequests": [
+        "/_astro/ContactControls.DcSl7KXp.js",
+        "/_astro/FAQAccordion.B_pQX1qM.js",
+        "/_astro/FeatureTooltip.DzxBhhk2.js",
+        "/_astro/InlineHoverCard.C8SDUIrp.js",
+        "/_astro/PricingTabs.COqmhSLw.js",
+        "/_astro/SiteNav.iB3ICnl2.js",
+        "/_astro/chevron-down.C7GU5XJE.js",
+        "/_astro/client.D83LLYoL.js",
+        "/_astro/index.B-nl7Va4.js",
+        "/_astro/index.BAFTzhMW.js",
+        "/_astro/index.CQ1jW6pp.js",
+        "/_astro/index.CackDzAh.js",
+        "/_astro/index.CtBGtUQa.js",
+        "/_astro/index.DW5nlIvL.js",
+        "/_astro/index.Dhxbg2MR.js",
+        "/_astro/index.J51gwc1V.js",
+        "/_astro/index.TNpRJ1nv.js",
+        "/_astro/utils.BLjJCoQe.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 441.27,
+        "right": 913.33,
+        "width": 472.05,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn",
+      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
+      "domElements": 274,
+      "hydratedHtmlBytes": 114256,
+      "scriptRequests": [
+        "/_next/static/chunks/25dcd1a36fcf08fe.js",
+        "/_next/static/chunks/2f236954d6a65e12.js",
+        "/_next/static/chunks/454889a9dcbe1f52.js",
+        "/_next/static/chunks/58c60a5fa6b544da.js",
+        "/_next/static/chunks/ee30388e3e4e351e.js",
+        "/_next/static/chunks/f2f58a7e93290fbb.js",
+        "/_next/static/chunks/turbopack-be49c1b5b829ce21.js"
+      ],
+      "fontRequests": [
+        "/_next/static/media/geist-latin-wght-normal.e574545b.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 444.19,
+        "right": 910.39,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
+    }
+  ]
+}

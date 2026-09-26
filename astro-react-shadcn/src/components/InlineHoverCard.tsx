@@ -17,13 +17,15 @@ export default function InlineHoverCard({
 }: InlineHoverCardProps) {
   return (
     <HoverCard>
-      <HoverCardTrigger asChild>
-        <button
-          type="button"
-          className="font-medium text-foreground underline decoration-dotted underline-offset-4"
-        >
-          {trigger}
-        </button>
+      <HoverCardTrigger
+        render={
+          <button
+            type="button"
+            className="font-medium text-foreground underline decoration-dotted underline-offset-4"
+          />
+        }
+      >
+        {trigger}
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="space-y-1">

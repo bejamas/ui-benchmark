@@ -36,9 +36,9 @@ function resolveRequest(buildDir, pathname) {
   return null;
 }
 
-export async function startStaticServer({ project: defaultProject = null, port = 0 } = {}) {
+export async function startStaticServer({ project: defaultProject = null, port = 0, projectList = projects } = {}) {
   const projectsByHost = new Map(
-    projects.map((project) => [`${project.id}.localhost`, project]),
+    projectList.map((project) => [`${project.id}.localhost`, project]),
   );
 
   const server = createServer((request, response) => {
@@ -85,7 +85,7 @@ export async function startStaticServer({ project: defaultProject = null, port =
   return {
     port: address.port,
     urls: Object.fromEntries(
-      (defaultProject ? [defaultProject] : projects).map((project) => [
+      (defaultProject ? [defaultProject] : projectList).map((project) => [
         project.id,
         `http://${defaultProject ? "localhost" : `${project.id}.localhost`}:${address.port}/`,
       ]),

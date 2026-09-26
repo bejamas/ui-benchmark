@@ -1,0 +1,1099 @@
+{
+  "startedAt": "2026-09-25T20:27:09.238Z",
+  "completedAt": "2026-09-25T20:28:24.329Z",
+  "basis": "Fresh isolated copies with @preview documentation blocks removed and six state aliases combined into single :where selectors in both projects. One family at a time is excluded from Tailwind source detection, then families are excluded cumulatively. Rendered HTML must stay byte-identical apart from the stylesheet link. These diagnostic builds deliberately omit needed styles and are not shippable optimizations.",
+  "componentSources": {
+    "astro-bui": "src/ui/<family>/",
+    "astro-react-shadcn": "src/components/ui/<family>.tsx"
+  },
+  "baseline": {
+    "astro-bui": {
+      "id": "astro-bui",
+      "excluded": [],
+      "allSources": false,
+      "cssBytes": 78834,
+      "gzipBytes": 12441,
+      "cssSha256": "9f51c34d9a0c9bc01cf8e19fd2f4b3ccfd8862f9dfec391d4ca12ccbd4801bdc",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-baseline.css"
+    },
+    "astro-react-shadcn": {
+      "id": "astro-react-shadcn",
+      "excluded": [],
+      "allSources": false,
+      "cssBytes": 53221,
+      "gzipBytes": 9299,
+      "cssSha256": "3795db3aacea4078b7b572a41331bf8bdf7ecce8a34619883d311b2f750c5c04",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-baseline.css"
+    }
+  },
+  "initialGapBytes": 25613,
+  "single": [
+    {
+      "family": "tabs",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 11161,
+          "gzipBytes": 1126
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 5114,
+          "gzipBytes": 619
+        }
+      },
+      "excessBytes": 6047
+    },
+    {
+      "family": "navigation-menu",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 13490,
+          "gzipBytes": 1410
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 8464,
+          "gzipBytes": 869
+        }
+      },
+      "excessBytes": 5026
+    },
+    {
+      "family": "card",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 3890,
+          "gzipBytes": 670
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 1016,
+          "gzipBytes": 230
+        }
+      },
+      "excessBytes": 2874
+    },
+    {
+      "family": "button",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 4301,
+          "gzipBytes": 498
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 1687,
+          "gzipBytes": 168
+        }
+      },
+      "excessBytes": 2614
+    },
+    {
+      "family": "hover-card",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 2141,
+          "gzipBytes": 248
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 160,
+          "gzipBytes": 21
+        }
+      },
+      "excessBytes": 1981
+    },
+    {
+      "family": "tooltip",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 2650,
+          "gzipBytes": 347
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 819,
+          "gzipBytes": 110
+        }
+      },
+      "excessBytes": 1831
+    },
+    {
+      "family": "checkbox",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 1824,
+          "gzipBytes": 242
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 748,
+          "gzipBytes": 86
+        }
+      },
+      "excessBytes": 1076
+    },
+    {
+      "family": "accordion",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 2350,
+          "gzipBytes": 341
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 1554,
+          "gzipBytes": 181
+        }
+      },
+      "excessBytes": 796
+    },
+    {
+      "family": "input",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 1602,
+          "gzipBytes": 219
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 1081,
+          "gzipBytes": 135
+        }
+      },
+      "excessBytes": 521
+    },
+    {
+      "family": "badge",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 1294,
+          "gzipBytes": 154
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 1159,
+          "gzipBytes": 95
+        }
+      },
+      "excessBytes": 135
+    },
+    {
+      "family": "label",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 358,
+          "gzipBytes": 54
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 358,
+          "gzipBytes": 55
+        }
+      },
+      "excessBytes": 0
+    },
+    {
+      "family": "separator",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 16,
+          "gzipBytes": 4
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 316,
+          "gzipBytes": 46
+        }
+      },
+      "excessBytes": -300
+    },
+    {
+      "family": "select",
+      "saved": {
+        "astro-bui": {
+          "cssBytes": 2185,
+          "gzipBytes": 484
+        },
+        "astro-react-shadcn": {
+          "cssBytes": 2561,
+          "gzipBytes": 440
+        }
+      },
+      "excessBytes": -376
+    }
+  ],
+  "cumulative": [
+    {
+      "family": "tabs",
+      "remaining": {
+        "astro-bui": 67673,
+        "astro-react-shadcn": 48107
+      },
+      "contributionBytes": 6047,
+      "remainingGapBytes": 19566
+    },
+    {
+      "family": "navigation-menu",
+      "remaining": {
+        "astro-bui": 54087,
+        "astro-react-shadcn": 39547
+      },
+      "contributionBytes": 5026,
+      "remainingGapBytes": 14540
+    },
+    {
+      "family": "card",
+      "remaining": {
+        "astro-bui": 49879,
+        "astro-react-shadcn": 38499
+      },
+      "contributionBytes": 3160,
+      "remainingGapBytes": 11380
+    },
+    {
+      "family": "button",
+      "remaining": {
+        "astro-bui": 45310,
+        "astro-react-shadcn": 36710
+      },
+      "contributionBytes": 2780,
+      "remainingGapBytes": 8600
+    },
+    {
+      "family": "hover-card",
+      "remaining": {
+        "astro-bui": 42743,
+        "astro-react-shadcn": 36550
+      },
+      "contributionBytes": 2407,
+      "remainingGapBytes": 6193
+    },
+    {
+      "family": "tooltip",
+      "remaining": {
+        "astro-bui": 37665,
+        "astro-react-shadcn": 35707
+      },
+      "contributionBytes": 4235,
+      "remainingGapBytes": 1958
+    },
+    {
+      "family": "checkbox",
+      "remaining": {
+        "astro-bui": 35487,
+        "astro-react-shadcn": 34888
+      },
+      "contributionBytes": 1359,
+      "remainingGapBytes": 599
+    },
+    {
+      "family": "accordion",
+      "remaining": {
+        "astro-bui": 32798,
+        "astro-react-shadcn": 32958
+      },
+      "contributionBytes": 759,
+      "remainingGapBytes": -160
+    },
+    {
+      "family": "input",
+      "remaining": {
+        "astro-bui": 31191,
+        "astro-react-shadcn": 31780
+      },
+      "contributionBytes": 429,
+      "remainingGapBytes": -589
+    },
+    {
+      "family": "badge",
+      "remaining": {
+        "astro-bui": 28117,
+        "astro-react-shadcn": 29395
+      },
+      "contributionBytes": 689,
+      "remainingGapBytes": -1278
+    },
+    {
+      "family": "label",
+      "remaining": {
+        "astro-bui": 27759,
+        "astro-react-shadcn": 29037
+      },
+      "contributionBytes": 0,
+      "remainingGapBytes": -1278
+    },
+    {
+      "family": "separator",
+      "remaining": {
+        "astro-bui": 27723,
+        "astro-react-shadcn": 28697
+      },
+      "contributionBytes": -304,
+      "remainingGapBytes": -974
+    },
+    {
+      "family": "select",
+      "remaining": {
+        "astro-bui": 19067,
+        "astro-react-shadcn": 18878
+      },
+      "contributionBytes": -1163,
+      "remainingGapBytes": 189
+    }
+  ],
+  "otherSourcesContributionBytes": 189,
+  "baseCssGapBytes": 0,
+  "noSources": {
+    "astro-bui": {
+      "id": "astro-bui",
+      "excluded": [],
+      "allSources": true,
+      "cssBytes": 9329,
+      "gzipBytes": 2648,
+      "cssSha256": "f4a1608632581545b70c795cfe36dd62f64bdb93b2408fb848f1d2c61e4b37d9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-no-source-utilities.css"
+    },
+    "astro-react-shadcn": {
+      "id": "astro-react-shadcn",
+      "excluded": [],
+      "allSources": true,
+      "cssBytes": 9329,
+      "gzipBytes": 2648,
+      "cssSha256": "f4a1608632581545b70c795cfe36dd62f64bdb93b2408fb848f1d2c61e4b37d9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-no-source-utilities.css"
+    }
+  },
+  "samples": [
+    {
+      "id": "astro-bui",
+      "excluded": [],
+      "allSources": false,
+      "cssBytes": 78834,
+      "gzipBytes": 12441,
+      "cssSha256": "9f51c34d9a0c9bc01cf8e19fd2f4b3ccfd8862f9dfec391d4ca12ccbd4801bdc",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-baseline.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [],
+      "allSources": false,
+      "cssBytes": 53221,
+      "gzipBytes": 9299,
+      "cssSha256": "3795db3aacea4078b7b572a41331bf8bdf7ecce8a34619883d311b2f750c5c04",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-baseline.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "accordion"
+      ],
+      "allSources": false,
+      "cssBytes": 76484,
+      "gzipBytes": 12100,
+      "cssSha256": "979e915c9b13a581e8ae57d4f6caa01dbabd7f07cfb13bda3ac666aa8af05fbd",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-accordion.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "accordion"
+      ],
+      "allSources": false,
+      "cssBytes": 51667,
+      "gzipBytes": 9118,
+      "cssSha256": "ea580514d0029139b9fc9a7a2aa8816c9da7414017445520ce1fe103a5ee1eab",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-accordion.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "badge"
+      ],
+      "allSources": false,
+      "cssBytes": 77540,
+      "gzipBytes": 12287,
+      "cssSha256": "c81c8d61d65cb3de31a5ce2ff5780100da9606ef68f5101d561072fd62563689",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-badge.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "badge"
+      ],
+      "allSources": false,
+      "cssBytes": 52062,
+      "gzipBytes": 9204,
+      "cssSha256": "964485003a2dea0b58febe3ef86f6c6a6910b7499f85eead2cd24a1090c41e99",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-badge.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "button"
+      ],
+      "allSources": false,
+      "cssBytes": 74533,
+      "gzipBytes": 11943,
+      "cssSha256": "d89c7744263bd6eb864c42c9a47b3942ea58e228f907149d79dceb897969853f",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-button.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "button"
+      ],
+      "allSources": false,
+      "cssBytes": 51534,
+      "gzipBytes": 9131,
+      "cssSha256": "908387f9d42668e26b80dc9df9faf707478a1a1d221b74d51a26f90ac31ae5da",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-button.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "card"
+      ],
+      "allSources": false,
+      "cssBytes": 74944,
+      "gzipBytes": 11771,
+      "cssSha256": "0e6d57adea6687525a0f0e9142ff2eb00992d2fc6aafce8b3cad6d0382101f1b",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-card.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "card"
+      ],
+      "allSources": false,
+      "cssBytes": 52205,
+      "gzipBytes": 9069,
+      "cssSha256": "20c422f141e94bf116bfd3d97981b2ef3cb0e282bfba15e7605081556c83e291",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-card.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "checkbox"
+      ],
+      "allSources": false,
+      "cssBytes": 77010,
+      "gzipBytes": 12199,
+      "cssSha256": "274494f76b12290000ef2a04cc563ad3af5184636efa450f5605c8b513d84003",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-checkbox.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "checkbox"
+      ],
+      "allSources": false,
+      "cssBytes": 52473,
+      "gzipBytes": 9213,
+      "cssSha256": "3b67cf8c34d0ead7ba25237a2f4771cf5a85f54c5c560fe6feba230f79de5546",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-checkbox.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "hover-card"
+      ],
+      "allSources": false,
+      "cssBytes": 76693,
+      "gzipBytes": 12193,
+      "cssSha256": "50cdbeccfac2191bd2cc4ec579da649086206e17ad5854d604f32cf2f8db53e6",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-hover-card.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "hover-card"
+      ],
+      "allSources": false,
+      "cssBytes": 53061,
+      "gzipBytes": 9278,
+      "cssSha256": "d646c309b999ee0b1621b112b9266910f6dcc493383e6b2be8b1220825f2cc2f",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-hover-card.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "input"
+      ],
+      "allSources": false,
+      "cssBytes": 77232,
+      "gzipBytes": 12222,
+      "cssSha256": "fa18d7b7a31fd0bdec8117a10e91ed83435c1baf59f83a44dfaca42feb83ecd9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-input.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "input"
+      ],
+      "allSources": false,
+      "cssBytes": 52140,
+      "gzipBytes": 9164,
+      "cssSha256": "b287eb798ead962b6209bd82e4c9783d617277f3b2c64f403dc25f18f18fe559",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-input.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "label"
+      ],
+      "allSources": false,
+      "cssBytes": 78476,
+      "gzipBytes": 12387,
+      "cssSha256": "f83591618e9bd73824394ac174cb0d0753b346eab755de5f90d62fb58e2f031f",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-label.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "label"
+      ],
+      "allSources": false,
+      "cssBytes": 52863,
+      "gzipBytes": 9244,
+      "cssSha256": "8da6e6bd363a784969700fc9ff64e453563bb873a88a4074e2da97f803793609",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-label.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "navigation-menu"
+      ],
+      "allSources": false,
+      "cssBytes": 65344,
+      "gzipBytes": 11031,
+      "cssSha256": "9d3437545d5fe0351b6f17f6fab1f5c747165c4081506506b7b67947fd4caad0",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-navigation-menu.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "navigation-menu"
+      ],
+      "allSources": false,
+      "cssBytes": 44757,
+      "gzipBytes": 8430,
+      "cssSha256": "99c73d6a6e5c12449a3c4d17b12ab1415214142403b341c5383422ecd749ae6b",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-navigation-menu.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "select"
+      ],
+      "allSources": false,
+      "cssBytes": 76649,
+      "gzipBytes": 11957,
+      "cssSha256": "24dcc6ee5adfcfb181dd13f16cd225004e006cc4fde59ddbd36eb61b3163b30d",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-select.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "select"
+      ],
+      "allSources": false,
+      "cssBytes": 50660,
+      "gzipBytes": 8859,
+      "cssSha256": "ab9d28cbbe72941d81df878e756ebf8af87220b2cd43eb3c9f6780df4052e958",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-select.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "separator"
+      ],
+      "allSources": false,
+      "cssBytes": 78818,
+      "gzipBytes": 12437,
+      "cssSha256": "5a02360541c196461469a88ac914ec8255e7d9034aa06c1683dbd62999f1a0b7",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-separator.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "separator"
+      ],
+      "allSources": false,
+      "cssBytes": 52905,
+      "gzipBytes": 9253,
+      "cssSha256": "3328bc3db4a7b6a092ec7aa09f903a8235e6089a0deac61c0dadc8a383d9ecd5",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-separator.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs"
+      ],
+      "allSources": false,
+      "cssBytes": 67673,
+      "gzipBytes": 11315,
+      "cssSha256": "44babe1f97f3c5f0aeab0357045d4854e4f336fedc4748b8cefdedb722a4ce29",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs"
+      ],
+      "allSources": false,
+      "cssBytes": 48107,
+      "gzipBytes": 8680,
+      "cssSha256": "7832f05d2609803d472e8b52b7816985214b7b62d7af191a1147c9d3fdb8a4c9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tooltip"
+      ],
+      "allSources": false,
+      "cssBytes": 76184,
+      "gzipBytes": 12094,
+      "cssSha256": "92b3d4b2a7bfc07d1e977b1d648e10e8a953083ed9f64f2fe6c6010c6b45215d",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tooltip.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tooltip"
+      ],
+      "allSources": false,
+      "cssBytes": 52402,
+      "gzipBytes": 9189,
+      "cssSha256": "a0b19d5d94970ef8ae5c4f378522489ec0951203f8fbe03a3196cc7fe66de837",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tooltip.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu"
+      ],
+      "allSources": false,
+      "cssBytes": 54087,
+      "gzipBytes": 9837,
+      "cssSha256": "a98e9655794afd419bd1b376a13f87634da6a7ad987a57d69f0cb29da03cc6c8",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu"
+      ],
+      "allSources": false,
+      "cssBytes": 39547,
+      "gzipBytes": 7839,
+      "cssSha256": "b77a70e3914f5e0b21c40b4420be6c1cba44786d5678bf2a04c4df7ee02d83aa",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card"
+      ],
+      "allSources": false,
+      "cssBytes": 49879,
+      "gzipBytes": 9150,
+      "cssSha256": "612f55e317e42203e2f4d05ba778502d53e3eef1e867a2304b6c789cd424c846",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card"
+      ],
+      "allSources": false,
+      "cssBytes": 38499,
+      "gzipBytes": 7577,
+      "cssSha256": "d6bcc832053bee70fcf817ec02f2386cfd50488f55d79e4d1b30a85d53b3dff3",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button"
+      ],
+      "allSources": false,
+      "cssBytes": 45310,
+      "gzipBytes": 8583,
+      "cssSha256": "edfd6c04c3697574abec966c314acd84ea18d57f24cd44a271276a2873334cba",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button"
+      ],
+      "allSources": false,
+      "cssBytes": 36710,
+      "gzipBytes": 7386,
+      "cssSha256": "ef8b0c6c8ee06478f7d2b2c859f37c641ae4e85824ec2cdf9f586742fd26a912",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card"
+      ],
+      "allSources": false,
+      "cssBytes": 42743,
+      "gzipBytes": 8283,
+      "cssSha256": "093652baf76476e5192932999698829e8f973817e574b9e790066aa7d7a7fefb",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card"
+      ],
+      "allSources": false,
+      "cssBytes": 36550,
+      "gzipBytes": 7361,
+      "cssSha256": "e858a29e657804fb17f29306312398af8de69fe19e098c3d12c5cc3aef1b96a4",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip"
+      ],
+      "allSources": false,
+      "cssBytes": 37665,
+      "gzipBytes": 7596,
+      "cssSha256": "f1fc5a7b400bb507a49406913e6f0ed5579da387794878e2fd3ac0ba02b45bcc",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip"
+      ],
+      "allSources": false,
+      "cssBytes": 35707,
+      "gzipBytes": 7221,
+      "cssSha256": "5fca7714ed0ad8d9ae13b2775ea38767a3a05a2c43dd01d626f6424679fbbf8d",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox"
+      ],
+      "allSources": false,
+      "cssBytes": 35487,
+      "gzipBytes": 7304,
+      "cssSha256": "d9bf14388fe8d32f47934b284b289cc368fb2339d8248ef6c59d4c4a23dbe583",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox"
+      ],
+      "allSources": false,
+      "cssBytes": 34888,
+      "gzipBytes": 7127,
+      "cssSha256": "e4bb979e246ee40ce189015216cd34bf17c40c84b666888cb1e31b0e796efdb4",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion"
+      ],
+      "allSources": false,
+      "cssBytes": 32798,
+      "gzipBytes": 6813,
+      "cssSha256": "05f63e39f33c2aa8f4956a57badea49cfb63d9c3184e56b584e6dea238797765",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion"
+      ],
+      "allSources": false,
+      "cssBytes": 32958,
+      "gzipBytes": 6890,
+      "cssSha256": "1adcca7d0c0802ed071a7a5e64615adc621902c722cf21179482927295f860f8",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input"
+      ],
+      "allSources": false,
+      "cssBytes": 31191,
+      "gzipBytes": 6600,
+      "cssSha256": "551e890680117217931f9337a95c244c4d4c334898b900bf1bd43a2b0f4dd5ab",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input"
+      ],
+      "allSources": false,
+      "cssBytes": 31780,
+      "gzipBytes": 6737,
+      "cssSha256": "3f9ed531312c1c10fefd8d75cab37321751c356b2d2c30ced31677707911ac0f",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge"
+      ],
+      "allSources": false,
+      "cssBytes": 28117,
+      "gzipBytes": 6237,
+      "cssSha256": "dbd49db683875e6c413f5792f802729be4c6cd82a7e1addf577aa08c4a0e51a8",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge"
+      ],
+      "allSources": false,
+      "cssBytes": 29395,
+      "gzipBytes": 6474,
+      "cssSha256": "cfe6588755e780ef073231ea622d1570721cfbe87e18ff7b5e7c22be20d54b48",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label"
+      ],
+      "allSources": false,
+      "cssBytes": 27759,
+      "gzipBytes": 6184,
+      "cssSha256": "e246f6b9f29e68e72661468d207406e9170ef638668f4766d950b7347ef1eb75",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label"
+      ],
+      "allSources": false,
+      "cssBytes": 29037,
+      "gzipBytes": 6406,
+      "cssSha256": "f343c41e6bb8cb31fd6d87b8834bc9a66b00777c165cd489152e4e17aeb6c68c",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label",
+        "separator"
+      ],
+      "allSources": false,
+      "cssBytes": 27723,
+      "gzipBytes": 6170,
+      "cssSha256": "05cffd29d744a1195d8d39476c91094b237a2f73294daf149529c54c01b78d34",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label-separator.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label",
+        "separator"
+      ],
+      "allSources": false,
+      "cssBytes": 28697,
+      "gzipBytes": 6338,
+      "cssSha256": "2a07c59440687ebbcae56d38e7e12b5b5e579f0b9cedfe1497a3705e37a18f1b",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label-separator.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label",
+        "separator",
+        "select"
+      ],
+      "allSources": false,
+      "cssBytes": 19067,
+      "gzipBytes": 4635,
+      "cssSha256": "50f0d4aabff4d8d3e0085005306f4d0adff5bc401c5ecbe1d256ff1d53f5e246",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label-separator-select.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [
+        "tabs",
+        "navigation-menu",
+        "card",
+        "button",
+        "hover-card",
+        "tooltip",
+        "checkbox",
+        "accordion",
+        "input",
+        "badge",
+        "label",
+        "separator",
+        "select"
+      ],
+      "allSources": false,
+      "cssBytes": 18878,
+      "gzipBytes": 4565,
+      "cssSha256": "6eda13f8fd412401c7a18dbc14048975202a871da0fe6a3bc608a8f14a1a9716",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-without-tabs-navigation-menu-card-button-hover-card-tooltip-checkbox-accordion-input-badge-label-separator-select.css"
+    },
+    {
+      "id": "astro-bui",
+      "excluded": [],
+      "allSources": true,
+      "cssBytes": 9329,
+      "gzipBytes": 2648,
+      "cssSha256": "f4a1608632581545b70c795cfe36dd62f64bdb93b2408fb848f1d2c61e4b37d9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-bui-no-source-utilities.css"
+    },
+    {
+      "id": "astro-react-shadcn",
+      "excluded": [],
+      "allSources": true,
+      "cssBytes": 9329,
+      "gzipBytes": 2648,
+      "cssSha256": "f4a1608632581545b70c795cfe36dd62f64bdb93b2408fb848f1d2c61e4b37d9",
+      "cssFile": ".benchmark-results/css-components/2026-09-25T20-27-09.238Z/astro-react-shadcn-no-source-utilities.css"
+    }
+  ]
+}

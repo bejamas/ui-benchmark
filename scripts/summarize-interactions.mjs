@@ -21,7 +21,8 @@ for (const group of report.groups) {
     throw new Error(`Missing or duplicate visits: ${group.profile}/${group.scenario}/${group.project}`);
   }
   for (const sample of visits) assigned.add(sample);
-  const keys = group.scenario === "early" ? ["navigation"] : ["pricingTabs", "faqAccordion", "newsletterCheckbox"];
+  const keys = report.methodology.controls?.[group.scenario] ??
+    (group.scenario === "early" ? ["navigation"] : ["pricingTabs", "faqAccordion", "newsletterCheckbox"]);
   group.summary = Object.fromEntries(keys.map((key) => [key, summarizeSamples(visits, key)]));
 }
 if (assigned.size !== samples.length) throw new Error("Raw samples contain an unknown group");

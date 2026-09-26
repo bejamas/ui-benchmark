@@ -1,7 +1,43 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-25T13:38:46.506Z",
+  "measuredAt": "2026-09-26T09:03:22.043Z",
   "environment": {
+    "versions": {
+      "astro-bui": {
+        "astro": "7.3.5",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1",
+        "@data-slot/accordion": "1.0.1",
+        "@data-slot/hover-card": "1.0.1",
+        "@data-slot/navigation-menu": "1.0.1",
+        "@data-slot/select": "1.0.1",
+        "@data-slot/tabs": "1.0.1",
+        "@data-slot/tooltip": "1.0.1",
+        "@data-slot/core": "1.0.1"
+      },
+      "astro-react-shadcn": {
+        "astro": "7.3.5",
+        "@astrojs/react": "7.0.0",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      },
+      "nextjs-shadcn": {
+        "next": "16.3.6",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      }
+    },
+    "styles": {
+      "astro-bui": "bejamas-nova",
+      "astro-react-shadcn": "base-nova",
+      "nextjs-shadcn": "base-nova"
+    },
     "node": "v24.16.0",
     "browser": "153.0.8010.53",
     "viewport": {
@@ -10,7 +46,11 @@
     }
   },
   "checks": [
+    "matching installed Astro versions and matching React / React DOM versions",
     "identical normalized visible text",
+    "identical shadcn base-nova source and pinned Base UI 1.8.0 in both React demos",
+    "Nova preset in all three demos (bejamas-nova and base-nova)",
+    "both selects display option labels after selection",
     "identical global style source and one local Geist font subset",
     "six keyboard-focusable tooltip triggers",
     "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
@@ -24,17 +64,17 @@
     {
       "id": "astro-bui",
       "name": "Astro + b/ui",
-      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
-      "domElements": 318,
-      "hydratedHtmlBytes": 77544,
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 311,
+      "hydratedHtmlBytes": 74455,
       "scriptRequests": [
-        "/_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
-        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
-        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.uBCULnHc.js",
-        "/_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
-        "/_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
-        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
-        "/_astro/index.mg7P-Rs7.js"
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.CJrDiTMJ.js",
+        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.CrpB7jXF.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.q51gw_Kg.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.BW55_uZy.js",
+        "/_astro/Tabs.astro_astro_type_script_index_0_lang.YdLrAxbG.js",
+        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.BfCh1Kln.js",
+        "/_astro/dist.BOY3IA42.js"
       ],
       "fontRequests": [
         "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
@@ -42,37 +82,40 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 439.73,
-        "right": 905.93,
-        "width": 466.2,
+        "left": 477.79,
+        "right": 934.99,
+        "width": 457.2,
         "viewportWidth": 1280
       }
     },
     {
       "id": "astro-react-shadcn",
-      "name": "Astro + React + shadcn",
-      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
-      "domElements": 256,
-      "hydratedHtmlBytes": 58197,
+      "name": "Astro + React + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 263,
+      "hydratedHtmlBytes": 67134,
       "scriptRequests": [
-        "/_astro/ContactControls.DcSl7KXp.js",
-        "/_astro/FAQAccordion.B_pQX1qM.js",
-        "/_astro/FeatureTooltip.DzxBhhk2.js",
-        "/_astro/InlineHoverCard.C8SDUIrp.js",
-        "/_astro/PricingTabs.COqmhSLw.js",
-        "/_astro/SiteNav.iB3ICnl2.js",
-        "/_astro/chevron-down.C7GU5XJE.js",
-        "/_astro/client.D83LLYoL.js",
-        "/_astro/index.B-nl7Va4.js",
-        "/_astro/index.BAFTzhMW.js",
-        "/_astro/index.CQ1jW6pp.js",
-        "/_astro/index.CackDzAh.js",
-        "/_astro/index.CtBGtUQa.js",
-        "/_astro/index.DW5nlIvL.js",
-        "/_astro/index.Dhxbg2MR.js",
-        "/_astro/index.J51gwc1V.js",
-        "/_astro/index.TNpRJ1nv.js",
-        "/_astro/utils.BLjJCoQe.js"
+        "/_astro/ContactControls.Dl-rnKY5.js",
+        "/_astro/DirectionContext.CYrGLA40.js",
+        "/_astro/FAQAccordion.aRC8c0UE.js",
+        "/_astro/FeatureTooltip.uo2rPCEr.js",
+        "/_astro/FloatingPortalLite.DiQx2wav.js",
+        "/_astro/InlineHoverCard.CGPVbf4B.js",
+        "/_astro/PricingTabs.BwMZaCT6.js",
+        "/_astro/SiteNav.BLM60oR0.js",
+        "/_astro/addEventListener.BMNrz1mc.js",
+        "/_astro/chevron-down.C0OgyY8X.js",
+        "/_astro/chevron-up.CA-Zv5lW.js",
+        "/_astro/client.D92qSjCW.js",
+        "/_astro/composite.-WBGgI4h.js",
+        "/_astro/dist.CBgKSyFp.js",
+        "/_astro/popupStoreUtils.CpKQVx6w.js",
+        "/_astro/react-dom.DwX89IcG.js",
+        "/_astro/safePolygon.DWRIdQmh.js",
+        "/_astro/useClick.HNc9-vY0.js",
+        "/_astro/useCompositeListItem.7IA19gg6.js",
+        "/_astro/usePositioner.yhEOoW7d.js",
+        "/_astro/utils.CwcrmJjx.js"
       ],
       "fontRequests": [
         "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
@@ -80,36 +123,36 @@
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 441.27,
-        "right": 913.33,
-        "width": 472.05,
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
         "viewportWidth": 1280
       }
     },
     {
       "id": "nextjs-shadcn",
-      "name": "Next.js + shadcn",
-      "textHash": "3129b425802942197f26272f646532708b9f29e00153fa3ddfaac677e22ad2a1",
-      "domElements": 274,
-      "hydratedHtmlBytes": 114256,
+      "name": "Next.js + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 257,
+      "hydratedHtmlBytes": 143969,
       "scriptRequests": [
-        "/_next/static/chunks/25dcd1a36fcf08fe.js",
-        "/_next/static/chunks/2f236954d6a65e12.js",
-        "/_next/static/chunks/454889a9dcbe1f52.js",
-        "/_next/static/chunks/58c60a5fa6b544da.js",
-        "/_next/static/chunks/ee30388e3e4e351e.js",
-        "/_next/static/chunks/f2f58a7e93290fbb.js",
-        "/_next/static/chunks/turbopack-be49c1b5b829ce21.js"
+        "/_next/static/chunks/1f9iiwm9fluvm.js",
+        "/_next/static/chunks/1inwntv0b4r-7.js",
+        "/_next/static/chunks/1scs3-v_g4tkg.js",
+        "/_next/static/chunks/1ykozbs67p54h.js",
+        "/_next/static/chunks/2ax70tuc_jxay.js",
+        "/_next/static/chunks/3fntmmi971322.js",
+        "/_next/static/chunks/turbopack-39h3jchm8onpd.js"
       ],
       "fontRequests": [
-        "/_next/static/media/geist-latin-wght-normal.e574545b.woff2"
+        "/_next/static/media/geist-latin-wght-normal.20f3xrkj613ah.woff2"
       ],
       "accessibilityViolations": [],
       "browserErrors": [],
       "navigationPopup": {
-        "left": 444.19,
-        "right": 910.39,
-        "width": 466.2,
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
         "viewportWidth": 1280
       }
     }

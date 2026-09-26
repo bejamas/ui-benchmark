@@ -11,16 +11,24 @@
     "sync:bui": "node scripts/sync-bui.mjs",
     "measure": "node scripts/measure.mjs",
     "verify": "node scripts/verify.mjs",
+    "verify:visual": "node scripts/visual-parity.mjs",
     "performance": "node scripts/performance.mjs",
-    "benchmark": "npm run build && npm run measure && npm run verify && npm run interactions && npm run performance",
+    "performance:css": "node scripts/css-delivery.mjs",
+    "performance:size": "node scripts/fcp-size.mjs",
+    "performance:cause": "node scripts/fcp-cause.mjs",
+    "benchmark": "npm run build && npm run measure && npm run verify && npm run verify:visual && npm run interactions && npm run performance",
     "interactions": "node scripts/interactions.mjs",
     "test:interactions": "node --test scripts/interactions.test.mjs",
+    "test:navigation": "node --test scripts/navigation-menu.test.mjs",
     "serve:device": "node scripts/serve-device.mjs"
   },
   "devDependencies": {
     "axe-core": "4.13.0",
     "chrome-launcher": "1.2.1",
     "lighthouse": "13.4.1",
-    "playwright-core": "1.62.1"
+    "parse5": "8.0.1",
+    "playwright-core": "1.62.1",
+    "postcss": "8.5.28",
+    "postcss-selector-parser": "7.1.6"
   }
 }

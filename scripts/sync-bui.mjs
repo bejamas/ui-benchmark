@@ -6,8 +6,9 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import { benchmarkRoot } from "./benchmark-config.mjs";
 
 const BEJAMAS_CLI_VERSION = "0.4.1";
+const BEJAMAS_STYLE = "bejamas-nova";
 const BEJAMAS_UI_COMMIT = "82f54f403a7e163d777436fd23e9a1fe2f7d8af5";
-const DATA_SLOT_VERSION = "1.0.0";
+const DATA_SLOT_VERSION = "1.0.1";
 const components = [
   "accordion",
   "badge",
@@ -72,6 +73,12 @@ function run({ command, args, cwd = astroBuiUrl, env = process.env }) {
       );
     });
   });
+}
+
+const componentConfigUrl = new URL("components.json", astroBuiUrl);
+const componentConfig = JSON.parse(await readFile(componentConfigUrl, "utf8"));
+if (componentConfig.style !== BEJAMAS_STYLE) {
+  throw new Error(`b/ui must use ${BEJAMAS_STYLE} to match the shadcn Nova demos.`);
 }
 
 await run({
@@ -173,7 +180,7 @@ for (const projectUrl of [astroReactUrl, nextjsUrl]) {
 }
 
 console.log(
-  `Synced ${components.length} b/ui component families from bejamas/ui@${BEJAMAS_UI_COMMIT}.`,
+  `Synced ${components.length} ${BEJAMAS_STYLE} component families from bejamas/ui@${BEJAMAS_UI_COMMIT}.`,
 );
 console.log(`Pinned data-slot packages to ${DATA_SLOT_VERSION}.`);
 console.log(`Workspace: ${benchmarkRoot}`);

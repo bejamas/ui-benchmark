@@ -1,0 +1,24 @@
+{
+  "astro-bui": {
+    "astro": "5.18.2",
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/vite": "4.3.3"
+  },
+  "astro-react-shadcn": {
+    "astro": "5.18.2",
+    "@astrojs/react": "4.4.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "@base-ui/react": "1.8.0",
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/vite": "4.3.3"
+  },
+  "nextjs-shadcn": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "@base-ui/react": "1.8.0",
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/postcss": "4.3.3"
+  }
+}

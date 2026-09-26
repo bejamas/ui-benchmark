@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-25T21:04:56.530Z",
+  "environment": {
+    "versions": {
+      "astro-bui": {
+        "astro": "7.3.5",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      },
+      "astro-react-shadcn": {
+        "astro": "7.3.5",
+        "@astrojs/react": "7.0.0",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      },
+      "nextjs-shadcn": {
+        "next": "16.3.6",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "@base-ui/react": "1.8.0",
+        "tailwindcss": "4.3.3",
+        "bejamas": "0.4.1"
+      }
+    },
+    "node": "v24.16.0",
+    "browser": "153.0.8010.53",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "checks": [
+    "matching installed Astro versions and matching React / React DOM versions",
+    "identical normalized visible text",
+    "identical shadcn base-nova source and pinned Base UI 1.8.0 in both React demos",
+    "both selects display option labels after selection",
+    "identical global style source and one local Geist font subset",
+    "six keyboard-focusable tooltip triggers",
+    "functional navigation, tooltip, tabs, hover card, accordion, selects, and checkbox",
+    "current b/ui anatomy and bounded navigation popup geometry",
+    "zero nested interactive controls",
+    "zero axe-core violations",
+    "zero browser errors",
+    "browser JavaScript requests match the route asset report"
+  ],
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 318,
+      "hydratedHtmlBytes": 76949,
+      "scriptRequests": [
+        "/_astro/Accordion.astro_astro_type_script_index_0_lang.Bh50NjC4.js",
+        "/_astro/HoverCard.astro_astro_type_script_index_0_lang.XUsdBpYo.js",
+        "/_astro/NavigationMenu.astro_astro_type_script_index_0_lang.Dr7RZC4x.js",
+        "/_astro/Select.astro_astro_type_script_index_0_lang.CatUGh-j.js",
+        "/_astro/Tabs.astro_astro_type_script_index_0_lang.3TCawY9s.js",
+        "/_astro/Tooltip.astro_astro_type_script_index_0_lang.DXuv-yoV.js",
+        "/_astro/dist.zWx1NPMT.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 439.7,
+        "right": 905.9,
+        "width": 466.2,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 262,
+      "hydratedHtmlBytes": 67099,
+      "scriptRequests": [
+        "/_astro/ContactControls.CS4oiWws.js",
+        "/_astro/DirectionContext.DHagNjO2.js",
+        "/_astro/FAQAccordion.C-_hLNmk.js",
+        "/_astro/FeatureTooltip.GOubXcB4.js",
+        "/_astro/FloatingPortalLite.D9pYyabW.js",
+        "/_astro/InlineHoverCard.BfJ24CiD.js",
+        "/_astro/PricingTabs.BdwHw31M.js",
+        "/_astro/SiteNav.BsbwBcI_.js",
+        "/_astro/addEventListener.Ct79PrM-.js",
+        "/_astro/chevron-down.C0OgyY8X.js",
+        "/_astro/chevron-up.CA-Zv5lW.js",
+        "/_astro/client.D92qSjCW.js",
+        "/_astro/composite.CcARkL3P.js",
+        "/_astro/dist.BWcIN7fr.js",
+        "/_astro/popupStoreUtils.eFxJkWy-.js",
+        "/_astro/react-dom.DwX89IcG.js",
+        "/_astro/safePolygon.0fRC3Eri.js",
+        "/_astro/useClick.C_ZlUySs.js",
+        "/_astro/useCompositeListItem.BcDRASgw.js",
+        "/_astro/usePositioner.Bfo56RU7.js",
+        "/_astro/utils.BYezaoMU.js"
+      ],
+      "fontRequests": [
+        "/_astro/geist-latin-wght-normal.BgDaEnEv.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
+        "viewportWidth": 1280
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn (Base UI)",
+      "textHash": "ed2600e030e4c90725de7f601e4a3aad365adc76231337aeaf91a51605c11deb",
+      "domElements": 256,
+      "hydratedHtmlBytes": 143935,
+      "scriptRequests": [
+        "/_next/static/chunks/1inwntv0b4r-7.js",
+        "/_next/static/chunks/1ngg3b9-paflr.js",
+        "/_next/static/chunks/1scs3-v_g4tkg.js",
+        "/_next/static/chunks/1ykozbs67p54h.js",
+        "/_next/static/chunks/2ax70tuc_jxay.js",
+        "/_next/static/chunks/3fntmmi971322.js",
+        "/_next/static/chunks/turbopack-39h3jchm8onpd.js"
+      ],
+      "fontRequests": [
+        "/_next/static/media/geist-latin-wght-normal.20f3xrkj613ah.woff2"
+      ],
+      "accessibilityViolations": [],
+      "browserErrors": [],
+      "navigationPopup": {
+        "left": 452.39,
+        "right": 909.59,
+        "width": 457.2,
+        "viewportWidth": 1280
+      }
+    }
+  ]
+}

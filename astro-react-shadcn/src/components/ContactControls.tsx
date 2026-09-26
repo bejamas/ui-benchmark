@@ -12,10 +12,18 @@ import { Label } from "@/components/ui/label";
 
 export default function ContactControls() {
   return (
-    <>
+    <div className="mb-6 space-y-6">
       <div className="space-y-2">
         <Label htmlFor="company-size">Company size</Label>
-        <Select>
+        <Select
+          items={[
+            { value: "1-10", label: "1–10 employees" },
+            { value: "11-50", label: "11–50 employees" },
+            { value: "51-200", label: "51–200 employees" },
+            { value: "201-500", label: "201–500 employees" },
+            { value: "500+", label: "500+ employees" },
+          ]}
+        >
           <SelectTrigger id="company-size">
             <SelectValue placeholder="Select team size" />
           </SelectTrigger>
@@ -31,7 +39,15 @@ export default function ContactControls() {
 
       <div className="space-y-2">
         <Label htmlFor="interest">I&apos;m interested in</Label>
-        <Select>
+        <Select
+          items={[
+            { value: "demo", label: "Product demo" },
+            { value: "pricing", label: "Custom pricing" },
+            { value: "migration", label: "Migration support" },
+            { value: "partnership", label: "Partnership" },
+            { value: "other", label: "Something else" },
+          ]}
+        >
           <SelectTrigger id="interest">
             <SelectValue placeholder="Select topic" />
           </SelectTrigger>
@@ -51,6 +67,6 @@ export default function ContactControls() {
           Send me product updates and tips
         </Label>
       </div>
-    </>
+    </div>
   );
 }

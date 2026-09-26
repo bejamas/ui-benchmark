@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Acme Corp — Next.js + shadcn Benchmark",
   description:
-    "Marketing page benchmark: Next.js + shadcn/ui + Radix UI primitives",
+    "Marketing page benchmark: Next.js + shadcn/ui + Base UI primitives",
 };
 
 export default function RootLayout({

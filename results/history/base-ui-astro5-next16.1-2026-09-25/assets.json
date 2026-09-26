@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-25T20:48:22.002Z",
+  "environment": {
+    "node": "v24.16.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "methodology": {
+    "route": "/",
+    "scope": "HTML, stylesheets, font subsets needed by the route text, modern script tags, and recursively imported ES modules",
+    "compression": "Each compressible response is compressed independently with gzip level 9 and Brotli quality 11; font files use their encoded size.",
+    "exclusions": [
+      "nomodule fallback scripts",
+      "unreferenced build artifacts",
+      "HTTP headers and transport overhead"
+    ]
+  },
+  "projects": [
+    {
+      "id": "astro-bui",
+      "name": "Astro + b/ui",
+      "route": "/",
+      "categories": {
+        "html": {
+          "files": [
+            {
+              "path": "index.html",
+              "raw": 114156,
+              "gzip": 11332,
+              "brotli": 8568
+            }
+          ],
+          "fileCount": 1,
+          "raw": 114156,
+          "gzip": 11332,
+          "brotli": 8568
+        },
+        "javascript": {
+          "files": [
+            {
+              "path": "_astro/Accordion.astro_astro_type_script_index_0_lang.bBqiXI3w.js",
+              "raw": 10463,
+              "gzip": 3672,
+              "brotli": 3264
+            },
+            {
+              "path": "_astro/HoverCard.astro_astro_type_script_index_0_lang.q1wc2r5R.js",
+              "raw": 7277,
+              "gzip": 2704,
+              "brotli": 2403
+            },
+            {
+              "path": "_astro/NavigationMenu.astro_astro_type_script_index_0_lang.CM_SqbLu.js",
+              "raw": 33348,
+              "gzip": 11513,
+              "brotli": 10322
+            },
+            {
+              "path": "_astro/Select.astro_astro_type_script_index_0_lang.DcQstr_j.js",
+              "raw": 15760,
+              "gzip": 5815,
+              "brotli": 5208
+            },
+            {
+              "path": "_astro/Tabs.astro_astro_type_script_index_0_lang.LQNiKksZ.js",
+              "raw": 5211,
+              "gzip": 2268,
+              "brotli": 2006
+            },
+            {
+              "path": "_astro/Tooltip.astro_astro_type_script_index_0_lang.Bo13ReTR.js",
+              "raw": 7152,
+              "gzip": 2962,
+              "brotli": 2644
+            },
+            {
+              "path": "_astro/index.mg7P-Rs7.js",
+              "raw": 22423,
+              "gzip": 8212,
+              "brotli": 7346
+            }
+          ],
+          "fileCount": 7,
+          "raw": 101634,
+          "gzip": 37146,
+          "brotli": 33193
+        },
+        "css": {
+          "files": [
+            {
+              "path": "_astro/index.BEBzMWQZ.css",
+              "raw": 87173,
+              "gzip": 13630,
+              "brotli": 11664
+            }
+          ],
+          "fileCount": 1,
+          "raw": 87173,
+          "gzip": 13630,
+          "brotli": 11664
+        },
+        "fonts": {
+          "files": [
+            {
+              "path": "_astro/geist-latin-wght-normal.BgDaEnEv.woff2",
+              "raw": 29400,
+              "gzip": null,
+              "brotli": null
+            }
+          ],
+          "fileCount": 1,
+          "raw": 29400,
+          "gzip": null,
+          "brotli": null
+        }
+      },
+      "total": {
+        "fileCount": 10,
+        "raw": 332363,
+        "gzip": 91508,
+        "brotli": 82825
+      }
+    },
+    {
+      "id": "astro-react-shadcn",
+      "name": "Astro + React + shadcn (Base UI)",
+      "route": "/",
+      "categories": {
+        "html": {
+          "files": [
+            {
+              "path": "index.html",
+              "raw": 66877,
+              "gzip": 9241,
+              "brotli": 7416
+            }
+          ],
+          "fileCount": 1,
+          "raw": 66877,
+          "gzip": 9241,
+          "brotli": 7416
+        },
+        "javascript": {
+          "files": [
+            {
+              "path": "_astro/ContactControls.C0h_aVZd.js",
+              "raw": 63617,
+              "gzip": 22206,
+              "brotli": 20037
+            },
+            {
+              "path": "_astro/DirectionContext.Bxav2pjX.js",
+              "raw": 1458,
+              "gzip": 742,
+              "brotli": 662
+            },
+            {
+              "path": "_astro/FAQAccordion.BuoPealj.js",
+              "raw": 11667,
+              "gzip": 4652,
+              "brotli": 4044
+            },
+            {
+              "path": "_astro/FeatureTooltip.BI6ZN0ap.js",
+              "raw": 14848,
+              "gzip": 5427,
+              "brotli": 4932
+            },
+            {
+              "path": "_astro/FloatingPortalLite.lNgNMZXk.js",
+              "raw": 3946,
+              "gzip": 1657,
+              "brotli": 1512
+            },
+            {
+              "path": "_astro/InlineHoverCard.BzD2zzD7.js",
+              "raw": 9590,
+              "gzip": 3796,
+              "brotli": 3466
+            },
+            {
+              "path": "_astro/PricingTabs.BeDnKQbv.js",
+              "raw": 17885,
+              "gzip": 5138,
+              "brotli": 4626
+            },
+            {
+              "path": "_astro/SiteNav.B755zCP5.js",
+              "raw": 26001,
+              "gzip": 8916,
+              "brotli": 8045
+            },
+            {
+              "path": "_astro/addEventListener.CHiL7udQ.js",
+              "raw": 305,
+              "gzip": 207,
+              "brotli": 168
+            },
+            {
+              "path": "_astro/chevron-down.BWUPk8PO.js",
+              "raw": 2109,
+              "gzip": 852,
+              "brotli": 745
+            },
+            {
+              "path": "_astro/chevron-up.B3T64ZKq.js",
+              "raw": 308,
+              "gzip": 252,
+              "brotli": 244
+            },
+            {
+              "path": "_astro/client.BQ9MoTom.js",
+              "raw": 182703,
+              "gzip": 57479,
+              "brotli": 49675
+            },
+            {
+              "path": "_astro/composite.C7RauV6A.js",
+              "raw": 2287,
+              "gzip": 842,
+              "brotli": 747
+            },
+            {
+              "path": "_astro/index.CDAi2RRI.js",
+              "raw": 4923,
+              "gzip": 2236,
+              "brotli": 2047
+            },
+            {
+              "path": "_astro/index.CMfShDsX.js",
+              "raw": 12209,
+              "gzip": 4395,
+              "brotli": 3884
+            },
+            {
+              "path": "_astro/popupStoreUtils.DM8VHrQq.js",
+              "raw": 5038,
+              "gzip": 1874,
+              "brotli": 1742
+            },
+            {
+              "path": "_astro/safePolygon.C21spv6V.js",
+              "raw": 11054,
+              "gzip": 3965,
+              "brotli": 3608
+            },
+            {
+              "path": "_astro/useClick.PO0wWF1n.js",
+              "raw": 1437,
+              "gzip": 766,
+              "brotli": 702
+            },
+            {
+              "path": "_astro/useCompositeListItem.C_zmf7vz.js",
+              "raw": 5804,
+              "gzip": 2520,
+              "brotli": 2281
+            },
+            {
+              "path": "_astro/usePositioner.CBqvgx-K.js",
+              "raw": 51005,
+              "gzip": 19157,
+              "brotli": 17228
+            },
+            {
+              "path": "_astro/utils.D6WiCYvx.js",
+              "raw": 39581,
+              "gzip": 13530,
+              "brotli": 11852
+            }
+          ],
+          "fileCount": 21,
+          "raw": 467775,
+          "gzip": 160609,
+          "brotli": 142247
+        },
+        "css": {
+          "files": [
+            {
+              "path": "_astro/index.L_etnKoY.css",
+              "raw": 68135,
+              "gzip": 11170,
+              "brotli": 9703
+            }
+          ],
+          "fileCount": 1,
+          "raw": 68135,
+          "gzip": 11170,
+          "brotli": 9703
+        },
+        "fonts": {
+          "files": [
+            {
+              "path": "_astro/geist-latin-wght-normal.BgDaEnEv.woff2",
+              "raw": 29400,
+              "gzip": null,
+              "brotli": null
+            }
+          ],
+          "fileCount": 1,
+          "raw": 29400,
+          "gzip": null,
+          "brotli": null
+        }
+      },
+      "total": {
+        "fileCount": 24,
+        "raw": 632187,
+        "gzip": 210420,
+        "brotli": 188766
+      }
+    },
+    {
+      "id": "nextjs-shadcn",
+      "name": "Next.js + shadcn (Base UI)",
+      "route": "/",
+      "categories": {
+        "html": {
+          "files": [
+            {
+              "path": "index.html",
+              "raw": 143550,
+              "gzip": 15825,
+              "brotli": 10751
+            }
+          ],
+          "fileCount": 1,
+          "raw": 143550,
+          "gzip": 15825,
+          "brotli": 10751
+        },
+        "javascript": {
+          "files": [
+            {
+              "path": "_next/static/chunks/058bb4c357bb57b3.js",
+              "raw": 167752,
+              "gzip": 52608,
+              "brotli": 45127
+            },
+            {
+              "path": "_next/static/chunks/2f236954d6a65e12.js",
+              "raw": 30849,
+              "gzip": 7427,
+              "brotli": 6555
+            },
+            {
+              "path": "_next/static/chunks/50050692d4e0a283.js",
+              "raw": 157132,
+              "gzip": 39929,
+              "brotli": 33948
+            },
+            {
+              "path": "_next/static/chunks/58c60a5fa6b544da.js",
+              "raw": 16869,
+              "gzip": 5840,
+              "brotli": 5170
+            },
+            {
+              "path": "_next/static/chunks/79764a2363f49b32.js",
+              "raw": 224636,
+              "gzip": 69993,
+              "brotli": 59939
+            },
+            {
+              "path": "_next/static/chunks/f26c4bd2b6d16093.js",
+              "raw": 155991,
+              "gzip": 50799,
+              "brotli": 43506
+            },
+            {
+              "path": "_next/static/chunks/turbopack-905363175caf285d.js",
+              "raw": 10196,
+              "gzip": 4000,
+              "brotli": 3584
+            }
+          ],
+          "fileCount": 7,
+          "raw": 763425,
+          "gzip": 230596,
+          "brotli": 197829
+        },
+        "css": {
+          "files": [
+            {
+              "path": "_next/static/chunks/22b866e0523b60c2.css",
+              "raw": 69394,
+              "gzip": 11629,
+              "brotli": 10081
+            }
+          ],
+          "fileCount": 1,
+          "raw": 69394,
+          "gzip": 11629,
+          "brotli": 10081
+        },
+        "fonts": {
+          "files": [
+            {
+              "path": "_next/static/media/geist-latin-wght-normal.e574545b.woff2",
+              "raw": 29400,
+              "gzip": null,
+              "brotli": null
+            }
+          ],
+          "fileCount": 1,
+          "raw": 29400,
+          "gzip": null,
+          "brotli": null
+        }
+      },
+      "total": {
+        "fileCount": 10,
+        "raw": 1005769,
+        "gzip": 287450,
+        "brotli": 248061
+      }
+    }
+  ]
+}

@@ -18,6 +18,8 @@ import {
   benchmarkRoot,
   projects,
   resultsDir,
+  readProjectVersions,
+  readProjectStyles,
 } from "./benchmark-config.mjs";
 
 const JS_EXTENSION = /\.m?js$/i;
@@ -322,6 +324,8 @@ const report = {
   schemaVersion: 1,
   measuredAt,
   environment: {
+    versions: readProjectVersions(),
+    styles: readProjectStyles(),
     node: process.version,
     platform: process.platform,
     architecture: process.arch,
