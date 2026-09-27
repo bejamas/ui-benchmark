@@ -63,12 +63,16 @@ const componentNames = [
   "button",
   "card",
   "checkbox",
+  "dialog",
+  "dropdown-menu",
   "hover-card",
   "input",
   "label",
   "navigation-menu",
+  "popover",
   "select",
   "separator",
+  "switch",
   "tabs",
   "tooltip",
 ];
@@ -85,6 +89,10 @@ for (const name of componentNames) {
     name + " still imports Radix",
   );
 }
+const cookieSources = projects.map(({ id }) => readFileSync(join(benchmarkRoot, id, "src/lib/cookie-preferences.ts"), "utf8"));
+assert(new Set(cookieSources).size === 1, "Cookie preference storage rules must match across demos");
+const interactiveSources = reactProjects.map((id) => readFileSync(join(benchmarkRoot, id, "src/components/InteractiveDemos.tsx"), "utf8"));
+assert(new Set(interactiveSources).size === 1, "React interactive demos must use identical source");
 for (const project of reactProjects) {
   const config = JSON.parse(
     readFileSync(join(benchmarkRoot, project, "components.json"), "utf8"),

@@ -11,15 +11,17 @@
     "sync:bui": "node scripts/sync-bui.mjs",
     "measure": "node scripts/measure.mjs",
     "verify": "node scripts/verify.mjs",
+    "verify:deployments": "node scripts/verify-deployments.mjs",
     "verify:visual": "node scripts/visual-parity.mjs",
     "performance": "node scripts/performance.mjs",
     "performance:css": "node scripts/css-delivery.mjs",
     "performance:size": "node scripts/fcp-size.mjs",
     "performance:cause": "node scripts/fcp-cause.mjs",
-    "benchmark": "npm run build && npm run measure && npm run verify && npm run verify:visual && npm run interactions && npm run performance",
+    "benchmark": "npm run build && npm run measure && npm run verify && npm run verify:visual && npm run test:navigation && npm run test:components && npm run interactions && npm run performance",
     "interactions": "node scripts/interactions.mjs",
     "test:interactions": "node --test scripts/interactions.test.mjs",
     "test:navigation": "node --test scripts/navigation-menu.test.mjs",
+    "test:components": "node --test scripts/demo-components.test.mjs",
     "serve:device": "node scripts/serve-device.mjs"
   },
   "devDependencies": {

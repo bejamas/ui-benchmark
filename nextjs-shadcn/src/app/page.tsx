@@ -1,3 +1,4 @@
+import InteractiveDemos from "@/components/InteractiveDemos";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -56,7 +57,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Analytics
@@ -69,7 +70,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Automation
@@ -82,7 +83,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Security
@@ -95,7 +96,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Integrations
@@ -116,7 +117,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Startups
@@ -129,7 +130,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Enterprise
@@ -142,7 +143,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         Agencies
@@ -155,7 +156,7 @@ function SiteHeader() {
                   <li>
                     <NavigationMenuLink
                       href="#"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                     >
                       <div className="text-sm font-medium leading-none">
                         E-commerce
@@ -765,7 +766,7 @@ function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground">
+                <a href="#preferences" className="hover:text-foreground">
                   Cookies
                 </a>
               </li>
@@ -794,6 +795,7 @@ export default function Home() {
         <RichTextSection />
         <FAQSection />
         <ContactSection />
+        <InteractiveDemos />
       </main>
       <SiteFooter />
     </div>

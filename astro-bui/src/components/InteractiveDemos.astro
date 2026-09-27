@@ -1,0 +1,138 @@
+---
+import { Button } from "@/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/ui/dialog";
+import { Switch } from "@/ui/switch";
+import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverTitle, PopoverDescription } from "@/ui/popover";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuCheckboxItem } from "@/ui/dropdown-menu";
+---
+
+<section id="preferences" class="border-t bg-muted/30 py-20" aria-labelledby="preferences-heading">
+  <div class="mx-auto max-w-6xl px-4">
+    <h2 id="preferences-heading" class="text-3xl font-bold tracking-tight text-center">Make it yours</h2>
+    <p class="mx-auto mt-3 max-w-xl text-center text-muted-foreground">Small controls, thoughtful details. Try the everyday interactions that make a website feel complete.</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <article class="flex flex-col gap-4 rounded-xl border bg-card p-6">
+        <h3 class="text-lg font-semibold">Your privacy, your choice</h3>
+        <p class="text-sm text-muted-foreground">Choose which cookie categories you allow and change your mind at any time.</p>
+        <Dialog id="cookie-dialog">
+          <Button data-slot="dialog-trigger" variant="outline" class="w-full">Cookie preferences</Button>
+          <DialogContent showCloseButton={false} class="max-h-[calc(100dvh-2rem)] overflow-y-auto sm:max-w-lg">
+            <DialogClose aria-label="Close" class="size-8 justify-center rounded-lg hover:bg-muted focus-visible:ring-2">
+              <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12" /></svg>
+            </DialogClose>
+            <DialogHeader>
+              <DialogTitle>Cookie preferences</DialogTitle>
+              <DialogDescription>Choose what you share. Necessary cookies stay on; everything else is optional.</DialogDescription>
+            </DialogHeader>
+            <div class="divide-y">
+              <div class="flex items-center justify-between gap-6 py-4">
+                <div><span id="cookie-necessary-label" class="font-medium">Necessary</span><p id="cookie-necessary-description" class="mt-1 text-muted-foreground">Required for basic site functions. Always enabled.</p></div>
+                <Switch id="cookie-necessary" checked disabled aria-labelledby="cookie-necessary-label" aria-describedby="cookie-necessary-description" />
+              </div>
+              <div class="flex items-center justify-between gap-6 py-4">
+                <div><span id="cookie-analytics-label" class="font-medium">Analytics</span><p id="cookie-analytics-description" class="mt-1 text-muted-foreground">Help us understand which pages are useful.</p></div>
+                <Switch id="cookie-analytics" aria-labelledby="cookie-analytics-label" aria-describedby="cookie-analytics-description" />
+              </div>
+              <div class="flex items-center justify-between gap-6 py-4">
+                <div><span id="cookie-marketing-label" class="font-medium">Marketing</span><p id="cookie-marketing-description" class="mt-1 text-muted-foreground">Allow content and offers tailored to your interests.</p></div>
+                <Switch id="cookie-marketing" aria-labelledby="cookie-marketing-label" aria-describedby="cookie-marketing-description" />
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">Demo only. These controls do not enable tracking.</p>
+            <DialogFooter class="flex-col sm:flex-row sm:flex-wrap">
+              <Button variant="outline" data-cookie-action="reject">Reject optional</Button>
+              <Button variant="outline" data-cookie-action="accept">Accept all</Button>
+              <Button data-cookie-action="save">Save preferences</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+        <p role="status" data-cookie-summary class="mt-auto text-xs text-muted-foreground">Only necessary cookies enabled</p>
+      </article>
+      <article class="flex flex-col gap-4 rounded-xl border bg-card p-6">
+        <h3 class="text-lg font-semibold">Stay in the loop</h3>
+        <p class="text-sm text-muted-foreground">Catch up on product news without leaving the page you are reading.</p>
+        <Popover class="w-full">
+          <PopoverTrigger variant="outline" class="w-full">Notifications</PopoverTrigger>
+          <PopoverContent class="w-80 max-w-[calc(100vw-2rem)] p-4" align="center" sideOffset={6}>
+            <PopoverHeader><PopoverTitle>What's new</PopoverTitle><PopoverDescription>Your latest product updates.</PopoverDescription></PopoverHeader>
+            <ul class="space-y-4 py-3">
+              <li><p class="font-medium">Cookie controls are here</p><p class="text-sm text-muted-foreground">Fine-tune your preferences in one place.</p></li>
+              <li><p class="font-medium">A smoother navigation</p><p class="text-sm text-muted-foreground">Explore products with your mouse or keyboard.</p></li>
+            </ul>
+            <Button variant="outline" id="mark-notifications-read">Mark all as read</Button>
+          </PopoverContent>
+        </Popover>
+        <p role="status" data-notification-summary class="mt-auto text-xs text-muted-foreground">2 unread updates</p>
+      </article>
+      <article class="flex flex-col gap-4 rounded-xl border bg-card p-6">
+        <h3 class="text-lg font-semibold">A little more control</h3>
+        <p class="text-sm text-muted-foreground">Keep helpful tips close and choose how often you hear from us.</p>
+        <DropdownMenu id="quick-settings" class="w-full" closeOnSelect={false}>
+          <DropdownMenuTrigger variant="outline" class="w-full">Quick settings</DropdownMenuTrigger>
+          <DropdownMenuContent class="w-64" align="center">
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Personalize your experience</DropdownMenuLabel>
+              <DropdownMenuCheckboxItem class="focus:bg-muted focus:text-foreground focus:**:text-foreground" value="tips" defaultChecked>Show helpful tips</DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem class="focus:bg-muted focus:text-foreground focus:**:text-foreground" value="digest">Weekly digest</DropdownMenuCheckboxItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <p role="status" data-settings-summary class="mt-auto text-xs text-muted-foreground">Tips on · Weekly digest off</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { allCookies, necessaryOnly, cookieSummary, readCookiePreferences, saveCookiePreferences, type CookiePreferences } from "@/lib/cookie-preferences";
+
+  function initializeDemos() {
+    const dialog = document.getElementById("cookie-dialog");
+    const analytics = document.getElementById("cookie-analytics");
+    const marketing = document.getElementById("cookie-marketing");
+    const cookieStatus = document.querySelector("[data-cookie-summary]");
+    const notificationStatus = document.querySelector("[data-notification-summary]");
+    const markRead = document.getElementById("mark-notifications-read");
+    const settings = document.getElementById("quick-settings");
+    const settingsStatus = document.querySelector("[data-settings-summary]");
+    if (!dialog || !analytics || !marketing || !cookieStatus || !notificationStatus || !(markRead instanceof HTMLButtonElement) || !settings || !settingsStatus) {
+      throw new Error("Interactive demo markup is incomplete");
+    }
+
+    let saved = readCookiePreferences();
+    cookieStatus.textContent = cookieSummary(saved);
+    const resetDraft = () => {
+      analytics.dispatchEvent(new CustomEvent("switch:set", { detail: { checked: saved.analytics } }));
+      marketing.dispatchEvent(new CustomEvent("switch:set", { detail: { checked: saved.marketing } }));
+    };
+    dialog.addEventListener("dialog:change", resetDraft);
+    resetDraft();
+
+    document.querySelectorAll<HTMLButtonElement>("[data-cookie-action]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const preferences: CookiePreferences = button.dataset.cookieAction === "accept" ? { ...allCookies }
+          : button.dataset.cookieAction === "reject" ? { ...necessaryOnly }
+          : { analytics: analytics.getAttribute("aria-checked") === "true", marketing: marketing.getAttribute("aria-checked") === "true" };
+        saved = preferences;
+        const persistent = saveCookiePreferences(preferences);
+        cookieStatus.textContent = cookieSummary(preferences) + (persistent ? "" : ". Saved for this visit only.");
+        dialog.dispatchEvent(new CustomEvent("dialog:set", { detail: { open: false } }));
+      });
+    });
+    markRead.addEventListener("click", () => {
+      notificationStatus.textContent = "You are all caught up";
+      markRead.disabled = true;
+    });
+    settings.addEventListener("dropdown-menu:values-change", () => {
+      const tips = document.querySelector('[data-slot="dropdown-menu-checkbox-item"][data-value="tips"]')?.getAttribute("aria-checked") === "true";
+      const digest = document.querySelector('[data-slot="dropdown-menu-checkbox-item"][data-value="digest"]')?.getAttribute("aria-checked") === "true";
+      settingsStatus.textContent = `Tips ${tips ? "on" : "off"} · Weekly digest ${digest ? "on" : "off"}`;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeDemos, { once: true });
+  } else {
+    initializeDemos();
+  }
+</script>

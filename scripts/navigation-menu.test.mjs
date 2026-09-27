@@ -6,7 +6,7 @@ import { projects } from "./benchmark-config.mjs";
 import { startStaticServer } from "./static-server.mjs";
 import { controls, installProbe, measureSettled } from "./interaction-probe.mjs";
 
-test("production navigation keeps its triggers clickable through opening animations", async (t) => {
+test("production navigation stacks card descriptions and keeps triggers clickable", async (t) => {
   const project = projects.find(({ id }) => id === "astro-bui");
   const server = await startStaticServer({ project: {
     ...project, buildDir: process.env.NAVIGATION_BUILD_DIR ? resolve(process.env.NAVIGATION_BUILD_DIR) : project.buildDir,
@@ -34,6 +34,20 @@ test("production navigation keeps its triggers clickable through opening animati
             const open = { ...controls.navigation, text };
             const close = { ...controls.navigationClose, text };
             assert.equal((await measureSettled(page, cdp, open, profile.touch)).status, "success");
+            const cards = await page.locator('[data-slot="navigation-menu-content"]:visible [data-slot="navigation-menu-link"]').evaluateAll((links) =>
+              links.map((link) => {
+                const title = link.firstElementChild.getBoundingClientRect();
+                const description = link.querySelector("p").getBoundingClientRect();
+                return {
+                  title: link.firstElementChild.textContent.trim(),
+                  stacked: description.top >= title.bottom && Math.abs(description.left - title.left) < 1,
+                };
+              }),
+            );
+            assert.equal(cards.length, 4, `${text} must show four navigation cards`);
+            for (const card of cards) {
+              assert.ok(card.stacked, `${card.title} description must sit below and align with its title`);
+            }
             // Test the whole usable trigger surface, not just a lucky tap at its center.
             const intercepted = await page.evaluate((label) => {
               const trigger = [...document.querySelectorAll('[data-slot="navigation-menu-trigger"]')]

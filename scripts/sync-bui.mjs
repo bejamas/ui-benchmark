@@ -7,14 +7,18 @@ import { benchmarkRoot } from "./benchmark-config.mjs";
 
 const BEJAMAS_CLI_VERSION = "0.4.1";
 const BEJAMAS_STYLE = "bejamas-nova";
-const BEJAMAS_UI_COMMIT = "82f54f403a7e163d777436fd23e9a1fe2f7d8af5";
-const DATA_SLOT_VERSION = "1.0.1";
+const BEJAMAS_UI_COMMIT = "218f7621d596a3b4bd33b6c96d31ee3b0e332483";
+const DATA_SLOT_VERSION = "1.0.2";
 const components = [
   "accordion",
   "badge",
   "button",
   "card",
   "checkbox",
+  "dialog",
+  "dropdown-menu",
+  "popover",
+  "switch",
   "hover-card",
   "input",
   "label",
@@ -26,6 +30,10 @@ const components = [
 ];
 const dataSlotPackages = [
   "accordion",
+  "dialog",
+  "dropdown-menu",
+  "popover",
+  "switch",
   "hover-card",
   "navigation-menu",
   "select",

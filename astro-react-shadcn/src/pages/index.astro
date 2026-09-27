@@ -1,4 +1,5 @@
 ---
+import InteractiveDemos from "@/components/InteractiveDemos.tsx";
 import Layout from "@/layouts/Layout.astro";
 
 /* ── Interactive islands (client:load) ──────────────────────────── */
@@ -233,6 +234,7 @@ const features = [
           </CardContent>
         </Card>
       </section>
+      <InteractiveDemos client:load />
     </main>
 
     <!-- ─────────────────── Footer ─────────────────── -->
@@ -268,7 +270,7 @@ const features = [
             <ul class="space-y-2 text-sm text-muted-foreground">
               <li><a href="#" class="hover:text-foreground">Privacy</a></li>
               <li><a href="#" class="hover:text-foreground">Terms</a></li>
-              <li><a href="#" class="hover:text-foreground">Cookies</a></li>
+              <li><a href="#preferences" class="hover:text-foreground">Cookies</a></li>
             </ul>
           </div>
         </div>

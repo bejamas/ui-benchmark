@@ -1,5 +1,5 @@
 {
-  "measuredAt": "2026-09-26T09:04:11.584Z",
+  "measuredAt": "2026-09-27T14:59:56.456Z",
   "environment": {
     "browser": "153.0.8010.53",
     "styles": {
@@ -12,13 +12,17 @@
         "astro": "7.3.5",
         "tailwindcss": "4.3.3",
         "bejamas": "0.4.1",
-        "@data-slot/accordion": "1.0.1",
-        "@data-slot/hover-card": "1.0.1",
-        "@data-slot/navigation-menu": "1.0.1",
-        "@data-slot/select": "1.0.1",
-        "@data-slot/tabs": "1.0.1",
-        "@data-slot/tooltip": "1.0.1",
-        "@data-slot/core": "1.0.1"
+        "@data-slot/accordion": "1.0.2",
+        "@data-slot/dialog": "1.0.2",
+        "@data-slot/dropdown-menu": "1.0.2",
+        "@data-slot/hover-card": "1.0.2",
+        "@data-slot/navigation-menu": "1.0.2",
+        "@data-slot/popover": "1.0.2",
+        "@data-slot/select": "1.0.2",
+        "@data-slot/switch": "1.0.2",
+        "@data-slot/tabs": "1.0.2",
+        "@data-slot/tooltip": "1.0.2",
+        "@data-slot/core": "1.0.2"
       },
       "astro-react-shadcn": {
         "astro": "7.3.5",
@@ -45,7 +49,7 @@
       "width": 412,
       "reference": "astro-bui",
       "compared": "astro-react-shadcn",
-      "matchedElements": 98,
+      "matchedElements": 101,
       "differences": [],
       "landmarkDifferences": []
     },
@@ -53,7 +57,7 @@
       "width": 412,
       "reference": "astro-bui",
       "compared": "nextjs-shadcn",
-      "matchedElements": 98,
+      "matchedElements": 101,
       "differences": [],
       "landmarkDifferences": []
     },
@@ -61,7 +65,7 @@
       "width": 1280,
       "reference": "astro-bui",
       "compared": "astro-react-shadcn",
-      "matchedElements": 98,
+      "matchedElements": 101,
       "differences": [],
       "landmarkDifferences": []
     },
@@ -69,7 +73,7 @@
       "width": 1280,
       "reference": "astro-bui",
       "compared": "nextjs-shadcn",
-      "matchedElements": 98,
+      "matchedElements": 101,
       "differences": [],
       "landmarkDifferences": []
     }

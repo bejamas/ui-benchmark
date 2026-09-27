@@ -1,4 +1,5 @@
 ---
+import InteractiveDemos from "@/components/InteractiveDemos.astro";
 import Layout from "@/layouts/Layout.astro";
 
 /* ── b/ui Components ───────────────────────────────────────────────── */
@@ -44,6 +45,9 @@ import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Checkbox } from "@/ui/checkbox";
 import { Separator } from "@/ui/separator";
+
+const navigationCardClass =
+  "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground";
 ---
 
 <Layout>
@@ -63,7 +67,7 @@ import { Separator } from "@/ui/separator";
               <NavigationMenuTrigger class="bg-transparent">Products</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">
                       Analytics
                     </div>
@@ -73,7 +77,7 @@ import { Separator } from "@/ui/separator";
                       Real-time dashboards and reporting
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">
                       Automation
                     </div>
@@ -83,7 +87,7 @@ import { Separator } from "@/ui/separator";
                       Workflow builders and integrations
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">Security</div>
                     <p
                       class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -91,7 +95,7 @@ import { Separator } from "@/ui/separator";
                       Enterprise-grade protection
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">
                       Integrations
                     </div>
@@ -109,7 +113,7 @@ import { Separator } from "@/ui/separator";
               <NavigationMenuTrigger class="bg-transparent">Solutions</NavigationMenuTrigger>
               <NavigationMenuContent align="center">
                 <div class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">Startups</div>
                     <p
                       class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -117,7 +121,7 @@ import { Separator } from "@/ui/separator";
                       Move fast and ship faster
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">
                       Enterprise
                     </div>
@@ -127,7 +131,7 @@ import { Separator } from "@/ui/separator";
                       Scale with confidence
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">Agencies</div>
                     <p
                       class="line-clamp-2 text-sm leading-snug text-muted-foreground"
@@ -135,7 +139,7 @@ import { Separator } from "@/ui/separator";
                       Deliver client projects
                     </p>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#">
+                  <NavigationMenuLink href="#" class={navigationCardClass}>
                     <div class="text-sm font-medium leading-none">
                       E-commerce
                     </div>
@@ -675,6 +679,7 @@ import { Separator } from "@/ui/separator";
           </CardContent>
         </Card>
       </section>
+      <InteractiveDemos />
     </main>
 
     <!-- ─────────────────── Footer ─────────────────── -->
@@ -712,7 +717,7 @@ import { Separator } from "@/ui/separator";
             <ul class="space-y-2 text-sm text-muted-foreground">
               <li><a href="#" class="hover:text-foreground">Privacy</a></li>
               <li><a href="#" class="hover:text-foreground">Terms</a></li>
-              <li><a href="#" class="hover:text-foreground">Cookies</a></li>
+              <li><a href="#preferences" class="hover:text-foreground">Cookies</a></li>
             </ul>
           </div>
         </div>

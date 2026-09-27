@@ -34,7 +34,7 @@ export default function SiteNav() {
                 <li key={item.title}>
                   <NavigationMenuLink
                     href="#"
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                   >
                     <div className="text-sm font-medium leading-none">
                       {item.title}
@@ -57,7 +57,7 @@ export default function SiteNav() {
                 <li key={item.title}>
                   <NavigationMenuLink
                     href="#"
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                   >
                     <div className="text-sm font-medium leading-none">
                       {item.title}

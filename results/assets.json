@@ -1,19 +1,23 @@
 {
   "schemaVersion": 1,
-  "measuredAt": "2026-09-26T09:03:20.071Z",
+  "measuredAt": "2026-09-27T14:59:39.545Z",
   "environment": {
     "versions": {
       "astro-bui": {
         "astro": "7.3.5",
         "tailwindcss": "4.3.3",
         "bejamas": "0.4.1",
-        "@data-slot/accordion": "1.0.1",
-        "@data-slot/hover-card": "1.0.1",
-        "@data-slot/navigation-menu": "1.0.1",
-        "@data-slot/select": "1.0.1",
-        "@data-slot/tabs": "1.0.1",
-        "@data-slot/tooltip": "1.0.1",
-        "@data-slot/core": "1.0.1"
+        "@data-slot/accordion": "1.0.2",
+        "@data-slot/dialog": "1.0.2",
+        "@data-slot/dropdown-menu": "1.0.2",
+        "@data-slot/hover-card": "1.0.2",
+        "@data-slot/navigation-menu": "1.0.2",
+        "@data-slot/popover": "1.0.2",
+        "@data-slot/select": "1.0.2",
+        "@data-slot/switch": "1.0.2",
+        "@data-slot/tabs": "1.0.2",
+        "@data-slot/tooltip": "1.0.2",
+        "@data-slot/core": "1.0.2"
       },
       "astro-react-shadcn": {
         "astro": "7.3.5",
@@ -62,79 +66,103 @@
           "files": [
             {
               "path": "index.html",
-              "raw": 109597,
-              "gzip": 10731,
-              "brotli": 8132
+              "raw": 134393,
+              "gzip": 14237,
+              "brotli": 10842
             }
           ],
           "fileCount": 1,
-          "raw": 109597,
-          "gzip": 10731,
-          "brotli": 8132
+          "raw": 134393,
+          "gzip": 14237,
+          "brotli": 10842
         },
         "javascript": {
           "files": [
             {
-              "path": "_astro/Accordion.astro_astro_type_script_index_0_lang.CJrDiTMJ.js",
+              "path": "_astro/Accordion.astro_astro_type_script_index_0_lang.WwABDeS6.js",
               "raw": 10391,
-              "gzip": 3564,
-              "brotli": 3201
+              "gzip": 3563,
+              "brotli": 3191
             },
             {
-              "path": "_astro/HoverCard.astro_astro_type_script_index_0_lang.CrpB7jXF.js",
-              "raw": 7228,
-              "gzip": 2698,
-              "brotli": 2390
+              "path": "_astro/Dialog.astro_astro_type_script_index_0_lang.C0bsC49W.js",
+              "raw": 4286,
+              "gzip": 1799,
+              "brotli": 1572
             },
             {
-              "path": "_astro/NavigationMenu.astro_astro_type_script_index_0_lang.q51gw_Kg.js",
-              "raw": 32828,
-              "gzip": 11026,
-              "brotli": 9927
+              "path": "_astro/DropdownMenu.astro_astro_type_script_index_0_lang.riZSPPpJ.js",
+              "raw": 13584,
+              "gzip": 4847,
+              "brotli": 4381
             },
             {
-              "path": "_astro/Select.astro_astro_type_script_index_0_lang.BW55_uZy.js",
-              "raw": 15252,
-              "gzip": 5639,
-              "brotli": 5081
+              "path": "_astro/HoverCard.astro_astro_type_script_index_0_lang.COSUcOFd.js",
+              "raw": 7229,
+              "gzip": 2695,
+              "brotli": 2388
             },
             {
-              "path": "_astro/Tabs.astro_astro_type_script_index_0_lang.YdLrAxbG.js",
+              "path": "_astro/NavigationMenu.astro_astro_type_script_index_0_lang.D0u6OpCQ.js",
+              "raw": 32822,
+              "gzip": 11013,
+              "brotli": 9902
+            },
+            {
+              "path": "_astro/Popover.astro_astro_type_script_index_0_lang._mKlI8JM.js",
+              "raw": 4453,
+              "gzip": 1927,
+              "brotli": 1683
+            },
+            {
+              "path": "_astro/Select.astro_astro_type_script_index_0_lang.l2lp5xVk.js",
+              "raw": 15258,
+              "gzip": 5636,
+              "brotli": 5073
+            },
+            {
+              "path": "_astro/Switch.astro_astro_type_script_index_0_lang.CAjTLSQa.js",
+              "raw": 3949,
+              "gzip": 1825,
+              "brotli": 1560
+            },
+            {
+              "path": "_astro/Tabs.astro_astro_type_script_index_0_lang.yTaINOI4.js",
               "raw": 4909,
-              "gzip": 2253,
-              "brotli": 1993
+              "gzip": 2254,
+              "brotli": 1986
             },
             {
-              "path": "_astro/Tooltip.astro_astro_type_script_index_0_lang.BfCh1Kln.js",
-              "raw": 7095,
-              "gzip": 2931,
-              "brotli": 2620
+              "path": "_astro/Tooltip.astro_astro_type_script_index_0_lang.DVARpMsx.js",
+              "raw": 7097,
+              "gzip": 2934,
+              "brotli": 2622
             },
             {
-              "path": "_astro/dist.BOY3IA42.js",
-              "raw": 22179,
-              "gzip": 7991,
-              "brotli": 7205
+              "path": "_astro/dist.B2psG74c.js",
+              "raw": 25743,
+              "gzip": 8946,
+              "brotli": 8074
             }
           ],
-          "fileCount": 7,
-          "raw": 99882,
-          "gzip": 36102,
-          "brotli": 32417
+          "fileCount": 11,
+          "raw": 129721,
+          "gzip": 47439,
+          "brotli": 42432
         },
         "css": {
           "files": [
             {
-              "path": "_astro/index.CZlIsTat.css",
-              "raw": 83997,
-              "gzip": 13234,
-              "brotli": 11366
+              "path": "_astro/index.DpiST6s6.css",
+              "raw": 93266,
+              "gzip": 14434,
+              "brotli": 12326
             }
           ],
           "fileCount": 1,
-          "raw": 83997,
-          "gzip": 13234,
-          "brotli": 11366
+          "raw": 93266,
+          "gzip": 14434,
+          "brotli": 12326
         },
         "fonts": {
           "files": [
@@ -152,10 +180,10 @@
         }
       },
       "total": {
-        "fileCount": 10,
-        "raw": 322876,
-        "gzip": 89467,
-        "brotli": 81315
+        "fileCount": 14,
+        "raw": 386780,
+        "gzip": 105510,
+        "brotli": 95000
       }
     },
     {
@@ -167,83 +195,107 @@
           "files": [
             {
               "path": "index.html",
-              "raw": 67485,
-              "gzip": 9515,
-              "brotli": 7626
+              "raw": 72598,
+              "gzip": 10138,
+              "brotli": 8134
             }
           ],
           "fileCount": 1,
-          "raw": 67485,
-          "gzip": 9515,
-          "brotli": 7626
+          "raw": 72598,
+          "gzip": 10138,
+          "brotli": 8134
         },
         "javascript": {
           "files": [
             {
-              "path": "_astro/ContactControls.Dl-rnKY5.js",
-              "raw": 62586,
-              "gzip": 21127,
-              "brotli": 19207
+              "path": "_astro/CompositeItem.av9k5TLO.js",
+              "raw": 383,
+              "gzip": 267,
+              "brotli": 228
             },
             {
-              "path": "_astro/DirectionContext.CYrGLA40.js",
-              "raw": 1473,
+              "path": "_astro/CompositeRoot.SaVDXi_8.js",
+              "raw": 3929,
+              "gzip": 1767,
+              "brotli": 1597
+            },
+            {
+              "path": "_astro/ContactControls.CoqRBWJQ.js",
+              "raw": 38486,
+              "gzip": 12970,
+              "brotli": 11799
+            },
+            {
+              "path": "_astro/DirectionContext.BYqXi6V8.js",
+              "raw": 1474,
               "gzip": 751,
-              "brotli": 657
+              "brotli": 656
             },
             {
-              "path": "_astro/FAQAccordion.aRC8c0UE.js",
+              "path": "_astro/FAQAccordion.CEVOkYKE.js",
               "raw": 11558,
-              "gzip": 4552,
-              "brotli": 3939
+              "gzip": 4556,
+              "brotli": 3960
             },
             {
-              "path": "_astro/FeatureTooltip.uo2rPCEr.js",
-              "raw": 14742,
-              "gzip": 5357,
-              "brotli": 4871
+              "path": "_astro/FeatureTooltip.Bom2Tlp4.js",
+              "raw": 14782,
+              "gzip": 5378,
+              "brotli": 4899
             },
             {
-              "path": "_astro/FloatingPortalLite.DiQx2wav.js",
-              "raw": 3963,
-              "gzip": 1671,
-              "brotli": 1524
+              "path": "_astro/FloatingPortalLite.CMBtBk59.js",
+              "raw": 441,
+              "gzip": 317,
+              "brotli": 275
             },
             {
-              "path": "_astro/InlineHoverCard.CGPVbf4B.js",
-              "raw": 9338,
-              "gzip": 3669,
-              "brotli": 3379
+              "path": "_astro/InlineHoverCard.OhyHrhaO.js",
+              "raw": 9374,
+              "gzip": 3694,
+              "brotli": 3403
             },
             {
-              "path": "_astro/PricingTabs.BwMZaCT6.js",
-              "raw": 18022,
-              "gzip": 5106,
-              "brotli": 4610
+              "path": "_astro/InteractiveDemos.BsmkfiEy.js",
+              "raw": 55763,
+              "gzip": 16216,
+              "brotli": 14470
             },
             {
-              "path": "_astro/SiteNav.BLM60oR0.js",
-              "raw": 25970,
-              "gzip": 8735,
-              "brotli": 7941
+              "path": "_astro/PricingTabs.D45We2i0.js",
+              "raw": 15248,
+              "gzip": 4641,
+              "brotli": 4195
             },
             {
-              "path": "_astro/addEventListener.BMNrz1mc.js",
+              "path": "_astro/SiteNav.r58tIguR.js",
+              "raw": 25762,
+              "gzip": 8627,
+              "brotli": 7849
+            },
+            {
+              "path": "_astro/addEventListener.CIbfifTP.js",
               "raw": 297,
-              "gzip": 200,
-              "brotli": 169
+              "gzip": 203,
+              "brotli": 178
             },
             {
-              "path": "_astro/chevron-down.C0OgyY8X.js",
-              "raw": 1254,
-              "gzip": 740,
-              "brotli": 654
+              "path": "_astro/button.BhGAyvdp.js",
+              "raw": 3096,
+              "gzip": 1125,
+              "brotli": 990
             },
             {
-              "path": "_astro/chevron-up.CA-Zv5lW.js",
-              "raw": 124,
-              "gzip": 132,
-              "brotli": 114
+              "path": "_astro/chevron-down.DVCTCdUJ.js",
+              "raw": 128,
+              "gzip": 140,
+              "brotli": 117
+            },
+            {
+              "path": "_astro/chevron-up.BD51wPjH.js",
+              "raw": 128,
+              "gzip": 140,
+              "brotli": 132
             },
             {
               "path": "_astro/client.D92qSjCW.js",
@@ -252,22 +304,28 @@
               "brotli": 56149
             },
             {
-              "path": "_astro/composite.-WBGgI4h.js",
-              "raw": 2247,
-              "gzip": 821,
-              "brotli": 730
+              "path": "_astro/composite.DahQoj6P.js",
+              "raw": 2146,
+              "gzip": 780,
+              "brotli": 692
             },
             {
-              "path": "_astro/dist.CBgKSyFp.js",
-              "raw": 4859,
-              "gzip": 2163,
-              "brotli": 1967
+              "path": "_astro/createLucideIcon.fs87EGf3.js",
+              "raw": 1184,
+              "gzip": 689,
+              "brotli": 609
             },
             {
-              "path": "_astro/popupStoreUtils.CpKQVx6w.js",
-              "raw": 5030,
-              "gzip": 1867,
-              "brotli": 1740
+              "path": "_astro/isElementDisabled.KSuuBj8D.js",
+              "raw": 114,
+              "gzip": 110,
+              "brotli": 79
+            },
+            {
+              "path": "_astro/popupStoreUtils.SXJYjD9v.js",
+              "raw": 5268,
+              "gzip": 1940,
+              "brotli": 1804
             },
             {
               "path": "_astro/react-dom.DwX89IcG.js",
@@ -276,54 +334,72 @@
               "brotli": 3823
             },
             {
-              "path": "_astro/safePolygon.DWRIdQmh.js",
+              "path": "_astro/safePolygon.-By88Q7P.js",
               "raw": 10776,
               "gzip": 3870,
-              "brotli": 3513
+              "brotli": 3518
             },
             {
-              "path": "_astro/useClick.HNc9-vY0.js",
+              "path": "_astro/useAriaLabelledBy.Bz5i1tYE.js",
+              "raw": 24806,
+              "gzip": 9346,
+              "brotli": 8557
+            },
+            {
+              "path": "_astro/useClick.epr18l5Z.js",
               "raw": 1424,
-              "gzip": 767,
-              "brotli": 701
+              "gzip": 765,
+              "brotli": 704
             },
             {
-              "path": "_astro/useCompositeListItem.7IA19gg6.js",
+              "path": "_astro/useCompositeItem.DoRYQhfj.js",
+              "raw": 1134,
+              "gzip": 666,
+              "brotli": 607
+            },
+            {
+              "path": "_astro/useCompositeListItem.CAgmVclK.js",
               "raw": 5763,
               "gzip": 2430,
               "brotli": 2217
             },
             {
-              "path": "_astro/usePositioner.yhEOoW7d.js",
-              "raw": 49145,
-              "gzip": 18062,
-              "brotli": 16351
+              "path": "_astro/useFocus.CsMDCKze.js",
+              "raw": 3671,
+              "gzip": 1500,
+              "brotli": 1385
             },
             {
-              "path": "_astro/utils.CwcrmJjx.js",
-              "raw": 38621,
-              "gzip": 13122,
-              "brotli": 11552
+              "path": "_astro/usePositioner.BnvcvgKG.js",
+              "raw": 49201,
+              "gzip": 18096,
+              "brotli": 16413
+            },
+            {
+              "path": "_astro/utils.C2a0YtV_.js",
+              "raw": 38678,
+              "gzip": 13158,
+              "brotli": 11554
             }
           ],
-          "fileCount": 21,
-          "raw": 488551,
-          "gzip": 164243,
-          "brotli": 145808
+          "fileCount": 29,
+          "raw": 546373,
+          "gzip": 183243,
+          "brotli": 162859
         },
         "css": {
           "files": [
             {
-              "path": "_astro/index.CjkFrQgh.css",
-              "raw": 68135,
-              "gzip": 11152,
-              "brotli": 9698
+              "path": "_astro/index.ydmnz37x.css",
+              "raw": 77598,
+              "gzip": 12346,
+              "brotli": 10663
             }
           ],
           "fileCount": 1,
-          "raw": 68135,
-          "gzip": 11152,
-          "brotli": 9698
+          "raw": 77598,
+          "gzip": 12346,
+          "brotli": 10663
         },
         "fonts": {
           "files": [
@@ -341,10 +417,10 @@
         }
       },
       "total": {
-        "fileCount": 24,
-        "raw": 653571,
-        "gzip": 214310,
-        "brotli": 192532
+        "fileCount": 32,
+        "raw": 725969,
+        "gzip": 235127,
+        "brotli": 211056
       }
     },
     {
@@ -356,23 +432,23 @@
           "files": [
             {
               "path": "index.html",
-              "raw": 143983,
-              "gzip": 15831,
-              "brotli": 10752
+              "raw": 148857,
+              "gzip": 16391,
+              "brotli": 11200
             }
           ],
           "fileCount": 1,
-          "raw": 143983,
-          "gzip": 15831,
-          "brotli": 10752
+          "raw": 148857,
+          "gzip": 16391,
+          "brotli": 11200
         },
         "javascript": {
           "files": [
             {
-              "path": "_next/static/chunks/1f9iiwm9fluvm.js",
-              "raw": 167640,
-              "gzip": 52554,
-              "brotli": 45015
+              "path": "_next/static/chunks/0v61-6b9kd0xa.js",
+              "raw": 155903,
+              "gzip": 50171,
+              "brotli": 43467
             },
             {
               "path": "_next/static/chunks/1inwntv0b4r-7.js",
@@ -381,16 +457,16 @@
               "brotli": 6089
             },
             {
+              "path": "_next/static/chunks/1n3yzktih8p9d.js",
+              "raw": 245322,
+              "gzip": 72588,
+              "brotli": 59879
+            },
+            {
               "path": "_next/static/chunks/1scs3-v_g4tkg.js",
               "raw": 178603,
               "gzip": 47286,
               "brotli": 39865
-            },
-            {
-              "path": "_next/static/chunks/1ykozbs67p54h.js",
-              "raw": 155313,
-              "gzip": 50010,
-              "brotli": 43261
             },
             {
               "path": "_next/static/chunks/2ax70tuc_jxay.js",
@@ -412,23 +488,23 @@
             }
           ],
           "fileCount": 7,
-          "raw": 775491,
-          "gzip": 235730,
-          "brotli": 202111
+          "raw": 853763,
+          "gzip": 255925,
+          "brotli": 217181
         },
         "css": {
           "files": [
             {
-              "path": "_next/static/chunks/0d_zkf5uzg2bp.css",
-              "raw": 69954,
-              "gzip": 11690,
-              "brotli": 10110
+              "path": "_next/static/chunks/0-3jeyehz51_h.css",
+              "raw": 79697,
+              "gzip": 12902,
+              "brotli": 11094
             }
           ],
           "fileCount": 1,
-          "raw": 69954,
-          "gzip": 11690,
-          "brotli": 10110
+          "raw": 79697,
+          "gzip": 12902,
+          "brotli": 11094
         },
         "fonts": {
           "files": [
@@ -447,9 +523,9 @@
       },
       "total": {
         "fileCount": 10,
-        "raw": 1018828,
-        "gzip": 292651,
-        "brotli": 252373
+        "raw": 1111717,
+        "gzip": 314618,
+        "brotli": 268875
       }
     }
   ]

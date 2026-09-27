@@ -12,7 +12,9 @@ The benchmark is scoped to this page, component set, and the locked dependency v
 
 Frameworks updated September 25, 2026: **Astro 7.3.5** in both Astro demos, **Next.js 16.3.6**, and **React / React DOM 19.3.0** in both React demos. Astro React uses `@astrojs/react` 7.0.0. All versions are pinned in the project manifests and lockfiles. Generated reports record installed versions in `environment.versions`.
 
-Data-slot was updated to **1.0.1** on September 26. All six b/ui primitives and their shared core use that release; the upstream navigation fix replaces the local patch.
+Data-slot was updated to **1.0.2** on September 27. All ten b/ui primitives and their shared core use that release. The b/ui registry snapshot is pinned to `218f7621d596a3b4bd33b6c96d31ee3b0e332483`, including the current accordion.
+
+All three demos now include cookie preferences with switches and saved choices, a notifications popover, and a quick-settings dropdown. Open them in the **Make it yours** section near the footer. Cookie controls open on request and do not enable tracking.
 
 All three demos use **Nova**: `bejamas-nova` for b/ui and shadcn's `base-nova` with Base UI 1.8.0 for both React demos. The September 26 alignment also matches badge, tab and navigation variants, tooltip markup, and contact form spacing. See [the component snapshot and migration details](docs/base-ui.md). Shared presets do not imply identical generated CSS or runtime implementations.
 
@@ -22,32 +24,32 @@ Fresh production build measurements for `/`. Each compressible response is compr
 
 | Metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| Route JS files | 7 | 21 | 7 |
-| Route JS raw | 97.54 KiB | 477.10 KiB | 757.32 KiB |
-| Route JS gzip | 35.26 KiB | 160.39 KiB | 230.21 KiB |
-| Route JS Brotli | 31.66 KiB | 142.39 KiB | 197.37 KiB |
-| HTML raw | 107.03 KiB | 65.90 KiB | 140.61 KiB |
-| CSS raw | 82.03 KiB | 66.54 KiB | 68.31 KiB |
-| CSS gzip | 12.92 KiB | 10.89 KiB | 11.42 KiB |
+| Route JS files | 11 | 29 | 7 |
+| Route JS raw | 126.68 KiB | 533.57 KiB | 833.75 KiB |
+| Route JS gzip | 46.33 KiB | 178.95 KiB | 249.93 KiB |
+| Route JS Brotli | 41.44 KiB | 159.04 KiB | 212.09 KiB |
+| HTML raw | 131.24 KiB | 70.90 KiB | 145.37 KiB |
+| CSS raw | 91.08 KiB | 75.78 KiB | 77.83 KiB |
+| CSS gzip | 14.10 KiB | 12.06 KiB | 12.60 KiB |
 | Loaded font subset | 28.71 KiB | 28.71 KiB | 28.71 KiB |
-| HTML + CSS + JS + font, gzip estimate | 87.37 KiB | 209.29 KiB | 285.79 KiB |
+| HTML + CSS + JS + font, gzip estimate | 103.04 KiB | 229.62 KiB | 307.24 KiB |
 
-The current raw CSS gap between b/ui and Astro React is 15.49 KiB. Nova alignment reduced b/ui CSS from 84.72 KiB to 82.03 KiB raw. The remaining gap includes differences in component source, supported variants and selectors; matching the visual preset does not make the implementations byte-identical.
+The current raw CSS gap between b/ui and Astro React is 15.30 KiB. This includes differences in component source, supported variants and selectors; matching the visual preset does not make the implementations byte-identical.
 
 ### Lighthouse mobile lab results
 
-This September 26 baseline uses Nova in all three demos and data-slot 1.0.1 in b/ui. The previous Juno baseline is preserved in [the archive](results/history/juno-data-slot-1.0.1-2026-09-26/README.md).
+This September 27 baseline uses Nova in all three demos and data-slot 1.0.2 in b/ui, with the expanded component set. The previous Nova baseline is preserved in [the archive](results/history/nova-data-slot-1.0.1-2026-09-26/README.md).
 
 Values are medians of five sequential Lighthouse 13.4.1 mobile runs against local production builds, served by one HTTP server with deterministic gzip. All three use their default CSS delivery for this baseline. Mobile viewport 412×823, 150 ms simulated RTT, 1,638.4 Kbps throughput, and 4× CPU slowdown.
 
 | Metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| Performance score | 99 | 97 | 96 |
-| FCP | 1.65 s | 1.73 s | 1.21 s |
-| LCP | 1.65 s | 2.40 s | 2.76 s |
-| TBT | 0.0 ms | 0.0 ms | 0.0 ms |
-| CLS | 0.02 | 0.02 | 0.02 |
-| Speed Index | 1.65 s | 1.73 s | 1.21 s |
+| Performance score | 99 | 96 | 96 |
+| FCP | 1.66 s | 1.80 s | 1.21 s |
+| LCP | 1.66 s | 2.55 s | 2.76 s |
+| TBT | 0.0 ms | 0.0 ms | 1.5 ms |
+| CLS | 0.02 | 0.00 | 0.02 |
+| Speed Index | 1.66 s | 1.80 s | 1.21 s |
 
 See [the five individual samples and methodology](results/performance.json). These are controlled local lab results, not field Core Web Vitals. CDN behavior, production TTFB and repeat-visit caching are outside this comparison.
 
@@ -78,18 +80,22 @@ These are scripted lab interaction timings, not field INP or measurements from a
 
 ### Parity and accessibility
 
+`npm run test:components` additionally checks the new overlays at phone and desktop widths, including hover, persistence, focus trapping, keyboard actions, modal accessibility, and WCAG checks with the settings menu open.
+
 [Browser verification](results/quality.json) confirms identical visible text, theme CSS and local font; working navigation, keyboard tooltips, tabs, hover cards, accordion, both select labels and checkbox; bounded navigation popups; six focusable tooltip triggers; zero nested controls, axe violations or browser errors; and requests matching the asset report. It also enforces Nova in all three demos, identical Base UI component source, matching installed Astro versions, and matching React / React DOM versions.
 
-[Visual geometry verification](results/visual-parity.json) compares 98 corresponding visible component boxes, plus header, section and footer layout, against both React demos at 412px and 1280px widths. All comparisons pass within 0.5px. This checks settled light-mode layout, not pixel equality or every animated state. Run `npm run verify:visual` for screenshots and the report; the full benchmark includes this check.
+[Visual geometry verification](results/visual-parity.json) compares 101 corresponding visible component boxes, plus header, section and footer layout, against both React demos at 412px and 1280px widths. All comparisons pass within 0.5px. This checks settled light-mode layout, not pixel equality or every animated state. Run `npm run verify:visual` for screenshots and the report; the full benchmark includes this check.
 
 | Structural metric | Astro + b/ui | Astro + React + shadcn Base UI | Next.js + shadcn Base UI |
 |---|---:|---:|---:|
-| DOM elements after initialization | 311 | 263 | 257 |
-| Serialized DOM after initialization | 72.71 KiB | 65.56 KiB | 140.59 KiB |
+| DOM elements after initialization | 400 | 284 | 277 |
+| Serialized DOM after initialization | 98.08 KiB | 70.51 KiB | 145.33 KiB |
 
 These counts measure browser elements. They do not include React's virtual DOM or Fiber objects in JavaScript memory.
 
 ### Historical results
+
+The [September 26 Nova baseline](results/history/nova-data-slot-1.0.1-2026-09-26/README.md) preserves measurements before the expanded component set and data-slot 1.0.2.
 
 The [pre-Nova Juno archive](results/history/juno-data-slot-1.0.1-2026-09-26/README.md) preserves the earlier assets, quality, Lighthouse and interaction reports. `npm run verify:visual` captures the current production pages at mobile and desktop widths for visual review.
 
@@ -124,6 +130,9 @@ Every variant renders the same content and interaction set:
 - Six inline hover cards
 - Six FAQ accordion items
 - Contact form with two selects and a checkbox
+- Cookie preferences dialog with necessary, analytics, and marketing switches
+- Notifications popover with a mark-as-read action
+- Quick-settings dropdown with checkbox items
 - Footer link columns
 
 The projects use the same color tokens and local Geist variable font. Framework-specific DOM wrappers and runtime markers are allowed and reported rather than treated as identical markup.
@@ -161,6 +170,7 @@ npm run measure
 npm run verify
 npm run test:interactions
 npm run test:navigation
+npm run test:components
 npm run interactions
 npm run performance
 npm run performance:css
@@ -220,11 +230,26 @@ The projects are configured as Cloudflare static-asset Workers in the `Bejamas O
 
 Deployments are intentionally separate from the benchmark command:
 
+These URLs serve the last manual deployment. Pushing or merging to `main` does
+not deploy them automatically; this repository has no deployment workflow.
+
 ```bash
 (cd astro-bui && bun run deploy)
 (cd astro-react-shadcn && npm run deploy)
 (cd nextjs-shadcn && npm run deploy)
+
+# Check live HTML, JavaScript, CSS, fonts, images, and RSC payloads against local builds
+npm run verify:deployments
 ```
+
+Run `npm run build`, `npm run verify`, `npm run test:navigation`, and
+`npm run test:components` before deploying. After deployment, run
+`DEMO_DEPLOYED=1 npm run test:components` to exercise the live demos. The deployment check fails on missing or different files, so stale
+Workers cannot pass just because they return HTTP 200. To check an existing
+deployment, keep the exact build outputs that were uploaded and run
+`npm run verify:deployments`. Rebuilding Next.js can change its generated build
+ID even with unchanged source. Record the Git commit with Wrangler's `--tag`
+and `--message` options when deploying to track the source version too.
 
 ## Limitations
 

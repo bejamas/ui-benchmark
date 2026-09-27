@@ -40,7 +40,7 @@ try {
         });
       });
       const landmarks = await page.evaluate(() =>
-        [...document.querySelectorAll("header, main > section, footer")].map(element => {
+        [...document.querySelectorAll("header, main > section, main > astro-island > section, footer")].map(element => {
           const { x, y, width, height } = element.getBoundingClientRect();
           return { x, y, width, height };
         }),
